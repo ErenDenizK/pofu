@@ -61,6 +61,14 @@ public struct WorldLook: Hashable, Sendable {
     /// A fixed season (Rehearsal, screenshots) shown at every state the plate's data lists for it, even before the season
     /// is `complete`; `nil` follows the island year (`WorldSnapshot.season`).
     public var seasonOverride: Season?
+    /// The season's air (`SeasonAir`: leaves, snow, the season's own weather odds, fireflies and tint). On by default;
+    /// off only for the frames that judge a painting alone (the autumn plates of S3).
+    public var seasonAir = true
+    /// The season the air follows: the override, else the island year's; `nil` when the air is off.
+    public func airSeason(_ world: WorldSnapshot) -> Season? {
+        seasonAir ? (seasonOverride ?? world.season) : nil
+    }
+
     /// The frame-time counter in a corner (debug).
     public var frameMeter: Bool
     /// The feel numbers the tuning lab panel tunes live (look round 4).

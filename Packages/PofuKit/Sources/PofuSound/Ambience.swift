@@ -7,8 +7,22 @@ import PofuTuning
 public enum AmbienceWeather: String, CaseIterable, Sendable {
     case clear, overcast, lightRain, mist, goldenHaze
 
+    /// A weather the beds have no name for sounds like its nearest: snow is
+    /// the overcast sky's, hushed by the season's mix (`AmbienceScene.snowing`).
     public init(weatherName: String) {
-        self = AmbienceWeather(rawValue: weatherName) ?? .clear
+        self = AmbienceWeather(rawValue: weatherName) ?? (weatherName == "snow" ? .overcast : .clear)
+    }
+}
+
+/// The island's season as sound sees it. Mirrors `PofuCore.Season` by raw
+/// value, like `AmbienceWeather`; `nil` (no season) and spring are the mix
+/// the island shipped with.
+public enum AmbienceSeason: String, CaseIterable, Sendable {
+    case spring, summer, autumn, winter
+
+    public init?(seasonName: String?) {
+        guard let seasonName else { return nil }
+        self.init(rawValue: seasonName)
     }
 }
 
@@ -25,11 +39,17 @@ public struct AmbienceScene: Equatable, Sendable {
     public var hour: Int
     public var weather: AmbienceWeather
     public var islandLevel: Int
+    /// The island's season; `nil` and spring keep the shipped mix.
+    public var season: AmbienceSeason?
+    /// It is snowing (the weather arrives as `overcast`): everything softens.
+    public var snowing: Bool
 
-    public init(hour: Int, weather: AmbienceWeather, islandLevel: Int) {
+    public init(hour: Int, weather: AmbienceWeather, islandLevel: Int, season: AmbienceSeason? = nil, snowing: Bool = false) {
         self.hour = ((hour % 24) + 24) % 24
         self.weather = weather
         self.islandLevel = islandLevel
+        self.season = season
+        self.snowing = snowing
     }
 }
 
@@ -58,6 +78,9 @@ public enum AmbienceMixer {
 
     public static func mix(for scene: AmbienceScene) -> AmbienceMix {
         if bedtimeHours.contains(scene.hour) { return .silent }
+        // Snow: a hush with a little wind, nothing sharp (the beds are the
+        // same three; only their levels move).
+        if scene.snowing { return AmbienceMix(beds: [.hush: 0.8, .wind: 0.12], gulls: false) }
         let isEvening = cricketHours.contains(scene.hour)
         switch scene.weather {
         case .mist:
@@ -67,15 +90,38 @@ public enum AmbienceMixer {
             return AmbienceMix(beds: [.rain: 1, .wind: 0.2], gulls: false)
         case .clear, .overcast, .goldenHaze:
             var beds: [AmbienceBed: Double] = [:]
+            // Summer's evenings are the loudest with crickets; autumn
+            // brings its wind and thins them; winter hushes the wind and
+            // has none (spring and no season: as shipped).
+            let overcast = scene.weather == .overcast
+            let season = scene.season ?? .spring
             if isEvening {
-                beds[.crickets] = scene.weather == .overcast ? 0.6 : 0.8
-                beds[.wind] = 0.15
+                switch season {
+                case .spring: beds[.crickets] = overcast ? 0.6 : 0.8
+                case .summer: beds[.crickets] = overcast ? 0.8 : 1.0
+                case .autumn: beds[.crickets] = overcast ? 0.35 : 0.45
+                case .winter: break
+                }
+                let wind: Double = switch season {
+                case .spring, .summer: 0.15
+                case .autumn: 0.3
+                case .winter: 0.08
+                }
+                beds[.wind] = wind
             } else {
-                beds[.wind] = scene.weather == .overcast ? 1.0 : 0.7
+                let wind: Double = switch season {
+                case .spring: overcast ? 1.0 : 0.7
+                case .summer: overcast ? 0.8 : 0.55
+                case .autumn: overcast ? 1.0 : 0.95
+                case .winter: overcast ? 0.5 : 0.4
+                }
+                beds[.wind] = wind
+                if season == .winter { beds[.hush] = 0.25 }
             }
             let gulls = scene.islandLevel >= gullLevel
                 && gullHours.contains(scene.hour)
                 && scene.weather != .overcast
+                && season != .winter
             return AmbienceMix(beds: beds, gulls: gulls)
         }
     }

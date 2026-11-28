@@ -25,7 +25,7 @@ struct WeatherTests {
     @Test func theFirstFourteenDaysHoldEveryWeatherForAnyStartDate() {
         for start in starts {
             let seen = Set(slots(from: start, days: 14).map(\.2))
-            #expect(seen == Set(Weather.allCases), "start \(start)")
+            #expect(seen == Set(Weather.allCases).subtracting([.snow]), "start \(start): spring never snows")
         }
     }
 

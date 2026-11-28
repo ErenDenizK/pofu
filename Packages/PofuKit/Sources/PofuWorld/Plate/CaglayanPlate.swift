@@ -47,7 +47,7 @@ extension HomePlate {
         guard let island, look.homePlates, world.caglayan.isArrived else { return nil }
         let minute = look.hourOverride.map { $0 * 60 } ?? world.clock.map { SkyModel.minuteOfDay($0, calendar: calendar) } ?? 12 * 60
         let weather = look.weatherOverride
-            ?? WeatherForecast.conditions(clock: world.clock, firstDay: world.firstDay, hour: minute / 60, calendar: calendar)
+            ?? WeatherForecast.conditions(clock: world.clock, firstDay: world.firstDay, hour: minute / 60, calendar: calendar, season: look.airSeason(world))
         guard let state = caglayanState(in: island, stage: world.caglayan.stage, hour: minute / 60, weather: weather, isBedtime: world.isBedtime) else { return nil }
         return HomePlate(plate: island, light: state.light, stage: state.stage, placement: CaglayanLayout.placement)
     }

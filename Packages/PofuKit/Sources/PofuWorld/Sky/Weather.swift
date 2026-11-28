@@ -13,10 +13,18 @@ public enum Weather: String, CaseIterable, Hashable, Sendable {
     case lightRain
     case mist
     case goldenHaze
+    /// Winter's own weather (island calendar v1, C2): soft flakes under an
+    /// overcast sky. Only the island's winter rolls it.
+    case snow
 
-    /// The colour script's row for this weather; `nil` for clear.
+    /// The colour script's row for this weather; `nil` for clear. Snow
+    /// takes the overcast row: a snowy sky is a quiet grey one.
     var stateName: String? {
-        self == .clear ? nil : rawValue
+        switch self {
+        case .clear: nil
+        case .snow: Weather.overcast.rawValue
+        default: rawValue
+        }
     }
 
     /// The colour script's row, layered over the hour like the unwell state.
@@ -32,6 +40,11 @@ public enum Weather: String, CaseIterable, Hashable, Sendable {
     /// Whether this weather draws falling rain.
     public var isRaining: Bool {
         self == .lightRain
+    }
+
+    /// Whether this weather draws falling snow.
+    public var isSnowing: Bool {
+        self == .snow
     }
 }
 
@@ -81,6 +94,9 @@ public enum WeatherForecast {
     /// one; it never falls in the night's deepest hours.
     static let morningRain = 4.0 ..< 12.0
     static let afternoonRain = 12.0 ..< 17.0
+    /// Snow keeps falling into the evening; like rain it leaves the night's
+    /// deepest hours alone.
+    static let afternoonSnow = 12.0 ..< 23.0
     static let mistHours = 4.5 ..< 10.5
     static let goldenHours = 17.5 ..< 19.5
     /// The rainbow lasts an hour after the rain ends.
@@ -120,20 +136,79 @@ public enum WeatherForecast {
         return slots.map { $0 ?? next.next() ?? .clear }
     }
 
-    /// The weather rolled for a half day (before the hour trims it).
-    public static func weather(on day: LocalDay, half: WeatherHalf, start: LocalDay) -> Weather {
+    /// Days one season bag covers: the island season's own length.
+    public static let seasonBagDays = 7
+    public static let seasonBagSlots = seasonBagDays * 2
+
+    /// What one season's bag holds, in slots out of 14 (island calendar v1,
+    /// C2): summer is clear with a shower and a golden evening, autumn
+    /// grey with rain and mist, winter's snow instead of rain. `nil` for
+    /// spring, whose bag is the shipped one (`bagCounts`), so every spring
+    /// frame stays as it was.
+    public static func seasonCounts(_ season: Season) -> [Weather: Int]? {
+        switch season {
+        case .spring: nil
+        case .summer: [.clear: 8, .overcast: 2, .lightRain: 2, .goldenHaze: 2]
+        case .autumn: [.clear: 4, .overcast: 4, .lightRain: 3, .mist: 2, .goldenHaze: 1]
+        case .winter: [.clear: 6, .overcast: 3, .snow: 4, .mist: 1]
+        }
+    }
+
+    /// The weather of every slot of one season bag (`block` counts weeks
+    /// from the first day): the same placing rules as `bag`.
+    public static func seasonBag(block: Int, season: Season, start: LocalDay) -> [Weather] {
+        let counts = seasonCounts(season) ?? bagCounts
+        let salt: UInt64 = switch season {
+        case .spring: 0
+        case .summer: 1
+        case .autumn: 2
+        case .winter: 3
+        }
+        var rng = SplitMix64(seed: UInt64(truncatingIfNeeded: dayNumber(start)) &* 0x9E37_79B9_7F4A_7C15 &+ UInt64(truncatingIfNeeded: block) &* 0xD1B5_4A32_D192_ED03 &+ salt &* 0x2545_F491_4F6C_DD1D &+ 0x5EA5)
+        var slots = [Weather?](repeating: nil, count: seasonBagSlots)
+        func place(_ weather: Weather, parity: Int?, avoidingRain: Bool = false) {
+            var options = slots.indices.filter { i in slots[i] == nil && (parity == nil || i % 2 == parity) }
+            if avoidingRain {
+                options = options.filter { i in
+                    !(i > 0 && slots[i - 1] == .lightRain) && !(i + 1 < seasonBagSlots && slots[i + 1] == .lightRain)
+                }
+            }
+            guard !options.isEmpty else { return }
+            slots[options[Int(rng.next() % UInt64(options.count))]] = weather
+        }
+        for _ in 0 ..< (counts[.goldenHaze] ?? 0) { place(.goldenHaze, parity: 1) }
+        for _ in 0 ..< (counts[.mist] ?? 0) { place(.mist, parity: 0) }
+        for _ in 0 ..< (counts[.lightRain] ?? 0) { place(.lightRain, parity: nil, avoidingRain: true) }
+        for _ in 0 ..< (counts[.snow] ?? 0) { place(.snow, parity: nil) }
+        var rest: [Weather] = []
+        for weather in [Weather.overcast, .clear] {
+            rest += Array(repeating: weather, count: counts[weather] ?? 0)
+        }
+        for i in stride(from: rest.count - 1, to: 0, by: -1) {
+            rest.swapAt(i, Int(rng.next() % UInt64(i + 1)))
+        }
+        var next = rest.makeIterator()
+        return slots.map { $0 ?? next.next() ?? .clear }
+    }
+
+    /// The weather rolled for a half day (before the hour trims it). The
+    /// island's `season` picks the bag: spring (or none) is the shipped one.
+    public static func weather(on day: LocalDay, half: WeatherHalf, start: LocalDay, season: Season? = nil) -> Weather {
         let n = max(0, dayNumber(day) - dayNumber(start))
         let slot = n * 2 + half.rawValue
+        if let season, seasonCounts(season) != nil {
+            return seasonBag(block: slot / seasonBagSlots, season: season, start: start)[slot % seasonBagSlots]
+        }
         return bag(slot / bagSlots, start: start)[slot % bagSlots]
     }
 
     /// The sky at a local hour (0...24) of a day, for a game that began on
     /// `start`. Same on every launch that day.
-    public static func conditions(on day: LocalDay, hour: Double, start: LocalDay) -> WeatherConditions {
+    public static func conditions(on day: LocalDay, hour: Double, start: LocalDay, season: Season? = nil) -> WeatherConditions {
         let h = hour.isFinite ? min(max(hour, 0), 24) : 12
         let half = WeatherHalf(hour: h)
-        let morning = weather(on: day, half: .morning, start: start)
-        let afternoon = weather(on: day, half: .afternoon, start: start)
+        let morning = weather(on: day, half: .morning, start: start, season: season)
+        let afternoon = weather(on: day, half: .afternoon, start: start, season: season)
 
         // The payoff: the hour after rain, a break in the clouds and a rainbow.
         if morning == .lightRain, h >= morningRain.upperBound, h < morningRain.upperBound + rainbowHours {
@@ -150,6 +225,9 @@ public enum WeatherForecast {
         case .lightRain:
             let hours = half == .morning ? morningRain : afternoonRain
             return WeatherConditions(weather: hours.contains(h) ? .lightRain : .clear)
+        case .snow:
+            let hours = half == .morning ? morningRain : afternoonSnow
+            return WeatherConditions(weather: hours.contains(h) ? .snow : .clear)
         case .mist:
             return WeatherConditions(weather: mistHours.contains(h) ? .mist : .clear)
         case .goldenHaze:
@@ -159,10 +237,10 @@ public enum WeatherForecast {
 
     /// The sky for a snapshot's clock, falling back to a fixed first day
     /// when the game has not recorded one.
-    public static func conditions(clock: Date?, firstDay: LocalDay?, hour: Double, calendar: Calendar) -> WeatherConditions {
+    public static func conditions(clock: Date?, firstDay: LocalDay?, hour: Double, calendar: Calendar, season: Season? = nil) -> WeatherConditions {
         guard let clock else { return .clear }
         let day = LocalDay(containing: clock, in: calendar)
-        return conditions(on: day, hour: hour, start: firstDay ?? day)
+        return conditions(on: day, hour: hour, start: firstDay ?? day, season: season)
     }
 
     /// Days since 1970-01-01 of a calendar day (proleptic Gregorian).
@@ -297,10 +375,10 @@ extension WorldLight {
             }
             copy.practicals.window = max(copy.practicals.window, state.windowFloor * (1 - night))
             // Overcast and rain put the sun out; golden haze blooms.
-            let dull = atmosphere.conditions.weather == .overcast || atmosphere.conditions.weather.isRaining
+            let dull = atmosphere.conditions.weather == .overcast || atmosphere.conditions.weather.isRaining || atmosphere.conditions.weather.isSnowing
             copy.shafts *= dull ? 0.3 : 1
             copy.bloom *= dull ? 0.8 : 1.2
-            copy.pollen *= atmosphere.conditions.weather.isRaining ? 0 : 1
+            copy.pollen *= atmosphere.conditions.weather.isRaining || atmosphere.conditions.weather.isSnowing ? 0 : 1
             copy.fireflies *= atmosphere.conditions.weather.isRaining ? 0.4 : 1
         }
         if atmosphere.haze > 0 {
