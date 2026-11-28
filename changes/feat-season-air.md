@@ -1,0 +1,1 @@
+[world] The island's seasons have their air: autumn drifts a few soft leaves, winter has a snowfall (snow is a sixth weather, rolled in winter's own odds), summer nights have fireflies over the island, and each season's wind and crickets mix differs; everything is off under Reduce Motion and Low Power Mode.

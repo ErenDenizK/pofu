@@ -60,6 +60,7 @@ public enum LookLUT {
         switch weather {
         case .lightRain: 1
         case .overcast: 0.6
+        case .snow: 0.45
         case .clear, .mist, .goldenHaze: 0
         }
     }

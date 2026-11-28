@@ -158,7 +158,7 @@ public struct HomePlate: Hashable, Sendable {
         guard let plate, look.homePlates else { return nil }
         let minute = look.hourOverride.map { $0 * 60 } ?? world.clock.map { SkyModel.minuteOfDay($0, calendar: calendar) } ?? 12 * 60
         let weather = look.weatherOverride
-            ?? WeatherForecast.conditions(clock: world.clock, firstDay: world.firstDay, hour: minute / 60, calendar: calendar)
+            ?? WeatherForecast.conditions(clock: world.clock, firstDay: world.firstDay, hour: minute / 60, calendar: calendar, season: look.airSeason(world))
         guard let state = state(in: plate.plate, islandLevel: world.islandLevel, hour: minute / 60, weather: weather, isBedtime: world.isBedtime) else { return nil }
         // A season is drawn at a state only if its data lists it (all or nothing, D4); else the whole state is spring's.
         let wanted = look.seasonOverride ?? world.season ?? .spring

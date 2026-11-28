@@ -30,6 +30,10 @@ import XCTest
 ///   Rehearsal season override: the season is not complete), by day over the windmill's level 2 and 5 looks and by night;
 ///   `path-season-turn-0000`, `-0750`, `-1000`, `-1250`, `-1500`: spring turning to autumn (the painting's cross-fade, 0.8 s
 ///   long, seen 0, 750, 1000, 1250 and 1500 ms after the season changes; the first 750 ms are still spring on the CI runner). The level 3 autumn state is not painted yet, so it has no frame;
+/// - `path-season-<autumn|winter|summer>-i3`, `-i10`, `-i3-night`, `-i10-night`: Home in the island's season at island level 3 and 10
+///   with the season's air (C2: leaves, snow, the summer fireflies; the Rehearsal override, so a stage without that season's
+///   painting shows the shipped one under the air); `path-season-<autumn|winter>-air-0.0`, `-2.5`, `-5.0` and
+///   `path-season-summer-air-night-0.0`, `-2.5`, `-5.0`: the moving layer (leaves, snow, fireflies) still at three moments;
 /// - `path-d03-grew-0900`: the overnight landing on the old painting, Pofu's news line and its button;
 ///   `path-d03-grew-live-1800`: the same morning, 1.8 s after the button, through the live timers;
 /// - `path-d04-build-focus`, `path-d04-build-burst`: a build's camera through the real `focusStation`
@@ -99,11 +103,16 @@ class PlayerPathFrameCase: XCTestCase {
     @MainActor
     func homeView(
         _ world: WorldSnapshot, hour: Double, island: IslandSceneModel, beads: [Bool] = [], settled: Bool = false,
-        beats: [VisitBeat]? = nil, model: WorldHomeModel? = nil, pofuStand: WorldPoint? = nil, season: Season? = nil
+        beats: [VisitBeat]? = nil, model: WorldHomeModel? = nil, pofuStand: WorldPoint? = nil, season: Season? = nil,
+        air: Bool = false, weather: WeatherConditions? = nil, airTime: Double? = nil
     ) -> some View {
         var look = WorldLook.playerPath(hour: hour)
         look.pofuStand = pofuStand
         look.seasonOverride = season
+        // The season's air (C2) is judged by its own frames: the autumn painting's (S3) and every other path frame
+        // keep the island without it, byte for byte.
+        look.seasonAir = air
+        look.weatherOverride = weather
         XCTAssertTrue(look.homePlates, "a path frame is never the sprite island")
         let now = world.clock ?? Date()
         let home = model ?? WorldHomeModel(now: { now }, schedulesCues: false, cheekLineHistory: cheekHistory(before: world))
@@ -126,6 +135,7 @@ class PlayerPathFrameCase: XCTestCase {
         )
         .environment(\.worldLook, look)
         .environment(\.worldStillFrame, true)
+        .environment(\.seasonAirTime, airTime)
     }
 
     @MainActor
@@ -544,6 +554,48 @@ final class PlayerPathScreensScreenshotTests: PlayerPathFrameCase {
         }
     }
 
+    /// Home in the island's other seasons with their air (island calendar v1, C2): autumn's leaves, winter's snow and summer's
+    /// fireflies at island levels 3 and 10, by day and by night, then each moving layer still at three moments (0, 2.5 and 5 s).
+    /// The season is the Rehearsal override and the weather is pinned (clear, or snow in winter), so the frames show the air alone.
+    @MainActor
+    func testRenderTheSeasonAir() async throws {
+        let scene = try windowScene()
+        let folder = try outputFolder()
+        let day = try XCTUnwrap(Self.path.first { $0.morning.islandLevel == 3 }, "the path has a level 3 island")
+        func world(level: Int) -> WorldSnapshot {
+            var world = day.morning
+            world.islandLevel = level
+            return world
+        }
+        let snow = WeatherConditions(weather: .snow)
+        let skies: [(season: Season, weather: WeatherConditions)] = [(.autumn, .clear), (.winter, snow), (.summer, .clear)]
+        for (season, weather) in skies {
+            for level in [3, 10] {
+                for (suffix, hour) in [("", 10.0), ("-night", 23.0)] {
+                    let name = "path-season-\(season.rawValue)-i\(level)\(suffix)"
+                    let island = IslandSceneModel(framing: .mid)
+                    let view = homeView(world(level: level), hour: hour, island: island, settled: true, season: season, air: true, weather: weather)
+                    try await capture(AnyView(view), name: name, scene: scene, folder: folder, settle: 2100) {
+                        XCTAssertNotNil(island.homePlate, "\(name): Home is its painting")
+                    }
+                }
+            }
+        }
+        let moving: [(label: String, season: Season, weather: WeatherConditions, hour: Double)] = [
+            ("autumn-air", .autumn, .clear, 10), ("winter-air", .winter, snow, 10), ("summer-air-night", .summer, .clear, 23),
+        ]
+        for (label, season, weather, hour) in moving {
+            for time in [0.0, 2.5, 5.0] {
+                let name = "path-season-\(label)-\(time)"
+                let island = IslandSceneModel(framing: .mid)
+                let view = homeView(world(level: 10), hour: hour, island: island, settled: true, season: season, air: true, weather: weather, airTime: time)
+                try await capture(AnyView(view), name: name, scene: scene, folder: folder, settle: 2100) {
+                    XCTAssertNotNil(island.homePlate, "\(name): Home is its painting")
+                }
+            }
+        }
+    }
+
     /// The pond's looks on Home (plan row 1c): its level shows at the island levels whose day plate has an erased base for
     /// it (10 to 7: stages 0 to 3). Island 10 at pond levels 1 to 5 (`path-pond-l<level>`), island 8 at level 3
     /// (`path-pond-i8-l3`, the windmill's base is shared) and island 7 at level 3 (`path-pond-i7-l3`, the tea stall's), at
@@ -667,7 +719,7 @@ final class PlayerPathScreensScreenshotTests: PlayerPathFrameCase {
     /// stands on (`path-<station>-night-l<level>`; the other stations stay at level 3), the whole island at mixed levels per stage
     /// (`path-levels-i<island level>-night`, judged whole), and island 10's mixed levels either side of 20:00
     /// (`path-levels-i10-1959`, `path-levels-i10-2001`: the stations must not change from one to the other, only the light; golden
-    /// hour keeps the painted stations until N2).
+    /// hour's own are `testRenderTheGoldenStations`).
     @MainActor
     func testRenderTheNightStations() async throws {
         let scene = try windowScene()
@@ -721,6 +773,62 @@ final class PlayerPathScreensScreenshotTests: PlayerPathFrameCase {
         }
         try await frames([(22, "-night")])
         try await frames([(19 + 59.0 / 60, "-1959"), (20 + 1.0 / 60, "-2001")])
+    }
+
+    /// The stations keep their level in golden hour (N2): the N1 frames at 18:30 (`path-<station>-golden-l<level>`, the island level
+    /// whose golden base it stands on, the other stations at level 3; the bagel cart and the lighthouse stand on stages 1 and 2,
+    /// where golden hour draws the night plate), the whole island at mixed levels per stage (`path-levels-i<island level>-golden`) and
+    /// island 10's mixed levels just inside golden hour at 17:29 and 17:31 (`path-levels-i10-1729`, `-1731`): with `-1959` and
+    /// `-2001` of the night test, the stations must not change at 17:30 or 20:00, only the light.
+    @MainActor
+    func testRenderTheGoldenStations() async throws {
+        let scene = try windowScene()
+        let folder = try outputFolder()
+        let day = try XCTUnwrap(Self.path.first { $0.morning.islandLevel == 3 }, "the path has a level 3 island")
+        let stations: [(id: StationID, name: String, island: Int)] = [
+            (.teaStall, "tea-stall", 3), (.windmill, "mill", 10), (.pond, "pond", 10),
+            (.workshop, "workshop", 10), (.bagelCart, "bagel-cart", 9), (.lighthouse, "lighthouse", 9),
+        ]
+        for (id, name, islandLevel) in stations {
+            for level in 1...5 {
+                var world = day.morning
+                world.islandLevel = islandLevel
+                world.stations = world.stations.map { status in
+                    var status = status
+                    if status.id == id { status.level = level }
+                    return status
+                }
+                let island = IslandSceneModel(framing: .mid)
+                let view = homeView(world, hour: 18.5, island: island, settled: true)
+                let frame = "path-\(name)-golden-l\(level)"
+                try await capture(AnyView(view), name: frame, scene: scene, folder: folder, settle: 2100) {
+                    XCTAssertNotNil(island.homePlate, "\(frame): Home is its painting")
+                }
+            }
+        }
+        let mixed: [(island: Int, levels: [StationID: Int])] = [
+            (10, [.windmill: 3, .pond: 2, .workshop: 1]),
+            (9, [.windmill: 4, .pond: 3, .workshop: 5, .bagelCart: 5, .lighthouse: 2]),
+            (8, [.windmill: 2, .pond: 4, .workshop: 3, .bagelCart: 3, .lighthouse: 5]), (7, [.teaStall: 3, .pond: 1, .workshop: 4]),
+            (6, [.teaStall: 4]), (4, [.teaStall: 5]), (3, [.teaStall: 2]),
+        ]
+        for (islandLevel, levels) in mixed {
+            for (hour, suffix) in [(18.5, "-golden"), (17 + 29.0 / 60, "-1729"), (17 + 31.0 / 60, "-1731")] where suffix == "-golden" || islandLevel == 10 {
+                var world = day.morning
+                world.islandLevel = islandLevel
+                world.stations = world.stations.map { status in
+                    var status = status
+                    if let level = levels[status.id] { status.level = level }
+                    return status
+                }
+                let island = IslandSceneModel(framing: .mid)
+                let view = homeView(world, hour: hour, island: island, settled: true)
+                let name = "path-levels-i\(islandLevel)\(suffix)"
+                try await capture(AnyView(view), name: name, scene: scene, folder: folder, settle: 2100) {
+                    XCTAssertNotNil(island.homePlate, "\(name): Home is its painting")
+                }
+            }
+        }
     }
 
     /// A build's camera through the real `focusStation` (the painted station centred above the sheet), and

@@ -125,8 +125,8 @@ def test_the_windmill_has_looks_2_to_5_over_bases_at_stages_1_and_2():
     assert data["levels"] == 5
     assert data["baseStages"] == [0, 1, 2]
     # level 1 has no pick: it draws nothing, not a made-up look; autumn's windmill has the same four (painted over the spring shape)
-    assert data["lookLevels"] == {"day": [2, 3, 4, 5], "night": [2, 3, 4, 5], "autumn-day": [2, 3, 4, 5]}
-    assert data["lights"] == {"day": [0, 1, 2], "night": [0, 1, 2], "autumn-day": [0]}
+    assert data["lookLevels"] == {"day": [2, 3, 4, 5], "night": [2, 3, 4, 5], "golden": [2, 3, 4, 5], "autumn-day": [2, 3, 4, 5]}
+    assert data["lights"] == {"day": [0, 1, 2], "night": [0, 1, 2], "golden": [0], "autumn-day": [0]}
     ref = data["box"]
     rx, ry = sl.WINDMILL["foot"]
     for stage, place in data["stages"].items():
@@ -366,3 +366,16 @@ def test_a_night_base_is_erased_by_batch_117s_night_take_of_its_level():
     assert stages == set(sl.NIGHT_STAGES)
     for stage in stages:
         assert sl.pick_of(sl.job_for(sl.JOB.format(10 - stage), "night")) in (1, 2)
+
+
+# ---------------------------------------------------------------- golden (N2)
+
+def test_golden_bases_stand_on_the_stages_the_golden_plates_paint_a_station_on():
+    # golden paints stages 0 and 3 to 7; the bagel cart and the lighthouse stand on stages 1 and 2 only, where golden hour draws the night plate
+    assert sl.GOLDEN_STAGES == (0, 3, 4, 6, 7)
+    data = {sp["id"]: sl.stations_data(sp)[sp["id"]] for sp in sl.STATIONS}
+    assert "golden" not in data["bagelCart"]["lights"] and "golden" not in data["lighthouse"]["lights"]
+    assert data["teaStall"]["lights"]["golden"] == [3, 4, 6, 7]
+    assert data["windmill"]["lights"]["golden"] == [0]
+    assert data["pond"]["lights"]["golden"] == [0, 3] == data["workshop"]["lights"]["golden"]
+    assert set(data["pond"]["lightBaseBytes"]["golden"]) == {"0", "3"}

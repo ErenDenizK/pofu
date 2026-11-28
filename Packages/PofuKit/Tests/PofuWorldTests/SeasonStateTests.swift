@@ -64,7 +64,7 @@ struct SeasonStateTests {
             #expect(spring.harmony == plate.harmony(light: state.light, stage: state.stage))
         }
         #expect(PlateIsland.key(season: .autumn, light: "night") == "autumn-night")
-        #expect(StationLooks.lookLight(for: "autumn-golden") == "autumn-day" && StationLooks.lookLight(for: "golden") == "day")
+        #expect(StationLooks.lookLight(for: "autumn-golden") == "autumn-day" && StationLooks.lookLight(for: "golden") == "golden")
     }
 
     @Test func anUnlistedStateResolvesToSpringForEveryPiece() throws {
