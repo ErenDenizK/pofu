@@ -134,7 +134,14 @@ class RenderTests(unittest.TestCase):
                     r0, r1 = int((ly - fr["y0"]) * c) - 8, int((ly + lh - fr["y0"]) * c) + 8
                     c0, c1 = int((lx - fr["x0"]) * c) - 8, int((lx + lw - fr["x0"]) * c) + 8
                     cover[max(r0, 0): max(r1, 0), max(c0, 0): max(c1, 0)] = False
-            r = sc.check_identity(rd.render(s, 0, fr, snap=True), master, cover, sc.THRESHOLDS["identity"])
+            th = sc.THRESHOLDS["identity"]
+            if light == "golden":
+                # ADR-0033: the golden gradient is refit to the colour script (about 16 dE2000 pink for violet), so
+                # the sky above the island is no longer the painting's and the soft mid clouds carry it through:
+                # measured from the island box down, with room for the refit's own shift
+                cover[: max(int((man["islandBox"][1] - fr["y0"]) * c), 0)] = False
+                th = {"mean_de": 3.5, "p99_de": 20.0}
+            r = sc.check_identity(rd.render(s, 0, fr, snap=True), master, cover, th)
             self.assertTrue(r["ok"], f"{light}: {r}")
 
     def test_the_island_never_moves_with_the_sky(self):
@@ -265,6 +272,41 @@ def _details(light: str):
     for layer in DATA["lights"][light]["layers"]:
         for d in layer.get("details", []):
             yield layer, d
+
+
+class ScriptFitTests(unittest.TestCase):
+    """ADR-0033: Home's golden gradient follows the colour script; day and night are only resampled."""
+
+    @staticmethod
+    def _top_median(light: str) -> np.ndarray:
+        name = f"world-home-sky-sky-{light}-0"
+        with heic.open_image(ex.ASSETS / f"{name}.imageset" / f"{name}.heic") as im:
+            rgb = np.asarray(im.convert("RGB"), np.float32) / 255
+        top = rgb[:40]                                              # the first gradient rows (the replicated edge included)
+        return np.median(top.reshape(-1, 3), axis=0)
+
+    def test_golden_field_lands_on_the_script(self):
+        cell = json.loads(ex.COLOUR_SCRIPT.read_text())["cells"]["golden"]["sky"]
+        got = ex._lab(self._top_median("golden")[None, None])[0, 0]
+        want = ex._lab(ex._hex_rgb(cell["zenith"])[None, None])[0, 0]
+        self.assertLessEqual(float(np.linalg.norm(got - want)), 4.0)       # CIE76 over a 40-row median, codec included
+
+    def test_fit_script_hits_both_anchors_and_keeps_the_rest(self):
+        rng = np.random.default_rng(1)
+        field = np.clip(0.5 + 0.1 * rng.standard_normal((60, 8, 3)).cumsum(1) * 0.02, 0, 1).astype(np.float32)
+        out = ex.fit_script(field, "#E2ADC7", "#FFCAB3", 50)
+        for row, code in ((0, "#E2ADC7"), (49, "#FFCAB3")):
+            got = np.median(ex._lab(out[row][None]), axis=1)[0]
+            self.assertLess(float(np.linalg.norm(got - ex._lab(ex._hex_rgb(code)[None, None])[0, 0])), 1.0)
+
+    def test_shade_lobes_go_and_lit_clouds_stay(self):
+        field = np.full((10, 10, 3), 0.85, np.float32)
+        far = np.zeros((10, 10, 4), np.float32)
+        far[:5, :, :3], far[:5, :, 3] = 0.6, 0.3          # dark and thin: a lobe
+        far[5:, :, :3], far[5:, :, 3] = 0.95, 0.3         # lighter than the sky: a lit cloud
+        out = ex.drop_shade_lobes(far, (0, 0), field)
+        self.assertEqual(float(out[:5, :, 3].max()), 0.0)
+        self.assertAlmostEqual(float(out[5:, :, 3].min()), 0.3, places=5)
 
 
 class CaglayanSkyTests(unittest.TestCase):
