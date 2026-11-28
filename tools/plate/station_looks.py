@@ -55,6 +55,21 @@ ASSETS = ingest.ASSETS
 # Day stage s is island level 10 - s; its erase job is `x-base-erase-l<level>-day`.
 JOB = "batch-117-station-erase-volume/x-base-erase-l{:02d}-day"
 
+
+# The path lanterns the night erase takes also take away (their heads and glow go, a post stub stays; the lead's reviews of batch 117
+# say to paste them back from the parent): texture px boxes, full plate, taken out of the paste mask of every night base.
+NIGHT_KEEP = [(575, 1460, 655, 1650), (870, 1470, 960, 1650)]
+
+
+#: The stages the night bases stand on: the levels batch 117 erased by night with a pick (level 10 - stage); level 5 (stage 5) has no station
+#: and levels 1 and 2 (stages 9 and 8) none of the stations' bases.
+NIGHT_STAGES = (0, 1, 2, 3, 4, 6, 7)
+
+
+def job_for(job: str, light: str = "day") -> str:
+    """A day erase job's job in `light`: batch 117 erased every level in the day and the night plate (`-day` -> `-night`)."""
+    return job.replace("-day", f"-{light}") if light in ("day", "night") else job
+
 # The tea stall (batch 196, day levels 1 to 5, the lead's picks: t1 of every level). A plot ladder like the workshop's: crops of batch
 # 117's erased level 10 base (plate pts 545,586 to 865,906, enlarged to the takes' 1536 px, so a take px is 320 / 1536 = 0.2083 points),
 # each level painted aligned to it, so a look is where a take differs from the bare crop and is not lawn. The stall's table, lamp post and
@@ -331,6 +346,8 @@ LIGHTHOUSE = {
 # [64,746,211,853] against [99,743,230,846]), and levels 1 and 2 collide with a pond at level 5, so it waits for a re-take whose crop
 # keeps the islet. Its spot keeps the plate's own painted bed.
 STATIONS = [TEA_STALL, WINDMILL, POND, WORKSHOP, BAGEL_CART, LIGHTHOUSE]
+for _sp in STATIONS:
+    _sp["night"] = True
 
 
 # ---------------------------------------------------------------- looks
@@ -669,6 +686,7 @@ def plot_looks(plot: dict) -> dict:
         # A season's look (D2): the spring take's shape, the season take's colours. The takes are aligned edits of the spring
         # takes (the season gate holds the frame), so the spring mask cuts them and nothing is cut by difference.
         rgbs = {n: _take_rgb(t) for n, t in plot["paint"].items()}
+        rgbs = {n: x if x.shape[:2] == masks[n].shape else cv2.resize(x, masks[n].shape[::-1], interpolation=cv2.INTER_AREA) for n, x in rgbs.items()}     # a relight is 1536 px, its parent plot 1254
     out = {}
     for n, m in masks.items():
         inside = cv2.erode(trust[n].astype(np.uint8), _ellipse(7)) > 0
@@ -782,6 +800,19 @@ def sky_alpha(rgb: np.ndarray) -> np.ndarray:
     return 1 - cv2.GaussianBlur(s, (0, 0), 1.2)
 
 
+def night_sky_alpha(rgb: np.ndarray, known_sky: np.ndarray) -> np.ndarray:
+    """`sky_alpha` for a night take: 1 on the island, 0 on the sky. The night sky is as blue as the purple flowers and the
+    bush's shade, so the sky is the blue that is connected, after an opening that cuts a fringe of flowers loose, to the sky
+    the parent shows (`known_sky`, a bool mask)."""
+    blue = ((rgb[..., 2] - (rgb[..., 0] + rgb[..., 1]) / 2) > 0.16).astype(np.uint8)       # the sky's 0.32 to 0.35, the lawn's under 0.04, a blue flower's under 0.15
+    core = cv2.morphologyEx(blue, cv2.MORPH_OPEN, _ellipse(9))
+    n, lab = cv2.connectedComponents(core, connectivity=8)
+    seeded = np.unique(lab[known_sky & (core > 0)])
+    sky = np.isin(lab, seeded[seeded > 0]).astype(np.uint8)
+    sky = (cv2.dilate(sky, _ellipse(11)) > 0) & (blue > 0)
+    return 1 - cv2.GaussianBlur(sky.astype(np.float32), (0, 0), 1.2)
+
+
 def paste_masks(parent: np.ndarray, take: np.ndarray, window: tuple[int, int, int, int], shapes: list | None = None) -> np.ndarray:
     """The old station: where the take differs from its parent inside the window, closed, holes filled, the biggest piece,
     grown 8 px (a hard 0/1 mask at texture size). `shapes` (ellipses `("e", cx, cy, rx, ry)` and boxes `("r", x0, y0, x1, y1)`,
@@ -805,24 +836,26 @@ def paste_masks(parent: np.ndarray, take: np.ndarray, window: tuple[int, int, in
     return cv2.dilate(raw, cv2.getStructuringElement(cv2.MORPH_ELLIPSE, (17, 17)))
 
 
-def match_to_parent(take_rgb: np.ndarray, parent_rgb: np.ndarray, parent_alpha: np.ndarray, hard: np.ndarray, lighter: bool = True, bright: bool = False) -> np.ndarray:
+def match_to_parent(take_rgb: np.ndarray, parent_rgb: np.ndarray, parent_alpha: np.ndarray, hard: np.ndarray, lighter: bool = True, bright: bool = False, night: bool = False) -> np.ndarray:
     """The take's colours moved so that the mean Lab colour of a ring of lawn round the region is the parent's. `bright`: the
     ring is the sunlit green lawn only (no flower, leaf, stone or shade), so the match does not pull the lawn olive."""
     near = cv2.dilate(hard, cv2.getStructuringElement(cv2.MORPH_ELLIPSE, (81, 81))) > 0
     close = cv2.dilate(hard, cv2.getStructuringElement(cv2.MORPH_ELLIPSE, (21, 21))) > 0
     ring = near & ~close & (parent_alpha > 0.95) & (parent_rgb[..., 1] > parent_rgb[..., 2] + 0.05)
+    if night:                                           # the night lawn is a faint blue-green (a* about -4, no sunlit yellow): its green, not the lamp pools
+        ring = near & ~close & (parent_alpha > 0.95) & (srgb_lab(parent_rgb)[..., 1] < -2) & (srgb_lab(parent_rgb)[..., 0] < 64)
     if ring.sum() < 200:
         return take_rgb
     lab_ring = srgb_lab(parent_rgb)[..., 0]
-    if bright:
+    if bright and not night:
         lab_p = srgb_lab(parent_rgb)
         ring &= (lab_p[..., 2] > 45) & (lab_p[..., 1] < -8)
         if ring.sum() < 200:
             return take_rgb
-    if lighter:
+    if lighter and not night:
         ring &= lab_ring >= np.median(lab_ring[ring])       # lighter half: the lawn in light, not in a building's shade
     lp, lt = srgb_lab(parent_rgb), srgb_lab(take_rgb)
-    delta = lp[ring].mean(0) - lt[ring].mean(0)
+    delta = (np.median(lp[ring], 0) - np.median(lt[ring], 0)) if night else lp[ring].mean(0) - lt[ring].mean(0)
     return lab_srgb(lt + delta)
 
 
@@ -893,10 +926,9 @@ def build_base(stage: int, spec: dict, plate: np.ndarray | None = None, light: s
             plate = np.asarray(im.convert("RGBA"), np.float32) / 255
     h, w = plate.shape[:2]
     parent = ingest.source_plate(ingest.REPO / hand["plates"][light][str(stage)])[0].astype(np.float32)
-    job = ingest.REPO / "design" / "art" / "takes" / spec["job"]
-    take = np.asarray(Image.open(erase or take_path(spec["job"])).convert("RGB").resize((parent.shape[1], parent.shape[0]), Image.LANCZOS), np.float32) / 255
+    take = np.asarray(Image.open(erase or take_path(job_for(spec["job"], light))).convert("RGB").resize((parent.shape[1], parent.shape[0]), Image.LANCZOS), np.float32) / 255
     hard_full = paste_masks(parent, take, spec["window"], spec.get("shapes"))
-    for ex0, ey0, ex1, ey1 in spec.get("exclude", []):
+    for ex0, ey0, ex1, ey1 in spec.get("exclude", []) + (NIGHT_KEEP if light == "night" else []):
         hard_full[ey0:ey1, ex0:ex1] = 0
     for oid in spec.get("excludeOccluders", ()):         # an occluder's opaque pixels stay the plate's (the mailbox)
         x0, y0, x1, y1, alpha = occluder_pixels(stage, oid, light)
@@ -911,11 +943,16 @@ def build_base(stage: int, spec: dict, plate: np.ndarray | None = None, light: s
     p_rgb, p_a = plate[..., :3], plate[..., 3]
     t_rgb = take[sl]
     # the take's grass line is mixed with its sky: colours come from the nearest sure-island pixel
-    t_a = sky_alpha(t_rgb)
+    if light == "night":
+        known = p_a < 0.05
+        known[max(spec["window"][1] - cy, 0):spec["window"][3] - cy, max(spec["window"][0] - cx, 0):spec["window"][2] - cx] = False
+        t_a = night_sky_alpha(t_rgb, known)
+    else:
+        t_a = sky_alpha(t_rgb)
     sure = t_a > 0.97
     _, (iy, ix) = ndimage.distance_transform_edt(~sure, return_indices=True)
     t_rgb = np.where((t_a < 0.97)[..., None], t_rgb[iy, ix], t_rgb)
-    t_rgb = match_to_parent(t_rgb, parent[sl], p_a, hard, spec.get("lighter", True), spec.get("brightRing", False))
+    t_rgb = match_to_parent(t_rgb, parent[sl], p_a, hard, spec.get("lighter", True), spec.get("brightRing", False), light == "night")
     m_alpha = cv2.GaussianBlur(cv2.dilate(hard, cv2.getStructuringElement(cv2.MORPH_ELLIPSE, (9, 9))).astype(np.float32), (0, 0), 3.0)
     m_rgb = cv2.GaussianBlur(cv2.dilate(hard, cv2.getStructuringElement(cv2.MORPH_ELLIPSE, (25, 25))).astype(np.float32), (0, 0), FEATHER_TEX / 3)
     # the plate's alpha only shrinks in the region (the old counter hung over the sky); never grows
@@ -1093,22 +1130,23 @@ def write_or_keep(name: str, img: Image.Image) -> bool:
     return True
 
 
-def cmd_bases(station: dict | None = None) -> dict:
-    """Every base of the stages `station` stands on (all stations when None), each with all the stations that share it."""
+def cmd_bases(station: dict | None = None, light: str = "day") -> dict:
+    """Every base of the stages `station` stands on (all stations when None), each with all the stations that share it, in
+    `light` (day or night: batch 117 erased both)."""
     chosen = [station] if station else STATIONS
     stages = sorted({s for sp in chosen for s in sp["bases"]})
     out = {}
     for stage in stages:
-        x, info, _ = accumulate_base(stage)
-        write_or_keep(base_name("day", stage), to_img(x))
+        x, info, _ = accumulate_base(stage, None, light)
+        write_or_keep(base_name(light, stage), to_img(x))
         # The Map's island cut (and the graded island layer) is the same picture: it must not paint the stall either.
         crop = info["crop"]
         full = np.zeros((SIZE_TEX[1], SIZE_TEX[0], 4), np.float32)
         full[crop[1] * TEX:crop[1] * TEX + x.shape[0], crop[0] * TEX:crop[0] * TEX + x.shape[1]] = x
         # `ingest.cmd_deliver` cuts it at the stage matte's box (`ingest.bbox`), `map_cut.py` clears the level-10 ghost.
-        ix0, iy0, ix1, iy1 = ingest.bbox(ingest.load_matte(ISLAND, "day", stage), 0.02)
+        ix0, iy0, ix1, iy1 = ingest.bbox(ingest.load_matte(ISLAND, light, stage), 0.02)
         for kind in ("island", "mapisle"):
-            name = ingest.asset_name(ISLAND, kind, "day", stage)
+            name = ingest.asset_name(ISLAND, kind, light, stage)
             with open_source_asset(name) as im:
                 old = np.asarray(im.convert("RGBA"), np.float32) / 255
             cut = resize_rgba(full[iy0 * TEX:iy1 * TEX, ix0 * TEX:ix1 * TEX], 1.0)
@@ -1121,9 +1159,9 @@ def cmd_bases(station: dict | None = None) -> dict:
             sp = next(sp for sp in STATIONS if sp["id"] == station_id)
             keep = sp.get("keepOccluders", ())
             skip = tuple(o for o in sp["bases"][stage].get("excludeOccluders", ()) if o not in keep)    # an occluder whose pixels the base keeps
-            clear_occluders(stage, region, station_id, keep, skip)
+            clear_occluders(stage, region, station_id, keep, skip, light)
         out[stage] = x.shape[:2]
-        print(f"base day {stage}: {x.shape[1]} x {x.shape[0]} px ({', '.join(sp['id'] for sp in stage_specs(stage))})")
+        print(f"base {light} {stage}: {x.shape[1]} x {x.shape[0]} px ({', '.join(sp['id'] for sp in stage_specs(stage))})")
     return out
 
 
@@ -1268,6 +1306,100 @@ def cmd_season(season: str) -> None:
             season_looks(season, key, stage)
 
 
+# ---------------------------------------------------------------- night (N1)
+
+#: The pond's painted night looks (batch 197, the lead's picks: take 2, 1, 1, 2, 2 of forms 1 to 5): relights of batch 134's day plots, so
+#: the day look's outline cuts them (`plot_looks` with `paint`) and their colours are graded to the day look as the night plate sees it.
+PLOT_POND_NIGHT = "batch-197-pond-night/x-plot-pond-{}-night"
+POND_NIGHT_PICKS = {1: 2, 2: 1, 3: 1, 4: 2, 5: 2}
+#: The windmill's (batch 188, the lead's picks: forms 2, 4 and 5 are cut; form 3 is a redo, so its night is its day look through the
+#: colour fit; form 1 has no day look to cut by). Each station: level -> (job, take).
+PLOT_MILL_NIGHT = "batch-188-windmill-night/x-plot-windmill-{}-night"
+NIGHT_PAINT = {
+    "pond": {n: (PLOT_POND_NIGHT.format(n), t) for n, t in POND_NIGHT_PICKS.items()},
+    "windmill": {2: (PLOT_MILL_NIGHT.format(2), 2), 4: (PLOT_MILL_NIGHT.format(4), 2), 5: (PLOT_MILL_NIGHT.format(5), 1)},
+}
+
+
+def night_fit(sid: str, stage: int, level: int, look: np.ndarray, data: dict) -> np.ndarray:
+    """The colour fit, in linear RGB, from the day plate to the night plate of `stage`, learned on the pixels the station's look
+    covers there (its alpha eroded; both plates solid), as the season's derived looks (`season_looks`)."""
+    import season_gate as sg
+    hand = ingest.load_hand(ISLAND)
+
+    def full(light: str) -> np.ndarray:                              # the state's plate in the full plate's texture frame
+        plate = sg.load_asset(ingest.asset_name(ISLAND, "plate", light, stage))
+        cx, cy = (v * TEX for v in ingest.plate_crop_points(ISLAND, hand, light, stage)[:2])
+        canvas = np.zeros((SIZE_TEX[1], SIZE_TEX[0], 4), np.float32)
+        canvas[cy:cy + plate.shape[0], cx:cx + plate.shape[1]] = plate
+        return canvas
+
+    plate_n, plate_d = full("night"), full("day")
+    pos = data["stations"][sid]["stages"][str(stage)]["box"]
+    x0, y0 = round(pos[0] * TEX), round(pos[1] * TEX)
+    w, h = round((pos[2] - pos[0]) * TEX), round((pos[3] - pos[1]) * TEX)
+    foot = cv2.erode((cv2.resize(look[..., 3], (w, h), interpolation=cv2.INTER_AREA) > 0.9).astype(np.uint8), _ellipse(9)) > 0
+    m = np.zeros(plate_n.shape[:2], bool)
+    m[y0:y0 + h, x0:x0 + w] = foot
+    d = plate_d
+    if m.sum() < 500:
+        raise SystemExit(f"{sid} level {level}: the night fit has {int(m.sum())} px at stage {stage}")
+    return sg.colour_fit(d[m][:, :3], plate_n[m][:, :3])
+
+
+def night_looks() -> dict:
+    """The night looks, `world-home-look-<station>-<level>-night`: the pond's painted (batch 197) and graded to its day look under the
+    night fit, every other station's its day look through that fit (the colour fit of #549's season derive, learned per level on the
+    station's own pixels in the day and the night plate of its foot stage). No window or lantern is lit (D51, D68)."""
+    import season_gate as sg
+    data = json.loads(ingest.JSON_DIR.joinpath("plate-home.json").read_text())
+    out = {}
+    for spec in STATIONS:
+        sid = spec["id"]
+        stage = spec.get("footStage", min(spec["bases"]))
+        levels = data["stations"][sid].get("lookLevels", {}).get("day") or list(range(1, spec["levels"] + 1))
+        fits = {}
+        for n in levels:
+            with heic.open_image(ASSETS / f"{look_name(sid, n, 'day')}.imageset" / f"{look_name(sid, n, 'day')}{heic.SUFFIX}") as im:
+                day = np.asarray(im.convert("RGBA"), np.float32) / 255
+            fit = night_fit(sid, stage, n, day, data)
+            fits[n] = fit
+            look = day.copy()
+            look[..., :3] = sg.apply_fit(fit, day[..., :3].reshape(-1, 3)).reshape(day.shape[:2] + (3,))
+            if n in NIGHT_PAINT.get(sid, {}):
+                look = painted_night_look(spec, n, day, look)
+            ingest.write_imageset(look_name(sid, n, "night"), to_img(look))
+        out[sid] = levels
+        print(f"night looks {sid}: levels {levels} by the stage-{stage} fit" + (f", painted at levels {sorted(NIGHT_PAINT[sid])}, the rest derived" if sid in NIGHT_PAINT else ", derived"))
+    return out
+
+
+def painted_night_look(spec: dict, n: int, day: np.ndarray, fitted: np.ndarray) -> np.ndarray:
+    """The night look of level `n` of a station painted by night (`NIGHT_PAINT`): the relight cut with the day plot's outline
+    (`build_looks` on the same canvas as the day look, so the box, foot and size are unchanged) and graded in CIELAB to the day look
+    under the night fit (the relights run darker and more chromatic than the night plate: batch 188's reviews)."""
+    paint = NIGHT_PAINT[spec["id"]]
+    plot = {**spec["plot"], "grade": {k: (1.0, 1.0) for k in spec["plot"]["takes"]},
+            "paint": {k: paint.get(k, spec["plot"]["takes"][k]) for k in spec["plot"]["takes"]}}
+    built = build_looks({**spec, "plot": plot})["looks"][n]
+    assert built.shape == day.shape, (built.shape, day.shape)
+    keep = (day[..., 3] > 0.9) & (built[..., 3] > 0.9)
+    want, got = srgb_lab(fitted[..., :3])[keep], srgb_lab(built[..., :3])[keep]
+    c = float(np.hypot(want[:, 1], want[:, 2]).mean() / np.hypot(got[:, 1], got[:, 2]).mean())
+    l = float(want[:, 0].mean() / got[:, 0].mean())
+    lab = srgb_lab(built[..., :3])
+    lab[..., 0] = np.clip(lab[..., 0] * l, 0, 100)
+    lab[..., 1:] *= c
+    print(f"  {spec['id']} {n}: grade chroma {c:.3f}, light {l:.3f}")
+    return np.dstack([lab_srgb(lab), day[..., 3:]])           # the day look's own alpha: the same outline in both lights
+
+
+def cmd_night() -> None:
+    """The night bases (every stage a station stands on) and looks. Run `ingest.py json` and `station_looks.py json` after."""
+    cmd_bases(None, "night")
+    night_looks()
+
+
 # ---------------------------------------------------------------- data
 
 def asset_pixels(name: str) -> int:
@@ -1292,6 +1424,12 @@ def stations_data(spec: dict = TEA_STALL) -> dict:
     }
     if levels != list(range(1, spec["levels"] + 1)):          # a level whose look is missing draws the nearest lower one
         data["lookLevels"] = {spec["light"]: levels}
+    if spec.get("night"):                                      # the night bases (batch 117's night erases) and looks (`cmd_night`)
+        nights = sorted(st for st in spec["bases"] if st in NIGHT_STAGES)
+        data.setdefault("lights", {spec["light"]: data["baseStages"]})["night"] = nights
+        data["lightBaseBytes"] = {"night": {str(s): asset_pixels(base_name("night", s)) for s in nights}}
+        if "lookLevels" in data:
+            data["lookLevels"]["night"] = levels
     for season, entry in SEASON_SLICE.items():                # a season's states that stand this station over a base
         for key, stages in entry["states"].items():
             on = sorted(st for st, erase in stages.items() if erase and st in spec["bases"])
@@ -1321,13 +1459,16 @@ def cmd_json() -> None:
 
 def main(argv: list[str] | None = None) -> int:
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    ap.add_argument("command", choices=["looks", "bases", "json", "all", "season"])
+    ap.add_argument("command", choices=["looks", "bases", "json", "all", "season", "night"])
     ap.add_argument("--season", default="autumn", choices=sorted(SEASON_SLICE), help="season: the season to deliver (default autumn)")
     ap.add_argument("--station", choices=[sp["id"] for sp in STATIONS], help="one station (default: every station)")
     args = ap.parse_args(argv)
     heic.require()
     if args.command == "season":
         cmd_season(args.season)
+        return 0
+    if args.command == "night":
+        cmd_night()
         return 0
     chosen = [sp for sp in STATIONS if args.station in (None, sp["id"])]
     for spec in chosen:

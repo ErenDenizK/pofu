@@ -1,0 +1,57 @@
+batch: batch-117-station-erase-volume
+job: x-base-erase-l09-night
+status: warn
+pick: 2
+lead_review: "Pick t2 for paste-back onto the shipped night-clear IL9 plate (plate-l9-night-clear): all eight stations gone with the flowers by the gate kept, where t1 grows a dark bush beside the gate; keep the parent's bridge, gap and islet out of the mask (both fill the gap) and paste the pond-side path lantern back."
+note: "Exploration only; retain both unpromoted whole-plate takes for the lead to paste back. Judge the erased region and feathered seam only; whole-frame drift is expected. Preserve the left-rim daisy border, hilltop flowers, and non-station path lantern; trim any dangling workshop light string where applicable. Station boxes are in the manifest job notes."
+source: codex-cloud
+account:
+  owner: "Founder's uncle's ChatGPT plan, used by the founder with permission"
+  kind: chatgpt-plan
+takes:
+- n: 1
+  file: plate__x-base-erase-l09-night--t1.webp
+  qa: warn
+  size_bytes: 123716
+  dimensions: 1024x1536
+  lock_load: 0.0
+  warnings:
+  - check: light_values
+    status: warn
+    message: "night/subject: L p5 42 (at least 45: darks stay a light mid-tone), p98 90 (at least 85)"
+  - check: light_median
+    status: warn
+    message: "night/subject: median L 59 (band 66-88)"
+  - check: light_contrast
+    status: warn
+    message: "night/subject: p75 local contrast 5.9 (band 1.5-5.0; above it reads too contrasty) (warn-only until the founder has seen the light pilot)"
+  - check: palette_drift
+    status: warn
+    message: "mean dE 7.5, p95 16.2, off-palette 31.1% (top: #4455AA (11.6%), #335599 (7.3%)) (advisory in an exploration)"
+  source_file: /workspace/generated_images/exec-29f216ba-678c-43ed-a455-9012c3a1a398.png
+  source_sha256: 1c011f9a091698bd8c0c144d61010cceec075aae7cf6cafcd938e62e1ae878a3
+  generated_at: 2026-11-15T15:46:56+00:00
+- n: 2
+  file: plate__x-base-erase-l09-night--t2.webp
+  qa: warn
+  size_bytes: 127822
+  dimensions: 1024x1536
+  lock_load: 0.0
+  warnings:
+  - check: light_values
+    status: warn
+    message: "night/subject: L p5 42 (at least 45: darks stay a light mid-tone), p98 90 (at least 85)"
+  - check: light_median
+    status: warn
+    message: "night/subject: median L 58 (band 66-88)"
+  - check: light_contrast
+    status: warn
+    message: "night/subject: p75 local contrast 5.9 (band 1.5-5.0; above it reads too contrasty) (warn-only until the founder has seen the light pilot)"
+  - check: palette_drift
+    status: warn
+    message: "mean dE 7.6, p95 16.1, off-palette 31.1% (top: #4455AA (10.3%), #335599 (8.0%)) (advisory in an exploration)"
+  source_file: /workspace/generated_images/exec-2dd6ef39-e7a3-458a-9e34-e1899692c8dd.png
+  source_sha256: 1ec5ca17b4052a091770bc9748cc4d391edb30045321f43b858487314130e47e
+  generated_at: 2026-11-15T15:46:57+00:00
+references:
+- design/art/takes/batch-72-home-night/x-home-flow-il9-night/plate__x-home-flow-il9-night--t1.webp

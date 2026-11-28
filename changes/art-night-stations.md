@@ -1,0 +1,1 @@
+[world] At night the stations keep their level: the windmill, pond, workshop, bagel cart, lighthouse and tea stall stand over night bases in the looks of the player's levels, instead of the painted stations of the island's stage.

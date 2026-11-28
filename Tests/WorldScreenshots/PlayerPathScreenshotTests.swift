@@ -663,6 +663,66 @@ final class PlayerPathScreensScreenshotTests: PlayerPathFrameCase {
         }
     }
 
+    /// The stations keep their level at night (N1): every station at levels 1 to 5 at 22:00 on the island level whose night base it
+    /// stands on (`path-<station>-night-l<level>`; the other stations stay at level 3), the whole island at mixed levels per stage
+    /// (`path-levels-i<island level>-night`, judged whole), and island 10's mixed levels either side of 20:00
+    /// (`path-levels-i10-1959`, `path-levels-i10-2001`: the stations must not change from one to the other, only the light; golden
+    /// hour keeps the painted stations until N2).
+    @MainActor
+    func testRenderTheNightStations() async throws {
+        let scene = try windowScene()
+        let folder = try outputFolder()
+        let day = try XCTUnwrap(Self.path.first { $0.morning.islandLevel == 3 }, "the path has a level 3 island")
+        let stations: [(id: StationID, name: String, island: Int)] = [
+            (.teaStall, "tea-stall", 3), (.windmill, "mill", 10), (.pond, "pond", 10),
+            (.workshop, "workshop", 10), (.bagelCart, "bagel-cart", 9), (.lighthouse, "lighthouse", 9),
+        ]
+        for (id, name, islandLevel) in stations {
+            for level in 1...5 {
+                var world = day.morning
+                world.islandLevel = islandLevel
+                world.stations = world.stations.map { status in
+                    var status = status
+                    if status.id == id { status.level = level }
+                    return status
+                }
+                let island = IslandSceneModel(framing: .mid)
+                let view = homeView(world, hour: 22, island: island, settled: true)
+                let frame = "path-\(name)-night-l\(level)"
+                try await capture(AnyView(view), name: frame, scene: scene, folder: folder, settle: 2100) {
+                    XCTAssertNotNil(island.homePlate, "\(frame): Home is its painting")
+                }
+            }
+        }
+        let mixed: [(island: Int, levels: [StationID: Int])] = [
+            (10, [.windmill: 3, .pond: 2, .workshop: 1]),
+            (9, [.windmill: 4, .pond: 3, .workshop: 5, .bagelCart: 5, .lighthouse: 2]),
+            (8, [.windmill: 2, .pond: 4, .workshop: 3, .bagelCart: 3, .lighthouse: 5]), (7, [.teaStall: 3, .pond: 1, .workshop: 4]),
+            (6, [.teaStall: 4]), (4, [.teaStall: 5]), (3, [.teaStall: 2]),
+        ]
+        func frames(_ hours: [(Double, String)]) async throws {
+            for (islandLevel, levels) in mixed where hours.count == 1 || islandLevel == 10 {
+                for (hour, suffix) in hours {
+                    var world = day.morning
+                    world.islandLevel = islandLevel
+                    world.stations = world.stations.map { status in
+                        var status = status
+                        if let level = levels[status.id] { status.level = level }
+                        return status
+                    }
+                    let island = IslandSceneModel(framing: .mid)
+                    let view = homeView(world, hour: hour, island: island, settled: true)
+                    let name = "path-levels-i\(islandLevel)\(suffix)"
+                    try await capture(AnyView(view), name: name, scene: scene, folder: folder, settle: 2100) {
+                        XCTAssertNotNil(island.homePlate, "\(name): Home is its painting")
+                    }
+                }
+            }
+        }
+        try await frames([(22, "-night")])
+        try await frames([(19 + 59.0 / 60, "-1959"), (20 + 1.0 / 60, "-2001")])
+    }
+
     /// A build's camera through the real `focusStation` (the painted station centred above the sheet), and
     /// the station's burst at 0.6 s, over the held old painting (day 4: the island rises to level 4).
     @MainActor

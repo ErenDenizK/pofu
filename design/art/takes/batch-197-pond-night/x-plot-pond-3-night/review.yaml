@@ -1,0 +1,326 @@
+# Review for batch-197-pond-night. Edited by people (or by Codex on the founder's word).
+# Exploration takes retained for lead review; no master promoted.
+batch: batch-197-pond-night
+manifest: tools/imagegen/manifest/batch-197-pond-night.yaml
+manifest_sha256: 0b9d30cc5b5dd77a26709c2342dd75f49e14d8f3bf3f28844480a02c63826fd7
+job: x-plot-pond-3-night
+contact_sheet: design/art/takes/batch-197-pond-night/x-plot-pond-3-night/contact.jpg
+source: codex-cloud
+account:
+  owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+  kind: chatgpt-plan
+status: picked
+pick: 1
+lead_review: "Lead pick: the pond, stream and boat hold with flat calm water; both takes add a small moon in the sky corner, outside the station's cut, so it does not ship."
+selection:
+  method: 'QA auto-pick: pass status, then lowest lock_load, then highest harmony; all takes retained
+    for lead review'
+  pick: 1
+  note: Both retain the recognizable pond, shore and existing island structures with flat pond water;
+    the waterfall/stream detail is part of the source form. They redraw surrounding details and darken
+    the lawn/cloud sea below the requested light envelope. t1 adds an unrequested moon. QA warns for low
+    values/median, contrast, cloud-sea light, dark areas, detail/palette drift and canvas crop. Lock_load
+    ties at 0.0 with no harmony score, so t1 is provisional by order.
+takes:
+- take: 1
+  file: plate__x-plot-pond-3-night--t1.webp
+  source_file: /workspace/generated_images/exec-b47fcf86-0f6c-478a-83fb-e8acd7bd7b7b.png
+  source_sha256: dad35cc647ecee54631010b2a89530954a61112f9b29150d6467140f2f255793
+  source_dimensions:
+  - 1254
+  - 1254
+  output_dimensions:
+  - 1536
+  - 1536
+  backend: codex-cloud
+  generated_at: '2026-11-27T07:07:01+00:00'
+  qa: warn
+  lock_load: 0.0
+  harmony: null
+  warnings:
+  - check: canvas
+    message: 1254x1254 scaled x1.225 and center-cropped to 1536x1536
+  - check: light_values
+    message: 'night/subject: L p5 28 (at least 45: darks stay a light mid-tone), p98 82 (at least 85)
+      (warn-only until the founder has seen the light pilot)'
+  - check: light_median
+    message: 'night/subject: median L 42 (band 66-88) (warn-only until the founder has seen the light
+      pilot)'
+  - check: light_contrast
+    message: 'night/subject: p75 local contrast 9.6 (band 1.5-5.0; above it reads too contrasty) (warn-only
+      until the founder has seen the light pilot)'
+  - check: light_sea
+    message: 'night: cloud sea L 58 (at least 70: the sea is the reflector) (warn-only until the founder
+      has seen the light pilot)'
+  - check: light_dark
+    message: 'night: 7.5 % below L* 30 under the sky (at most 3; only the sky is dark)'
+  - check: detail_budget
+    message: detail at display size 7.5 (R1 5.3)
+  - check: palette_drift
+    message: 'mean dE 6.9, p95 17.9, off-palette 15.8% (top: #225599 (6.5%), #2255AA (3.0%)) (advisory
+      in an exploration)'
+  - check: edit_structure
+    message: light structure matches the parent (r 0.73)
+  - check: edit_lightness
+    message: mean lightness moved by 22.7 L (the same lightness was asked) (advisory in an exploration)
+  prompt: 'REFERENCES (attached, in this order):
+
+    1. The image to edit (the approved previous level). Edit it; do not redraw it.
+
+    2. The night target: the shipped moonlit night plate of the island, level 8. Match its light and colour:
+    soft blue sky, quiet moonlit lawn, small warm pools only at real sources. Do not copy its objects
+    or layout.
+
+
+    Edit the attached picture of a pond with a wooden deck, a rowing boat and a small stream that runs
+    across the lawn
+
+    into it, Kayıklı Gölet, on its plot of lawn, into the same scene on a calm, clear night, lit like
+    the first attached
+
+    night plate of the island: a soft deep-blue sky (blue, never black or purple-black) with a gentle
+    glow near the clouds
+
+    and a few small stars; the lawn, stone and wood stay readable and fairly light under cool moonlight,
+    their colours
+
+    soft and quiet but still rich, their shadows blue-violet, no deep blacks, no grey veil over the picture.
+    There is no
+
+    lamp and no lit window in this picture: add no warm light at all, the station stands quiet in the
+    moonlight. The
+
+    station keeps the same silhouette, the same parts, the same size, in the same place on the same ground.
+    Everything
+
+    stays where it is; only light and colour change. The water stays flat and calm: a deep soft blue,
+    at most one small
+
+    soft moon glint, no ripple rings, no streaks and no lines of reflected light.
+
+
+    KEEP: everything not named above stays exactly the same as in the
+
+    attached image: every existing part, its shape, color, position and size,
+
+    the canvas, the camera, the light and the painting style. Do not zoom out
+
+    or reframe: if a new part does not fit, make the new part smaller, never
+
+    the existing ones. Outside the new parts, the result must line up with
+
+    the attached image pixel for pixel.
+
+
+    STYLE: a finished painted illustration for a premium cozy mobile game, like
+
+    a page from a beloved picture book: soft painterly 2D with gentle airbrushed
+
+    shading, rounded chunky forms, no outlines, no hard edges, matte surfaces
+
+    with at most one soft highlight per object. COLOUR: vivid, saturated and
+
+    jewel-like, as in the key art of a high-end animated film: intense grass
+
+    greens, glowing sunflower yellow, deep sky blue, warm peach earth, crisp
+
+    white petals; strong contrast between warm lit colour and cool shadow
+
+    colour; every material keeps its own true colour. VALUES: a full range, from
+
+    bright sunlit tops to deep warm shadows under eaves, inside foliage, beneath
+
+    the lawn rim and around doors, so every object separates clearly from what
+
+    is behind it and the picture reads at a glance on a small phone screen.
+
+    Shadows are coloured (warm brown, plum, deep teal), never black or grey.
+
+    Light direction and shadow hue follow the LIGHT block of this prompt.
+
+    Colourful but never neon, never HDR, never glossy. No text, no letters, no
+
+    numbers, no logos, no watermark, no border, no frame.
+
+
+    AVOID: high contrast, black shadows, an indigo-purple festival night, many bright lights, glowing
+    everything, a flat grey or blue veil over the picture, saturated warm colour over the lawn, neon,
+    a light beam or rays, a new object, lamp or window, a moved, resized or redrawn part, a reframed or
+    zoomed picture, text, letters, ripple rings, water streaks, reflection lines, foam
+
+
+    LIGHT (hour: night, layer: subject). Safe, cozy.
+
+    Key light #B8A8B1 from the upper right; fill #2A2350; rim #FFB060 along the edge facing away from
+    the key. Shadows are tinted #2A2440 (never grey or black), short and soft, falling toward the lower
+    left; every object sits on a soft occlusion pad in that hue where it touches the ground or another
+    form.
+
+    VALUES (the reference envelope): a high-key picture inside one envelope of soft, milky air. Every
+    value sits between light mid-tone and cream-white; the darkest recesses (door holes, gaps, pond rims)
+    are a mid-value tinted with the shadow hue, never black. Form turns in small value steps. Colour lives
+    in the halftones; lights bleach to cream. No dark outlines: edges are found by value and hue. The
+    cloud sea below is the brightest large surface and lights the island''s underside with a warm bounce.
+
+    NIGHT is a hue change, not a value drop: only the sky is dark (deep indigo); the island and the clouds
+    stay light, moonlit lavender, with violet shadows and cream practicals whose glow spreads three to
+    four times the lamp''s size.
+
+    This is the SUBJECT plane: the clearest forms and the crispest edges in the picture, still inside
+    the envelope.
+
+
+    Output: one image, opaque, full bleed, square 1536 x 1536.
+
+    '
+- take: 2
+  file: plate__x-plot-pond-3-night--t2.webp
+  source_file: /workspace/generated_images/exec-b2b8de8d-a693-4117-82d8-fdbf9d641101.png
+  source_sha256: e09f80ce81b82fe4bec84963fcbefaaa409d73af572955efcedd2938e93d2ee3
+  source_dimensions:
+  - 1254
+  - 1254
+  output_dimensions:
+  - 1536
+  - 1536
+  backend: codex-cloud
+  generated_at: '2026-11-27T07:07:02+00:00'
+  qa: warn
+  lock_load: 0.0
+  harmony: null
+  warnings:
+  - check: canvas
+    message: 1254x1254 scaled x1.225 and center-cropped to 1536x1536
+  - check: light_values
+    message: 'night/subject: L p5 28 (at least 45: darks stay a light mid-tone), p98 83 (at least 85)
+      (warn-only until the founder has seen the light pilot)'
+  - check: light_median
+    message: 'night/subject: median L 42 (band 66-88) (warn-only until the founder has seen the light
+      pilot)'
+  - check: light_contrast
+    message: 'night/subject: p75 local contrast 10.3 (band 1.5-5.0; above it reads too contrasty) (warn-only
+      until the founder has seen the light pilot)'
+  - check: light_sky
+    message: 'night: sky L 47 (band 24-46)'
+  - check: light_sea
+    message: 'night: cloud sea L 56 (at least 70: the sea is the reflector) (warn-only until the founder
+      has seen the light pilot)'
+  - check: light_dark
+    message: 'night: 7.0 % below L* 30 under the sky (at most 3; only the sky is dark)'
+  - check: detail_budget
+    message: detail at display size 8.1 (R1 5.3) (advisory in an exploration)
+  - check: palette_drift
+    message: 'mean dE 7.4, p95 19.5, off-palette 21.5% (top: #225599 (3.5%), #2266AA (2.5%)) (advisory
+      in an exploration)'
+  - check: edit_lightness
+    message: mean lightness moved by 21.9 L (the same lightness was asked) (advisory in an exploration)
+  prompt: 'REFERENCES (attached, in this order):
+
+    1. The image to edit (the approved previous level). Edit it; do not redraw it.
+
+    2. The night target: the shipped moonlit night plate of the island, level 8. Match its light and colour:
+    soft blue sky, quiet moonlit lawn, small warm pools only at real sources. Do not copy its objects
+    or layout.
+
+
+    Edit the attached picture of a pond with a wooden deck, a rowing boat and a small stream that runs
+    across the lawn
+
+    into it, Kayıklı Gölet, on its plot of lawn, into the same scene on a calm, clear night, lit like
+    the first attached
+
+    night plate of the island: a soft deep-blue sky (blue, never black or purple-black) with a gentle
+    glow near the clouds
+
+    and a few small stars; the lawn, stone and wood stay readable and fairly light under cool moonlight,
+    their colours
+
+    soft and quiet but still rich, their shadows blue-violet, no deep blacks, no grey veil over the picture.
+    There is no
+
+    lamp and no lit window in this picture: add no warm light at all, the station stands quiet in the
+    moonlight. The
+
+    station keeps the same silhouette, the same parts, the same size, in the same place on the same ground.
+    Everything
+
+    stays where it is; only light and colour change. The water stays flat and calm: a deep soft blue,
+    at most one small
+
+    soft moon glint, no ripple rings, no streaks and no lines of reflected light.
+
+
+    KEEP: everything not named above stays exactly the same as in the
+
+    attached image: every existing part, its shape, color, position and size,
+
+    the canvas, the camera, the light and the painting style. Do not zoom out
+
+    or reframe: if a new part does not fit, make the new part smaller, never
+
+    the existing ones. Outside the new parts, the result must line up with
+
+    the attached image pixel for pixel.
+
+
+    STYLE: a finished painted illustration for a premium cozy mobile game, like
+
+    a page from a beloved picture book: soft painterly 2D with gentle airbrushed
+
+    shading, rounded chunky forms, no outlines, no hard edges, matte surfaces
+
+    with at most one soft highlight per object. COLOUR: vivid, saturated and
+
+    jewel-like, as in the key art of a high-end animated film: intense grass
+
+    greens, glowing sunflower yellow, deep sky blue, warm peach earth, crisp
+
+    white petals; strong contrast between warm lit colour and cool shadow
+
+    colour; every material keeps its own true colour. VALUES: a full range, from
+
+    bright sunlit tops to deep warm shadows under eaves, inside foliage, beneath
+
+    the lawn rim and around doors, so every object separates clearly from what
+
+    is behind it and the picture reads at a glance on a small phone screen.
+
+    Shadows are coloured (warm brown, plum, deep teal), never black or grey.
+
+    Light direction and shadow hue follow the LIGHT block of this prompt.
+
+    Colourful but never neon, never HDR, never glossy. No text, no letters, no
+
+    numbers, no logos, no watermark, no border, no frame.
+
+
+    AVOID: high contrast, black shadows, an indigo-purple festival night, many bright lights, glowing
+    everything, a flat grey or blue veil over the picture, saturated warm colour over the lawn, neon,
+    a light beam or rays, a new object, lamp or window, a moved, resized or redrawn part, a reframed or
+    zoomed picture, text, letters, ripple rings, water streaks, reflection lines, foam
+
+
+    LIGHT (hour: night, layer: subject). Safe, cozy.
+
+    Key light #B8A8B1 from the upper right; fill #2A2350; rim #FFB060 along the edge facing away from
+    the key. Shadows are tinted #2A2440 (never grey or black), short and soft, falling toward the lower
+    left; every object sits on a soft occlusion pad in that hue where it touches the ground or another
+    form.
+
+    VALUES (the reference envelope): a high-key picture inside one envelope of soft, milky air. Every
+    value sits between light mid-tone and cream-white; the darkest recesses (door holes, gaps, pond rims)
+    are a mid-value tinted with the shadow hue, never black. Form turns in small value steps. Colour lives
+    in the halftones; lights bleach to cream. No dark outlines: edges are found by value and hue. The
+    cloud sea below is the brightest large surface and lights the island''s underside with a warm bounce.
+
+    NIGHT is a hue change, not a value drop: only the sky is dark (deep indigo); the island and the clouds
+    stay light, moonlit lavender, with violet shadows and cream practicals whose glow spreads three to
+    four times the lamp''s size.
+
+    This is the SUBJECT plane: the clearest forms and the crispest edges in the picture, still inside
+    the envelope.
+
+
+    Output: one image, opaque, full bleed, square 1536 x 1536.
+
+    '
