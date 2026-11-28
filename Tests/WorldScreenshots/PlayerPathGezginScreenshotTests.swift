@@ -50,6 +50,25 @@ final class PlayerPathGezginScreenshotTests: PlayerPathFrameCase {
         }
     }
 
+    /// The Gezgin moored at Home's pier with the pier unbuilt and built (`path-pier-gezgin-l0`, `-l5`): island 10, her post at the bridge's end
+    /// must stand in both, and her rope must not run to a bare plot's nothing.
+    @MainActor
+    func testRenderTheGezginBesideThePier() async throws {
+        let scene = try windowScene()
+        let folder = try outputFolder()
+        let arrived = WonderStatus(phase: .arrived, stage: 0)
+        for level in [0, 5] {
+            var world = try world(level: 3, koke: arrived)
+            world.islandLevel = 10
+            world.stations = world.stations.map { status in
+                var status = status
+                if status.id == .pier { status.level = level }
+                return status
+            }
+            try await frame(world, hour: 12, name: "path-pier-gezgin-l\(level)", scene: scene, folder: folder)
+        }
+    }
+
     /// Her place at Köke and at Çağlayan (row 2e): moored beside the island, her post on its rim, a slack line.
     @MainActor
     func testRenderTheGezginAtTheWonderIslands() async throws {

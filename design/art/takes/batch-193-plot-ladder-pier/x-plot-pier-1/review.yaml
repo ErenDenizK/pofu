@@ -1,0 +1,300 @@
+# Review for batch-193-plot-ladder-pier. Edited by people (or by Codex on the founder's word).
+# Exploration takes retained for lead review; no master promoted.
+batch: batch-193-plot-ladder-pier
+manifest: tools/imagegen/manifest/batch-193-plot-ladder-pier.yaml
+manifest_sha256: 7c0a3db16815940673e3ea4177fa15886a77295a0c1422be07f4397f102235f7
+job: x-plot-pier-1
+contact_sheet: design/art/takes/batch-193-plot-ladder-pier/x-plot-pier-1/contact.jpg
+source: codex-cloud
+account:
+  owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+  kind: chatgpt-plan
+status: picked
+pick: 1
+lead_review: "Lead pick, overriding the QA skip: t1 has no boat (the QA note is wrong) and paints a short worn-plank jetty on four posts over a small pool exactly where the plate's jetty and pool stand, and that pool is the pier's own water that batch 195 removed with the station, so it is the right level 1, while t2 sets the same deck on dry lawn and reads as a table; everything else stays within 1 px of the bare crop; it inherits the crop's extra chroma, so colour-fit it with the crop, and run levels 2 to 5 and the five nights from this pick."
+selection:
+  method: manual content review against the manifest and D56 review constraints; no pick
+  pick: none
+  note: T1 reintroduces the prohibited ferry boat and pool. T2 avoids the boat, but places the jetty within
+    the lawn rather than at the island rim, so it misses the defining placement requirement. Neither take
+    is suitable as the parent for the ladder; no pick. This manifest explicitly allows two takes and no
+    third, so the job is skipped after visual review. The 1254×1254 source images were normalized by the
+    pipeline to the 1536×1536 canvas. Dependent day levels 2–5 and all night relights are skipped because
+    their parent level 1 failed. QA warnings are retained for the exploration.
+takes:
+- take: 1
+  file: plate__x-plot-pier-1--t1.webp
+  source_file: /workspace/generated_images/exec-d2f7953f-1d3e-4866-a238-9a38a53e7013.png
+  source_sha256: 57712d9834a596cd29c9eede59ffe39f4770557c694c2b851a2b974527a5d434
+  source_dimensions:
+  - 1254
+  - 1254
+  output_dimensions:
+  - 1536
+  - 1536
+  backend: codex-cloud
+  generated_at: '2026-11-27T06:27:09+00:00'
+  qa: warn
+  lock_load: 0.0
+  harmony: null
+  warnings:
+  - check: canvas
+    message: 1254x1254 scaled x1.225 and center-cropped to 1536x1536
+  - check: chroma_ceiling
+    message: chroma p95 72 (R1 51) (advisory in an exploration)
+  - check: light_values
+    message: 'day/subject: L p5 45 (at least 50: darks stay a light mid-tone), p98 89 (at least 90)'
+  - check: light_sea
+    message: 'day: cloud sea L 79 (at least 82: the sea is the reflector)'
+  - check: palette_drift
+    message: 'mean dE 8.2, p95 26.5, off-palette 24.1% (top: #BBCC33 (2.2%), #AABB33 (2.2%)) (advisory
+      in an exploration)'
+  prompt: 'REFERENCES (attached, in this order):
+
+    1. The image to edit (the approved previous level). Edit it; do not redraw it.
+
+    2. The same plot as the first picture, with the station still painted at its richest: use it for position
+    and scale only, to see where the pier stands and how big it is. Do not copy it; the picture to edit
+    has none of it, and level 1 has none of its later parts.
+
+
+    Edit the attached picture of the pier''s plot of a floating island: a small islet of soft lawn, reached
+    from the
+
+    larger island at the left by a rope bridge over a gap of open sky, with its rim at the right, and
+    nothing built
+
+    on the right of the islet. Paint the pier into the empty place, on the right of the islet, at the
+    lawn''s edge
+
+    where it meets the islet''s rim, the jetty reaching out from the lawn (in the second attached picture
+    it is the wooden
+
+    jetty with the ferry boat, lower right): a short wooden jetty of worn planks on four round wooden
+    posts, with
+
+    no boat at it. It stands on the picture''s own grass, in the picture''s own light and colours, painted
+    in the
+
+    same soft style as the ground, small and calm, standing where the pier stands in the second attached
+    picture
+
+    and no wider than its base there. A short, irregular fringe of grass blades hides its foot. Everything
+    that is
+
+    already in the picture stays exactly where it is, at the same size, with the same shapes and colours:
+    the rope
+
+    bridge and its landing, the gap of open sky, the islet''s rim and the door in its earth, the bagel
+    cart, the
+
+    lighthouse and the tea stall''s roof edge.
+
+
+    KEEP: everything not named above stays exactly the same as in the
+
+    attached image: every existing part, its shape, color, position and size,
+
+    the canvas, the camera, the light and the painting style. Do not zoom out
+
+    or reframe: if a new part does not fit, make the new part smaller, never
+
+    the existing ones. Outside the new parts, the result must line up with
+
+    the attached image pixel for pixel.
+
+
+    STYLE: a finished painted illustration for a premium cozy mobile game, like
+
+    a page from a beloved picture book: soft painterly 2D with gentle airbrushed
+
+    shading, rounded chunky forms, no outlines, no hard edges, matte surfaces
+
+    with at most one soft highlight per object. COLOUR: vivid, saturated and
+
+    jewel-like, as in the key art of a high-end animated film: intense grass
+
+    greens, glowing sunflower yellow, deep sky blue, warm peach earth, crisp
+
+    white petals; strong contrast between warm lit colour and cool shadow
+
+    colour; every material keeps its own true colour. VALUES: a full range, from
+
+    bright sunlit tops to deep warm shadows under eaves, inside foliage, beneath
+
+    the lawn rim and around doors, so every object separates clearly from what
+
+    is behind it and the picture reads at a glance on a small phone screen.
+
+    Shadows are coloured (warm brown, plum, deep teal), never black or grey.
+
+    Light direction and shadow hue follow the LIGHT block of this prompt.
+
+    Colourful but never neon, never HDR, never glossy. No text, no letters, no
+
+    numbers, no logos, no watermark, no border, no frame.
+
+
+    AVOID: a change to anything the prompt does not name, a moved, resized or redrawn part, a removed
+    part that was not named, a reframed, zoomed or recoloured picture, a new object, bush, flower, stone
+    or decoration the prompt does not name, a ground patch, a colour step or edge in the grass, brighter
+    or more saturated colours, a change of light, a filled gap, a changed rope bridge, text, letters
+
+
+    LIGHT (hour: day, layer: subject). Bright, clear, toy-like.
+
+    Key light #FFF6EC from the upper left; fill #BFD6EE; rim #FFE9C9 along the edge facing away from the
+    key. Shadows are tinted #A99BC4 (never grey or black), short and soft, falling toward the lower right;
+    every object sits on a soft occlusion pad in that hue where it touches the ground or another form.
+
+    VALUES (the reference envelope): a high-key picture inside one envelope of soft, milky air. Every
+    value sits between light mid-tone and cream-white; the darkest recesses (door holes, gaps, pond rims)
+    are a mid-value tinted with the shadow hue, never black. Form turns in small value steps. Colour lives
+    in the halftones; lights bleach to cream. No dark outlines: edges are found by value and hue. The
+    cloud sea below is the brightest large surface and lights the island''s underside with a warm bounce.
+
+    This is the SUBJECT plane: the clearest forms and the crispest edges in the picture, still inside
+    the envelope.
+
+
+    Output: one image, opaque, full bleed, square 1536 x 1536.
+
+    '
+- take: 2
+  file: plate__x-plot-pier-1--t2.webp
+  source_file: /workspace/generated_images/exec-844d70df-a3a9-4406-b417-d6cc40811ed3.png
+  source_sha256: 7f307e6e7b4430cb62bbbe2c2cc3636d53b15f24001ce3875a08115a31f951c9
+  source_dimensions:
+  - 1254
+  - 1254
+  output_dimensions:
+  - 1536
+  - 1536
+  backend: codex-cloud
+  generated_at: '2026-11-27T06:27:10+00:00'
+  qa: warn
+  lock_load: 0.0
+  harmony: null
+  warnings:
+  - check: canvas
+    message: 1254x1254 scaled x1.225 and center-cropped to 1536x1536
+  - check: chroma_ceiling
+    message: chroma p95 70 (R1 51) (advisory in an exploration)
+  - check: light_values
+    message: 'day/subject: L p5 50 (at least 50: darks stay a light mid-tone), p98 90 (at least 90)'
+  - check: light_sea
+    message: 'day: cloud sea L 80 (at least 82: the sea is the reflector)'
+  - check: palette_drift
+    message: 'mean dE 7.8, p95 24.6, off-palette 23.9% (top: #AABB44 (2.6%), #AABB33 (2.0%)) (advisory
+      in an exploration)'
+  prompt: 'REFERENCES (attached, in this order):
+
+    1. The image to edit (the approved previous level). Edit it; do not redraw it.
+
+    2. The same plot as the first picture, with the station still painted at its richest: use it for position
+    and scale only, to see where the pier stands and how big it is. Do not copy it; the picture to edit
+    has none of it, and level 1 has none of its later parts.
+
+
+    Edit the attached picture of the pier''s plot of a floating island: a small islet of soft lawn, reached
+    from the
+
+    larger island at the left by a rope bridge over a gap of open sky, with its rim at the right, and
+    nothing built
+
+    on the right of the islet. Paint the pier into the empty place, on the right of the islet, at the
+    lawn''s edge
+
+    where it meets the islet''s rim, the jetty reaching out from the lawn (in the second attached picture
+    it is the wooden
+
+    jetty with the ferry boat, lower right): a short wooden jetty of worn planks on four round wooden
+    posts, with
+
+    no boat at it. It stands on the picture''s own grass, in the picture''s own light and colours, painted
+    in the
+
+    same soft style as the ground, small and calm, standing where the pier stands in the second attached
+    picture
+
+    and no wider than its base there. A short, irregular fringe of grass blades hides its foot. Everything
+    that is
+
+    already in the picture stays exactly where it is, at the same size, with the same shapes and colours:
+    the rope
+
+    bridge and its landing, the gap of open sky, the islet''s rim and the door in its earth, the bagel
+    cart, the
+
+    lighthouse and the tea stall''s roof edge.
+
+
+    KEEP: everything not named above stays exactly the same as in the
+
+    attached image: every existing part, its shape, color, position and size,
+
+    the canvas, the camera, the light and the painting style. Do not zoom out
+
+    or reframe: if a new part does not fit, make the new part smaller, never
+
+    the existing ones. Outside the new parts, the result must line up with
+
+    the attached image pixel for pixel.
+
+
+    STYLE: a finished painted illustration for a premium cozy mobile game, like
+
+    a page from a beloved picture book: soft painterly 2D with gentle airbrushed
+
+    shading, rounded chunky forms, no outlines, no hard edges, matte surfaces
+
+    with at most one soft highlight per object. COLOUR: vivid, saturated and
+
+    jewel-like, as in the key art of a high-end animated film: intense grass
+
+    greens, glowing sunflower yellow, deep sky blue, warm peach earth, crisp
+
+    white petals; strong contrast between warm lit colour and cool shadow
+
+    colour; every material keeps its own true colour. VALUES: a full range, from
+
+    bright sunlit tops to deep warm shadows under eaves, inside foliage, beneath
+
+    the lawn rim and around doors, so every object separates clearly from what
+
+    is behind it and the picture reads at a glance on a small phone screen.
+
+    Shadows are coloured (warm brown, plum, deep teal), never black or grey.
+
+    Light direction and shadow hue follow the LIGHT block of this prompt.
+
+    Colourful but never neon, never HDR, never glossy. No text, no letters, no
+
+    numbers, no logos, no watermark, no border, no frame.
+
+
+    AVOID: a change to anything the prompt does not name, a moved, resized or redrawn part, a removed
+    part that was not named, a reframed, zoomed or recoloured picture, a new object, bush, flower, stone
+    or decoration the prompt does not name, a ground patch, a colour step or edge in the grass, brighter
+    or more saturated colours, a change of light, a filled gap, a changed rope bridge, text, letters
+
+
+    LIGHT (hour: day, layer: subject). Bright, clear, toy-like.
+
+    Key light #FFF6EC from the upper left; fill #BFD6EE; rim #FFE9C9 along the edge facing away from the
+    key. Shadows are tinted #A99BC4 (never grey or black), short and soft, falling toward the lower right;
+    every object sits on a soft occlusion pad in that hue where it touches the ground or another form.
+
+    VALUES (the reference envelope): a high-key picture inside one envelope of soft, milky air. Every
+    value sits between light mid-tone and cream-white; the darkest recesses (door holes, gaps, pond rims)
+    are a mid-value tinted with the shadow hue, never black. Form turns in small value steps. Colour lives
+    in the halftones; lights bleach to cream. No dark outlines: edges are found by value and hue. The
+    cloud sea below is the brightest large surface and lights the island''s underside with a warm bounce.
+
+    This is the SUBJECT plane: the clearest forms and the crispest edges in the picture, still inside
+    the envelope.
+
+
+    Output: one image, opaque, full bleed, square 1536 x 1536.
+
+    '

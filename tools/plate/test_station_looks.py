@@ -397,3 +397,43 @@ def test_the_painted_station_nights_are_the_leads_picks_and_the_grades_lift_the_
         assert abs((p5_out - p5_in) - darks) < 1.5                      # the darks gain the review's lift
         assert np.hypot(out[..., 1], out[..., 2]).mean() < np.hypot(lab[..., 1], lab[..., 2]).mean() * (chroma + 0.05)
         assert np.all(out[..., 0] >= lab[..., 0] * light - 0.6)         # never darker than the multiply
+
+
+def test_the_pier_ladder_and_nights_follow_the_leads_picks():
+    plot = sl.PIER["plot"]
+    for n in range(1, 6):
+        job, take = plot["takes"][n]
+        assert sl.pick_of(job) == take == 1                              # day levels 1 to 5: t1
+        njob, ntake = sl.NIGHT_PAINT["pier"][n]
+        assert sl.pick_of(njob) == ntake == 2                            # nights 1 to 5: t2
+    assert sl.pick_of(plot["bare"][0]) == 1                              # batch 195's t1
+    assert sl.PIER["bases"].keys() == {0} and sl.PIER["noSeason"]       # the crop is stage 0's painting; autumn keeps its painted pier
+    assert (sl.PLATE_NIGHT_TARGET["pier"], sl.PIER_HUE_TOL) == ((58.0, 18.6), 5.0)
+
+
+def test_pier_night_three_has_unlit_portholes_and_no_streaks():
+    rgb = sl._take_rgb(("batch-193-plot-ladder-pier/x-plot-pier-3-night", 2))
+    lab = sl.srgb_lab(rgb)
+    out = sl.srgb_lab(sl.pier_night3_edit(rgb))
+    for x, y in sl.PIER_PORTHOLES:
+        assert lab[y - 3:y + 4, x - 3:x + 4, 0].mean() > 70                # the take lights them (warm, bright)
+        assert out[y - 3:y + 4, x - 3:x + 4, 2].mean() < 0                 # level 3 has them the cabin windows' blue
+        assert out[y - 3:y + 4, x - 3:x + 4, 0].mean() < 65
+    y0, y1 = sl.PIER_STREAK_Y
+    warm = lambda l: ((l[y0 + 20:y1, 985:1125, 0] > 54) & (l[y0 + 20:y1, 985:1125, 2] > 15)).sum()
+    assert warm(out) < warm(lab) * 0.25                                    # the streaks in the pool are gone
+    other = np.ones(rgb.shape[:2], bool)
+    other[300:800, 850:1200] = False
+    assert np.abs(out - lab)[other].max() < 1.0                            # nothing else moved (a Lab round trip, under one unit)
+
+
+def test_wood_hue_and_the_hue_turn_bring_a_look_to_the_derived_wood():
+    day = np.zeros((40, 40, 4), np.float32)
+    day[..., 3] = 1
+    day[..., :3] = sl.lab_srgb(np.full((40, 40, 3), (60.0, 18.0, 38.0), np.float32))   # hue 65 degrees, chroma 42: wood
+    fitted = sl.lab_srgb(np.full((40, 40, 3), (50.0, 12.0, 0.5), np.float32))          # the derived night: hue about 2
+    painted = np.dstack([sl.lab_srgb(np.full((40, 40, 3), (52.0, 20.0, 14.0), np.float32)), day[..., 3:]])    # hue 35
+    out = sl.pier_hue_guard(painted, fitted, day, 1)
+    wood = np.ones((40, 40), bool)
+    assert abs(sl.wood_hue(out[..., :3], wood) - sl.wood_hue(fitted, wood)) < sl.PIER_HUE_TOL
+    assert abs(sl.srgb_lab(out[..., :3])[..., 0].mean() - 52.0) < 1.0     # the turn keeps the lightness

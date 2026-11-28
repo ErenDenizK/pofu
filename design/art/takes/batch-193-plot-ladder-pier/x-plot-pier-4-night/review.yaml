@@ -1,0 +1,348 @@
+batch: batch-193-plot-ladder-pier
+manifest: tools/imagegen/manifest/batch-193-plot-ladder-pier.yaml
+manifest_sha256: 7c0a3db16815940673e3ea4177fa15886a77295a0c1422be07f4397f102235f7
+job: x-plot-pier-4-night
+contact_sheet: design/art/takes/batch-193-plot-ladder-pier/x-plot-pier-4-night/contact.jpg
+source: codex-cloud
+account:
+  owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+  kind: chatgpt-plan
+status: picked
+pick: 2
+lead_review: "Lead pick: lamp post, lantern, deck and boat within 1 px of level 4, warm light only in the lantern and the portholes as small soft pools on the deck and the water, and the plank hue nearest the plate (1 against t1's 353); lift about 8 L* and cut chroma about a sixth (L* 50.1, C* 22.4 against 58.0, 18.6)."
+selection:
+  method: QA auto-pick among non-failing exploration takes by lock_load, then harmony; visual review for tie
+  pick: 2
+  note: 'Both takes preserve the ferry and its porthole lights, and retain the existing near-end lantern and separate
+    unlit bell. T2 is selected from the QA tie for its slightly higher median lightness and lower palette drift;
+    it still darkens the lawn and cloud sea, uses excess contrast, and has 3.3% of below-sky pixels under L* 30.
+    Founder review pending. Auto-pick: both takes are warn-only and have lock_load 0.0; harmony is unavailable.
+    T1 has the lower palette drift and is selected for the provisional parent chain. Founder review pending; exploration
+    only, no promote.'
+provisional_parent: x-plot-pier-4 t1 (auto-pick, lead review pending)
+takes:
+- take: 1
+  file: plate__x-plot-pier-4-night--t1.webp
+  source_file: /workspace/generated_images/exec-ae96ad68-dfc7-4be8-b727-e5db408c8eab.png
+  source_sha256: 3f01104c8dc8e1d614b29ab9485efaffc454e3c4c87c40362c2778b606f1ced1
+  source_dimensions:
+  - 1254
+  - 1254
+  output_dimensions:
+  - '1'
+  - '5'
+  - '3'
+  - '6'
+  - x
+  - '1'
+  - '5'
+  - '3'
+  - '6'
+  backend: codex-cloud
+  generated_at: '2026-11-28T08:20:33+00:00'
+  qa: warn
+  lock_load: 0.0
+  harmony: null
+  warnings:
+  - check: canvas
+    status: warn
+    message: 1254x1254 scaled x1.225 and center-cropped to 1536x1536
+  - check: light_values
+    status: warn
+    message: 'night/subject: L p5 34 (at least 45: darks stay a light mid-tone), p98 81 (at least 85) (warn-only
+      until the founder has seen the light pilot)'
+  - check: light_median
+    status: warn
+    message: 'night/subject: median L 54 (band 66-88) (warn-only until the founder has seen the light pilot)'
+  - check: light_contrast
+    status: warn
+    message: 'night/subject: p75 local contrast 6.2 (band 1.5-5.0; above it reads too contrasty) (warn-only until
+      the founder has seen the light pilot)'
+  - check: light_sea
+    status: warn
+    message: 'night: cloud sea L 62 (at least 70: the sea is the reflector)'
+  - check: palette_drift
+    status: warn
+    message: 'mean dE 7.4, p95 16.6, off-palette 16.2% (top: #4455AA (2.6%), #334499 (2.0%)) (advisory in an exploration)'
+  - check: edit_structure
+    status: warn
+    message: light structure matches the parent (r 0.56) (advisory in an exploration)
+  - check: edit_lightness
+    status: warn
+    message: mean lightness moved by 21.6 L (the same lightness was asked) (advisory in an exploration)
+  visual_note: Both takes preserve the ferry and its porthole lights, and retain the existing near-end lantern and
+    separate unlit bell. T2 is selected from the QA tie for its slightly higher median lightness and lower palette
+    drift; it still darkens the lawn and cloud sea, uses excess contrast, and has 3.3% of below-sky pixels under
+    L* 30. Founder review pending.
+  prompt: 'REFERENCES (attached, in this order):
+
+    1. The image to edit (the approved previous level). Edit it; do not redraw it.
+
+    2. The night target: the shipped moonlit night plate of the island, level 8. Match its light and colour: soft
+    blue sky, quiet moonlit lawn, small warm pools only at real sources. Do not copy its objects or layout.
+
+
+    Edit the attached picture of a wooden jetty with a mooring post and bell, the ferry boat, a lamp post with a
+
+    lantern at the near end and lit boat portholes, on its plot of lawn, into the same scene on a calm, clear
+
+    night, lit like the first attached night plate of the island: a soft deep-blue sky (blue, never black or
+
+    purple-black) with a gentle glow near the clouds and a few small stars; the lawn, stone and wood stay readable
+
+    and fairly light under cool moonlight, their colours soft and quiet but still rich, their shadows blue-violet,
+
+    no deep blacks, no grey veil over the picture. Warm light only from sources that are already painted in the
+
+    picture, each a small soft pool: the lantern of the lamp post and the boat''s portholes. The bagel cart, the
+    lighthouse and the tea stall''s roof at the top and left belong to other plots: they take the same moonlight
+    and keep every part and every light they have, nothing more. The pier keeps the
+
+    same silhouette, the same parts, the same size, in the same place on the same ground. Everything stays where
+
+    it is; only light and colour change.
+
+
+    KEEP: everything not named above stays exactly the same as in the
+
+    attached image: every existing part, its shape, color, position and size,
+
+    the canvas, the camera, the light and the painting style. Do not zoom out
+
+    or reframe: if a new part does not fit, make the new part smaller, never
+
+    the existing ones. Outside the new parts, the result must line up with
+
+    the attached image pixel for pixel.
+
+
+    STYLE: a finished painted illustration for a premium cozy mobile game, like
+
+    a page from a beloved picture book: soft painterly 2D with gentle airbrushed
+
+    shading, rounded chunky forms, no outlines, no hard edges, matte surfaces
+
+    with at most one soft highlight per object. COLOUR: vivid, saturated and
+
+    jewel-like, as in the key art of a high-end animated film: intense grass
+
+    greens, glowing sunflower yellow, deep sky blue, warm peach earth, crisp
+
+    white petals; strong contrast between warm lit colour and cool shadow
+
+    colour; every material keeps its own true colour. VALUES: a full range, from
+
+    bright sunlit tops to deep warm shadows under eaves, inside foliage, beneath
+
+    the lawn rim and around doors, so every object separates clearly from what
+
+    is behind it and the picture reads at a glance on a small phone screen.
+
+    Shadows are coloured (warm brown, plum, deep teal), never black or grey.
+
+    Light direction and shadow hue follow the LIGHT block of this prompt.
+
+    Colourful but never neon, never HDR, never glossy. No text, no letters, no
+
+    numbers, no logos, no watermark, no border, no frame.
+
+
+    AVOID: high contrast, black shadows, an indigo-purple festival night, many bright lights, glowing everything,
+    a flat grey or blue veil over the picture, saturated warm colour over the lawn, neon, a light beam or rays,
+    a new object, lamp or window, a moved, resized or redrawn part, a reframed or zoomed picture, text, letters
+
+
+    LIGHT (hour: night, layer: subject). Safe, cozy.
+
+    Key light #B8A8B1 from the upper right; fill #2A2350; rim #FFB060 along the edge facing away from the key. Shadows
+    are tinted #2A2440 (never grey or black), short and soft, falling toward the lower left; every object sits on
+    a soft occlusion pad in that hue where it touches the ground or another form.
+
+    VALUES (the reference envelope): a high-key picture inside one envelope of soft, milky air. Every value sits
+    between light mid-tone and cream-white; the darkest recesses (door holes, gaps, pond rims) are a mid-value tinted
+    with the shadow hue, never black. Form turns in small value steps. Colour lives in the halftones; lights bleach
+    to cream. No dark outlines: edges are found by value and hue. The cloud sea below is the brightest large surface
+    and lights the island''s underside with a warm bounce.
+
+    NIGHT is a hue change, not a value drop: only the sky is dark (deep indigo); the island and the clouds stay
+    light, moonlit lavender, with violet shadows and cream practicals whose glow spreads three to four times the
+    lamp''s size.
+
+    This is the SUBJECT plane: the clearest forms and the crispest edges in the picture, still inside the envelope.
+
+
+    Output: one image, opaque, full bleed, square 1536 x 1536.
+
+    '
+  attachments:
+  - path: build/imagegen/batch-193-plot-ladder-pier/locked/plate__x-plot-pier-4--t1.png
+    role: The image to edit (the approved previous level). Edit it; do not redraw it.
+  - path: design/art/takes/batch-72-home-night/x-home-flow-il8-night/plate__x-home-flow-il8-night--t2.webp
+    role: 'The night target: the shipped moonlit night plate of the island, level 8. Match its light and colour:
+      soft blue sky, quiet moonlit lawn, small warm pools only at real sources. Do not copy its objects or layout.'
+- take: 2
+  file: plate__x-plot-pier-4-night--t2.webp
+  source_file: /workspace/generated_images/exec-21d8eb6f-99c2-4633-bbaf-af9f1366f3b0.png
+  source_sha256: bf2590e2de12751e147df2bffe3527c023fe6e3ee65fa2c0c439884a5203cae0
+  source_dimensions:
+  - 1254
+  - 1254
+  output_dimensions:
+  - '1'
+  - '5'
+  - '3'
+  - '6'
+  - x
+  - '1'
+  - '5'
+  - '3'
+  - '6'
+  backend: codex-cloud
+  generated_at: '2026-11-28T08:20:33+00:00'
+  qa: warn
+  lock_load: 0.0
+  harmony: null
+  warnings:
+  - check: canvas
+    status: warn
+    message: 1254x1254 scaled x1.225 and center-cropped to 1536x1536
+  - check: light_values
+    status: warn
+    message: 'night/subject: L p5 33 (at least 45: darks stay a light mid-tone), p98 81 (at least 85) (warn-only
+      until the founder has seen the light pilot)'
+  - check: light_median
+    status: warn
+    message: 'night/subject: median L 55 (band 66-88) (warn-only until the founder has seen the light pilot)'
+  - check: light_contrast
+    status: warn
+    message: 'night/subject: p75 local contrast 6.1 (band 1.5-5.0; above it reads too contrasty) (warn-only until
+      the founder has seen the light pilot)'
+  - check: light_sea
+    status: warn
+    message: 'night: cloud sea L 62 (at least 70: the sea is the reflector)'
+  - check: light_dark
+    status: warn
+    message: 'night: 3.3 % below L* 30 under the sky (at most 3; only the sky is dark)'
+  - check: palette_drift
+    status: warn
+    message: 'mean dE 7.2, p95 15.3, off-palette 15.1% (top: #335599 (2.7%), #334499 (1.8%)) (advisory in an exploration)'
+  - check: edit_structure
+    status: warn
+    message: light structure matches the parent (r 0.59) (advisory in an exploration)
+  - check: edit_lightness
+    status: warn
+    message: mean lightness moved by 21.8 L (the same lightness was asked) (advisory in an exploration)
+  visual_note: Both takes preserve the ferry and its porthole lights, and retain the existing near-end lantern and
+    separate unlit bell. T2 is selected from the QA tie for its slightly higher median lightness and lower palette
+    drift; it still darkens the lawn and cloud sea, uses excess contrast, and has 3.3% of below-sky pixels under
+    L* 30. Founder review pending.
+  prompt: 'REFERENCES (attached, in this order):
+
+    1. The image to edit (the approved previous level). Edit it; do not redraw it.
+
+    2. The night target: the shipped moonlit night plate of the island, level 8. Match its light and colour: soft
+    blue sky, quiet moonlit lawn, small warm pools only at real sources. Do not copy its objects or layout.
+
+
+    Edit the attached picture of a wooden jetty with a mooring post and bell, the ferry boat, a lamp post with a
+
+    lantern at the near end and lit boat portholes, on its plot of lawn, into the same scene on a calm, clear
+
+    night, lit like the first attached night plate of the island: a soft deep-blue sky (blue, never black or
+
+    purple-black) with a gentle glow near the clouds and a few small stars; the lawn, stone and wood stay readable
+
+    and fairly light under cool moonlight, their colours soft and quiet but still rich, their shadows blue-violet,
+
+    no deep blacks, no grey veil over the picture. Warm light only from sources that are already painted in the
+
+    picture, each a small soft pool: the lantern of the lamp post and the boat''s portholes. The bagel cart, the
+    lighthouse and the tea stall''s roof at the top and left belong to other plots: they take the same moonlight
+    and keep every part and every light they have, nothing more. The pier keeps the
+
+    same silhouette, the same parts, the same size, in the same place on the same ground. Everything stays where
+
+    it is; only light and colour change.
+
+
+    KEEP: everything not named above stays exactly the same as in the
+
+    attached image: every existing part, its shape, color, position and size,
+
+    the canvas, the camera, the light and the painting style. Do not zoom out
+
+    or reframe: if a new part does not fit, make the new part smaller, never
+
+    the existing ones. Outside the new parts, the result must line up with
+
+    the attached image pixel for pixel.
+
+
+    STYLE: a finished painted illustration for a premium cozy mobile game, like
+
+    a page from a beloved picture book: soft painterly 2D with gentle airbrushed
+
+    shading, rounded chunky forms, no outlines, no hard edges, matte surfaces
+
+    with at most one soft highlight per object. COLOUR: vivid, saturated and
+
+    jewel-like, as in the key art of a high-end animated film: intense grass
+
+    greens, glowing sunflower yellow, deep sky blue, warm peach earth, crisp
+
+    white petals; strong contrast between warm lit colour and cool shadow
+
+    colour; every material keeps its own true colour. VALUES: a full range, from
+
+    bright sunlit tops to deep warm shadows under eaves, inside foliage, beneath
+
+    the lawn rim and around doors, so every object separates clearly from what
+
+    is behind it and the picture reads at a glance on a small phone screen.
+
+    Shadows are coloured (warm brown, plum, deep teal), never black or grey.
+
+    Light direction and shadow hue follow the LIGHT block of this prompt.
+
+    Colourful but never neon, never HDR, never glossy. No text, no letters, no
+
+    numbers, no logos, no watermark, no border, no frame.
+
+
+    AVOID: high contrast, black shadows, an indigo-purple festival night, many bright lights, glowing everything,
+    a flat grey or blue veil over the picture, saturated warm colour over the lawn, neon, a light beam or rays,
+    a new object, lamp or window, a moved, resized or redrawn part, a reframed or zoomed picture, text, letters
+
+
+    LIGHT (hour: night, layer: subject). Safe, cozy.
+
+    Key light #B8A8B1 from the upper right; fill #2A2350; rim #FFB060 along the edge facing away from the key. Shadows
+    are tinted #2A2440 (never grey or black), short and soft, falling toward the lower left; every object sits on
+    a soft occlusion pad in that hue where it touches the ground or another form.
+
+    VALUES (the reference envelope): a high-key picture inside one envelope of soft, milky air. Every value sits
+    between light mid-tone and cream-white; the darkest recesses (door holes, gaps, pond rims) are a mid-value tinted
+    with the shadow hue, never black. Form turns in small value steps. Colour lives in the halftones; lights bleach
+    to cream. No dark outlines: edges are found by value and hue. The cloud sea below is the brightest large surface
+    and lights the island''s underside with a warm bounce.
+
+    NIGHT is a hue change, not a value drop: only the sky is dark (deep indigo); the island and the clouds stay
+    light, moonlit lavender, with violet shadows and cream practicals whose glow spreads three to four times the
+    lamp''s size.
+
+    This is the SUBJECT plane: the clearest forms and the crispest edges in the picture, still inside the envelope.
+
+
+    Output: one image, opaque, full bleed, square 1536 x 1536.
+
+    '
+  attachments:
+  - path: build/imagegen/batch-193-plot-ladder-pier/locked/plate__x-plot-pier-4--t1.png
+    role: The image to edit (the approved previous level). Edit it; do not redraw it.
+  - path: design/art/takes/batch-72-home-night/x-home-flow-il8-night/plate__x-home-flow-il8-night--t2.webp
+    role: 'The night target: the shipped moonlit night plate of the island, level 8. Match its light and colour:
+      soft blue sky, quiet moonlit lawn, small warm pools only at real sources. Do not copy its objects or layout.'
+
+tool_prompt_note: >-
+  The built-in image tool received a condensed version of the manifest prompt, not the full composed text verbatim.
+  Both listed reference images were attached in manifest order. The exact prompt string used is preserved under each take.

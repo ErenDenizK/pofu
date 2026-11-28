@@ -1,0 +1,285 @@
+batch: batch-193-plot-ladder-pier
+manifest: tools/imagegen/manifest/batch-193-plot-ladder-pier.yaml
+manifest_sha256: 7c0a3db16815940673e3ea4177fa15886a77295a0c1422be07f4397f102235f7
+job: x-plot-pier-2
+contact_sheet: design/art/takes/batch-193-plot-ladder-pier/x-plot-pier-2/contact.jpg
+source: codex-cloud
+account:
+  owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+  kind: chatgpt-plan
+status: picked
+pick: 1
+lead_review: "Lead pick: the deck's far right post becomes one tall post with the brass bell on a short arm, and the deck, pool, bridge, islet, bagel cart and lighthouse stay within 1 px of level 1, where t2 stacks a thinner post on the old stub and drifts the lawn and the lower left flowers; on pixels no level changes the colour is L* +0.4 and C* +0.5 % against level 1."
+selection:
+  method: QA auto-pick among non-failing exploration takes by lock_load, then harmony; visual review for tie
+  pick: 1
+  note: 'The new bell post is at the right edge of the pier and its old structure, bridge, islet and nearby station
+    remain readable. Both takes show only a small change at the requested post. The parent image is the lead-picked
+    t1 from level 1 (#205); plan resolved that same t1 as the provisional parent. QA warns for the generated 1254
+    square canvas normalization, high chroma and light/palette targets. Auto-pick: both takes are warn-only and
+    have lock_load 0.0; harmony is unavailable. T1 has the lower palette drift and is selected for the provisional
+    parent chain. Founder review pending; exploration only, no promote.'
+provisional_parent: null
+takes:
+- take: 1
+  file: plate__x-plot-pier-2--t1.webp
+  source_file: /workspace/generated_images/exec-15bbfc40-8491-4941-9fd9-124bdbd7d453.png
+  source_sha256: 58c00845a7d384b8c97ca22d6af93a90290f6af88d29a9868046709b3c84f154
+  source_dimensions:
+  - 1254
+  - 1254
+  output_dimensions:
+  - '1'
+  - '5'
+  - '3'
+  - '6'
+  - x
+  - '1'
+  - '5'
+  - '3'
+  - '6'
+  backend: codex-cloud
+  generated_at: '2026-11-28T07:54:37+00:00'
+  qa: warn
+  lock_load: 0.0
+  harmony: null
+  warnings:
+  - check: canvas
+    status: warn
+    message: 1254x1254 scaled x1.225 and center-cropped to 1536x1536
+  - check: chroma_ceiling
+    status: warn
+    message: chroma p95 73 (R1 51) (advisory in an exploration)
+  - check: light_values
+    status: warn
+    message: 'day/subject: L p5 46 (at least 50: darks stay a light mid-tone), p98 90 (at least 90)'
+  - check: light_sea
+    status: warn
+    message: 'day: cloud sea L 80 (at least 82: the sea is the reflector)'
+  - check: palette_drift
+    status: warn
+    message: 'mean dE 8.3, p95 27.3, off-palette 25.0% (top: #BBCC33 (1.9%), #AABB33 (1.7%)) (advisory in an exploration)'
+  visual_note: The new bell post is at the right edge of the pier and its old structure, bridge, islet and nearby
+    station remain readable. Both takes show only a small change at the requested post. The parent image is the
+    lead-picked t1 from level 1 (#205); plan resolved that same t1 as the provisional parent. QA warns for the generated
+    1254 square canvas normalization, high chroma and light/palette targets.
+  prompt: 'REFERENCES (attached, in this order):
+
+    1. The image to edit (the approved previous level). Edit it; do not redraw it.
+
+
+    Edit the attached picture of the pier on its plot of lawn. Make this change only: add a tall wooden mooring
+
+    post at the far right corner of the deck, rising above the other posts by half their height, with a small
+
+    brass bell hanging from a short arm at its top. The new parts are painted in exactly the same style, light and
+
+    colours as the rest and sit naturally on it. The lawn, the rim, the sky and every part that is already there
+
+    stay exactly where they are, at the same size, with the same shapes and colours, and the jetty''s inner end
+
+    where it meets the lawn stays where it is.
+
+
+    KEEP: everything not named above stays exactly the same as in the
+
+    attached image: every existing part, its shape, color, position and size,
+
+    the canvas, the camera, the light and the painting style. Do not zoom out
+
+    or reframe: if a new part does not fit, make the new part smaller, never
+
+    the existing ones. Outside the new parts, the result must line up with
+
+    the attached image pixel for pixel.
+
+
+    STYLE: a finished painted illustration for a premium cozy mobile game, like
+
+    a page from a beloved picture book: soft painterly 2D with gentle airbrushed
+
+    shading, rounded chunky forms, no outlines, no hard edges, matte surfaces
+
+    with at most one soft highlight per object. COLOUR: vivid, saturated and
+
+    jewel-like, as in the key art of a high-end animated film: intense grass
+
+    greens, glowing sunflower yellow, deep sky blue, warm peach earth, crisp
+
+    white petals; strong contrast between warm lit colour and cool shadow
+
+    colour; every material keeps its own true colour. VALUES: a full range, from
+
+    bright sunlit tops to deep warm shadows under eaves, inside foliage, beneath
+
+    the lawn rim and around doors, so every object separates clearly from what
+
+    is behind it and the picture reads at a glance on a small phone screen.
+
+    Shadows are coloured (warm brown, plum, deep teal), never black or grey.
+
+    Light direction and shadow hue follow the LIGHT block of this prompt.
+
+    Colourful but never neon, never HDR, never glossy. No text, no letters, no
+
+    numbers, no logos, no watermark, no border, no frame.
+
+
+    AVOID: a change to anything the prompt does not name, a moved, resized or redrawn part, a removed part that
+    was not named, a reframed, zoomed or recoloured picture, a new object, bush, flower, stone or decoration the
+    prompt does not name, a ground patch, a colour step or edge in the grass, brighter or more saturated colours,
+    a change of light, a filled gap, a changed rope bridge, text, letters
+
+
+    LIGHT (hour: day, layer: subject). Bright, clear, toy-like.
+
+    Key light #FFF6EC from the upper left; fill #BFD6EE; rim #FFE9C9 along the edge facing away from the key. Shadows
+    are tinted #A99BC4 (never grey or black), short and soft, falling toward the lower right; every object sits
+    on a soft occlusion pad in that hue where it touches the ground or another form.
+
+    VALUES (the reference envelope): a high-key picture inside one envelope of soft, milky air. Every value sits
+    between light mid-tone and cream-white; the darkest recesses (door holes, gaps, pond rims) are a mid-value tinted
+    with the shadow hue, never black. Form turns in small value steps. Colour lives in the halftones; lights bleach
+    to cream. No dark outlines: edges are found by value and hue. The cloud sea below is the brightest large surface
+    and lights the island''s underside with a warm bounce.
+
+    This is the SUBJECT plane: the clearest forms and the crispest edges in the picture, still inside the envelope.
+
+
+    Output: one image, opaque, full bleed, square 1536 x 1536.
+
+    '
+  attachments:
+  - path: build/imagegen/batch-193-plot-ladder-pier/locked/plate__x-plot-pier-1--t1.png
+    role: The image to edit (the approved previous level). Edit it; do not redraw it.
+- take: 2
+  file: plate__x-plot-pier-2--t2.webp
+  source_file: /workspace/generated_images/exec-a4996f7a-08c4-47b6-aa93-eb7ebf09087e.png
+  source_sha256: ddee4bf8e743b74aee9544276837f8b0d7bd19f88b7c7fa49291aaf84c493897
+  source_dimensions:
+  - 1254
+  - 1254
+  output_dimensions:
+  - '1'
+  - '5'
+  - '3'
+  - '6'
+  - x
+  - '1'
+  - '5'
+  - '3'
+  - '6'
+  backend: codex-cloud
+  generated_at: '2026-11-28T07:54:38+00:00'
+  qa: warn
+  lock_load: 0.0
+  harmony: null
+  warnings:
+  - check: canvas
+    status: warn
+    message: 1254x1254 scaled x1.225 and center-cropped to 1536x1536
+  - check: chroma_ceiling
+    status: warn
+    message: chroma p95 76 (R1 51) (advisory in an exploration)
+  - check: light_values
+    status: warn
+    message: 'day/subject: L p5 47 (at least 50: darks stay a light mid-tone), p98 89 (at least 90)'
+  - check: light_sea
+    status: warn
+    message: 'day: cloud sea L 78 (at least 82: the sea is the reflector)'
+  - check: palette_drift
+    status: warn
+    message: 'mean dE 9.1, p95 30.3, off-palette 26.2% (top: #BBCC22 (1.2%), #AABB22 (0.9%)) (advisory in an exploration)'
+  visual_note: The new bell post is at the right edge of the pier and its old structure, bridge, islet and nearby
+    station remain readable. Both takes show only a small change at the requested post. The parent image is the
+    lead-picked t1 from level 1 (#205); plan resolved that same t1 as the provisional parent. QA warns for the generated
+    1254 square canvas normalization, high chroma and light/palette targets.
+  prompt: 'REFERENCES (attached, in this order):
+
+    1. The image to edit (the approved previous level). Edit it; do not redraw it.
+
+
+    Edit the attached picture of the pier on its plot of lawn. Make this change only: add a tall wooden mooring
+
+    post at the far right corner of the deck, rising above the other posts by half their height, with a small
+
+    brass bell hanging from a short arm at its top. The new parts are painted in exactly the same style, light and
+
+    colours as the rest and sit naturally on it. The lawn, the rim, the sky and every part that is already there
+
+    stay exactly where they are, at the same size, with the same shapes and colours, and the jetty''s inner end
+
+    where it meets the lawn stays where it is.
+
+
+    KEEP: everything not named above stays exactly the same as in the
+
+    attached image: every existing part, its shape, color, position and size,
+
+    the canvas, the camera, the light and the painting style. Do not zoom out
+
+    or reframe: if a new part does not fit, make the new part smaller, never
+
+    the existing ones. Outside the new parts, the result must line up with
+
+    the attached image pixel for pixel.
+
+
+    STYLE: a finished painted illustration for a premium cozy mobile game, like
+
+    a page from a beloved picture book: soft painterly 2D with gentle airbrushed
+
+    shading, rounded chunky forms, no outlines, no hard edges, matte surfaces
+
+    with at most one soft highlight per object. COLOUR: vivid, saturated and
+
+    jewel-like, as in the key art of a high-end animated film: intense grass
+
+    greens, glowing sunflower yellow, deep sky blue, warm peach earth, crisp
+
+    white petals; strong contrast between warm lit colour and cool shadow
+
+    colour; every material keeps its own true colour. VALUES: a full range, from
+
+    bright sunlit tops to deep warm shadows under eaves, inside foliage, beneath
+
+    the lawn rim and around doors, so every object separates clearly from what
+
+    is behind it and the picture reads at a glance on a small phone screen.
+
+    Shadows are coloured (warm brown, plum, deep teal), never black or grey.
+
+    Light direction and shadow hue follow the LIGHT block of this prompt.
+
+    Colourful but never neon, never HDR, never glossy. No text, no letters, no
+
+    numbers, no logos, no watermark, no border, no frame.
+
+
+    AVOID: a change to anything the prompt does not name, a moved, resized or redrawn part, a removed part that
+    was not named, a reframed, zoomed or recoloured picture, a new object, bush, flower, stone or decoration the
+    prompt does not name, a ground patch, a colour step or edge in the grass, brighter or more saturated colours,
+    a change of light, a filled gap, a changed rope bridge, text, letters
+
+
+    LIGHT (hour: day, layer: subject). Bright, clear, toy-like.
+
+    Key light #FFF6EC from the upper left; fill #BFD6EE; rim #FFE9C9 along the edge facing away from the key. Shadows
+    are tinted #A99BC4 (never grey or black), short and soft, falling toward the lower right; every object sits
+    on a soft occlusion pad in that hue where it touches the ground or another form.
+
+    VALUES (the reference envelope): a high-key picture inside one envelope of soft, milky air. Every value sits
+    between light mid-tone and cream-white; the darkest recesses (door holes, gaps, pond rims) are a mid-value tinted
+    with the shadow hue, never black. Form turns in small value steps. Colour lives in the halftones; lights bleach
+    to cream. No dark outlines: edges are found by value and hue. The cloud sea below is the brightest large surface
+    and lights the island''s underside with a warm bounce.
+
+    This is the SUBJECT plane: the clearest forms and the crispest edges in the picture, still inside the envelope.
+
+
+    Output: one image, opaque, full bleed, square 1536 x 1536.
+
+    '
+  attachments:
+  - path: build/imagegen/batch-193-plot-ladder-pier/locked/plate__x-plot-pier-1--t1.png
+    role: The image to edit (the approved previous level). Edit it; do not redraw it.

@@ -342,10 +342,50 @@ LIGHTHOUSE = {
                   "interior": False, "lighter": False, "brightRing": True} for s in (1, 2)},
     "place": {s: {"foot": (895.0, 743.0), "scale": 0.93} for s in (1, 2)},
 }
+# The pier (batch 193's plot ladder, batch 195's bare crop): the jetty, the ferry and its pool, the lamp and bell posts and the bunting on the
+# harbour islet. Levels 1 to 5 are t1 of every level (each an edit of the one before); level 1 is the crop's 1536 px, levels 2 to 5 are 1254 px, so
+# the takes are brought to 1254 (a take px is 320 / 1254 = 0.2552 points, the bagel cart's). The crop is the pier plate crop (plate points 704,658 to
+# 1024,978: the level 10 plate, stage 0) with only the pier painted out, the gap, the rope bridge, the rim and the door kept. It stands for stage 0's
+# painting only: stages 1 and 2 paint another bridge end and dock there. The crop and every level run hot (the crop is about a third more
+# chromatic than the plate), so one grade fits the ladder: level 1 to the plate is chroma x0.72 and L* +1.6 (the lead's review; level 5 then sits
+# about 5 percent hot), and the base's crop is fitted to the plate by the robust regrade (`bare_take`).
+PLOT_PIER = "batch-193-plot-ladder-pier/x-plot-pier-{}"
+PIER_BARE = "batch-195-pier-bare-crop/x-plot-pier-bare-v2"
+PIER_CROP = (704, 658, 1024, 978)
+#: Where the pier stands on stage 0's plate (texture px): the station (lamps, bunting, jetty, ferry, pool, bell post; plate points 860 to 1020 across
+#: and 728 to 875 down) the bridge's landing slab, which the plate paints as part of the jetty and the crop paints as the bridge's round deck, and the rail post
+#: beside it that the crop leaves out (the lead: the landing lost one rail post).
+PIER_SHAPES = [("r", 1720, 1456, 2040, 1750), ("r", 1596, 1610, 1764, 1712), ("r", 1660, 1535, 1730, 1630)]
+PIER = {
+    "id": "pier",
+    "light": "day",
+    "levels": 5,
+    "plot": {
+        "kind": "regrade",
+        "bare": (PIER_BARE, (0, 0, 1536, 1536)),
+        "takes": {n: (PLOT_PIER.format(n), 1) for n in range(1, 6)},
+        "diff": 16,
+        "notLawn": True,
+        "pool": True,
+        "noShare": True,
+        "add": {5: [((650, 250, 960, 380), 14)]},          # the bunting's string and pennants hang in front of the hydrangeas
+        "raw": True,
+        "close": 61,
+        "grade": {n: (0.72, 1.025) for n in range(1, 6)},
+    },
+    "scale": 0.5104,             # 0.2552 points per take px
+    "density": 2.0,
+    "anchor": (886.0, 784.0),    # a take px: the crop's origin plus this is plate point (930, 858), the pier's painted foot line
+    "foot": (930.0, 858.0),
+    "footStage": 0,
+    "noSeason": True,            # the autumn erase (batch 194) does not clear the pier: autumn keeps its painted one
+    "bases": {0: {"bare": {"job": PIER_BARE, "crop": PIER_CROP}, "window": (1590, 1450, 2048, 1760), "shapes": PIER_SHAPES, "diff": {"day": 0.24, "night": 0.2}, "pieces": 1500, "dayMask": True, "ceiling": False, "interior": False, "lighter": False}},
+    "place": {0: {"foot": (930.0, 858.0), "scale": 1.0}},
+}
 # The garden is cut and based (above) but not shipped: its levels 3 to 5 stand where the pond's level 3 to 5 islet does (plate
 # [64,746,211,853] against [99,743,230,846]), and levels 1 and 2 collide with a pond at level 5, so it waits for a re-take whose crop
 # keeps the islet. Its spot keeps the plate's own painted bed.
-STATIONS = [TEA_STALL, WINDMILL, POND, WORKSHOP, BAGEL_CART, LIGHTHOUSE]
+STATIONS = [TEA_STALL, WINDMILL, POND, WORKSHOP, BAGEL_CART, LIGHTHOUSE, PIER]
 for _sp in STATIONS:
     _sp["night"] = True
     _sp["golden"] = any(_st in (0, 3, 4, 6, 7) for _st in _sp["bases"])      # `GOLDEN_STAGES`: the bagel cart and the lighthouse stand only on stages 1 and 2, where golden hour draws the night plate
@@ -560,6 +600,8 @@ def regrade_masks(plot: dict) -> tuple[dict, dict, dict]:
 
     for n, take in plot["takes"].items():
         rgb = _take_rgb(take)
+        if rgb.shape != ref.shape:                                        # a ladder whose level 1 is the crop's 1536 px and the rest 1254 (the pier's)
+            rgb = cv2.resize(rgb, ref.shape[1::-1], interpolation=cv2.INTER_AREA)
         lab = _lab_soft(rgb)
         m = regrade_fit(ref_lab, lab)
         d = np.abs(lab - (np.c_[ref_lab.reshape(-1, 3), np.ones(ref_lab.shape[0] * ref_lab.shape[1])] @ m).reshape(lab.shape)).max(-1)
@@ -575,7 +617,7 @@ def regrade_masks(plot: dict) -> tuple[dict, dict, dict]:
             mask = keep(ndimage.binary_fill_holes(cv2.morphologyEx(mask.astype(np.uint8), cv2.MORPH_OPEN, _ellipse(13)) > 0))
         if plot.get("sky"):                                               # the take's sky seen through the arch or between the leaves is not the station
             mask = keep(ndimage.binary_fill_holes(cv2.morphologyEx((mask & (sky_alpha(rgb) >= 0.5)).astype(np.uint8), cv2.MORPH_OPEN, _ellipse(7)) > 0))
-        if plot.get("notLawn"):                                           # the sky seen between the gear, the chimney and the roof is not the house
+        if plot.get("notLawn") and not plot.get("pool"):                  # the sky seen between the gear, the chimney and the roof is not the house (`pool`: the pier's water is sky-blue and is the station)
             mask = keep(cv2.morphologyEx((mask & (sky_alpha(rgb) >= 0.5)).astype(np.uint8), cv2.MORPH_OPEN, _ellipse(7)) > 0)
         fb = plot.get("flatBottom")
         if fb:                                                            # the doorstep's pale stones match the bare crop's: close the bites in the bottom edge
@@ -595,6 +637,11 @@ def regrade_masks(plot: dict) -> tuple[dict, dict, dict]:
             mask[by0:by1, bx0:bx1] = False
         if plot.get("clear", {}).get(n):
             mask = keep(mask)
+        for (bx0, by0, bx1, by1), thr in plot.get("add", {}).get(n, []):     # a string the opening takes (the pier's bunting): the raw difference in a box, no opening, no hole filling
+            part = (d[by0:by1, bx0:bx1] > thr).astype(np.uint8)
+            cnt, lab_, stat_, _ = cv2.connectedComponentsWithStats(part, connectivity=8)
+            part = np.isin(lab_, [i for i in range(1, cnt) if stat_[i, cv2.CC_STAT_AREA] >= 40])
+            mask[by0:by1, bx0:bx1] |= cv2.dilate(part.astype(np.uint8), _ellipse(3)) > 0
         masks[n] = mask
         full = srgb_lab(rgb)                                              # the take in the plate's own colours: the inverse map
         inv = np.linalg.pinv(m[:3])
@@ -606,7 +653,7 @@ def regrade_masks(plot: dict) -> tuple[dict, dict, dict]:
     low = min(masks)
     ref_lab = srgb_lab(rgbs[low])
     for n in sorted(masks):
-        if n == low:
+        if n == low or plot.get("noShare"):                                 # `noShare`: the pier's levels grow by water and a boat, so the part a level shares with level 1 is not one colour
             continue
         both = cv2.erode((masks[n] & masks[low]).astype(np.uint8), _ellipse(31)) > 0
         if both.sum() < 2000:
@@ -814,14 +861,14 @@ def night_sky_alpha(rgb: np.ndarray, known_sky: np.ndarray) -> np.ndarray:
     return 1 - cv2.GaussianBlur(sky.astype(np.float32), (0, 0), 1.2)
 
 
-def paste_masks(parent: np.ndarray, take: np.ndarray, window: tuple[int, int, int, int], shapes: list | None = None) -> np.ndarray:
+def paste_masks(parent: np.ndarray, take: np.ndarray, window: tuple[int, int, int, int], shapes: list | None = None, diff: float = 0.12, pieces: int = 0) -> np.ndarray:
     """The old station: where the take differs from its parent inside the window, closed, holes filled, the biggest piece,
     grown 8 px (a hard 0/1 mask at texture size). `shapes` (ellipses `("e", cx, cy, rx, ry)` and boxes `("r", x0, y0, x1, y1)`,
     texture px) narrow the window to their union: a station whose window is a ring on a lawn that the take regrades all over."""
     x0, y0, x1, y1 = window
     d = np.abs(take - parent).max(-1)
     raw = np.zeros(parent.shape[:2], np.uint8)
-    raw[y0:y1, x0:x1] = d[y0:y1, x0:x1] > 0.12
+    raw[y0:y1, x0:x1] = d[y0:y1, x0:x1] > diff
     if shapes:
         yy, xx = np.mgrid[0:raw.shape[0], 0:raw.shape[1]]
         inside = np.zeros(raw.shape, bool)
@@ -833,7 +880,8 @@ def paste_masks(parent: np.ndarray, take: np.ndarray, window: tuple[int, int, in
     if n < 2:
         raise SystemExit("the erase take does not differ from its parent in the window")
     keep = 1 + int(np.argmax(stat[1:, cv2.CC_STAT_AREA]))
-    raw = ndimage.binary_fill_holes(lab == keep).astype(np.uint8)
+    big = [i for i in range(1, n) if stat[i, cv2.CC_STAT_AREA] >= pieces] if pieces else [keep]     # `pieces`: every piece that big (the pier's lamp heads and bell hang apart at night)
+    raw = ndimage.binary_fill_holes(np.isin(lab, big or [keep])).astype(np.uint8)
     return cv2.dilate(raw, cv2.getStructuringElement(cv2.MORPH_ELLIPSE, (17, 17)))
 
 
@@ -913,6 +961,25 @@ def old_pond_pixels(rgb: np.ndarray) -> np.ndarray:
     return stone | water
 
 
+def bare_take(parent: np.ndarray, cfg: dict) -> np.ndarray:
+    """A synthetic erase take for a station whose bare plot is its own art (the pier's: batch 195's crop of the level 10 plate with only the
+    station painted out; batch 117's erase fills the gap and loses the bridge there): the state's parent plate, with the picked crop pasted
+    over its window (`crop`, plate points) and fitted to the parent's colours by the robust affine regrade of the ladders (the crop runs about
+    a third too chromatic and is fitted away from the station, so its lawn, bridge and sky agree with the plate). The parent plate and the
+    crop are one painting only at the stage the crop was cut from: another state's plate is a different painting there."""
+    job, (x0, y0, x1, y1) = cfg["job"], cfg["crop"]
+    path = take_path(job)
+    w, h = (x1 - x0) * TEX, (y1 - y0) * TEX
+    bare = np.asarray(Image.open(path).convert("RGB").resize((w, h), Image.LANCZOS), np.float32) / 255
+    out = parent.copy()
+    ref = parent[y0 * TEX:y1 * TEX, x0 * TEX:x1 * TEX]
+    m = regrade_fit(_lab_soft(bare), _lab_soft(ref))
+    lab = srgb_lab(bare)
+    fitted = lab_srgb((np.c_[lab.reshape(-1, 3), np.ones(len(lab.reshape(-1, 3)))] @ m).reshape(lab.shape).astype(np.float32))
+    out[y0 * TEX:y1 * TEX, x0 * TEX:x1 * TEX] = fitted
+    return out
+
+
 def build_base(stage: int, spec: dict, plate: np.ndarray | None = None, light: str = "day", erase: Path | None = None) -> tuple[np.ndarray, dict]:
     """The shipped plate of a day stage with the station erased: RGBA floats, the plate's crop. `plate` is a base that
     already has other stations erased (the same size): this station's window is taken out of it, so two stations that
@@ -927,8 +994,17 @@ def build_base(stage: int, spec: dict, plate: np.ndarray | None = None, light: s
             plate = np.asarray(im.convert("RGBA"), np.float32) / 255
     h, w = plate.shape[:2]
     parent = ingest.source_plate(ingest.REPO / hand["plates"][light][str(stage)])[0].astype(np.float32)
-    take = np.asarray(Image.open(erase or take_path(job_for(spec["job"], light))).convert("RGB").resize((parent.shape[1], parent.shape[0]), Image.LANCZOS), np.float32) / 255
-    hard_full = paste_masks(parent, take, spec["window"], spec.get("shapes"))
+    if spec.get("bare"):
+        take = bare_take(parent, spec["bare"])
+    else:
+        take = np.asarray(Image.open(erase or take_path(job_for(spec["job"], light))).convert("RGB").resize((parent.shape[1], parent.shape[0]), Image.LANCZOS), np.float32) / 255
+    diff = spec.get("diff", 0.12)
+    if spec.get("dayMask") and light != "day":              # the same painting, the same station: the day's region (the night plate's thin posts and strings are too dark to find by difference)
+        day_parent = ingest.source_plate(ingest.REPO / hand["plates"]["day"][str(stage)])[0].astype(np.float32)
+        parent_d, take_d = day_parent, bare_take(day_parent, spec["bare"])
+        hard_full = paste_masks(parent_d, take_d, spec["window"], spec.get("shapes"), diff["day"] if isinstance(diff, dict) else diff, spec.get("pieces", 0))
+    else:
+        hard_full = paste_masks(parent, take, spec["window"], spec.get("shapes"), diff.get(light, 0.12) if isinstance(diff, dict) else diff, spec.get("pieces", 0))
     for ex0, ey0, ex1, ey1 in spec.get("exclude", []) + (NIGHT_KEEP if light == "night" else []):
         hard_full[ey0:ey1, ex0:ex1] = 0
     for oid in spec.get("excludeOccluders", ()):         # an occluder's opaque pixels stay the plate's (the mailbox)
@@ -1186,7 +1262,7 @@ SEASON_SLICE = {
 def season_stage_stations(season: str, key: str, stage: int) -> list[dict]:
     """The stations that stand over a base in a season's state: the ones with a spring base at the stage, when the season
     has an erase take for it (night has no bases, as in spring)."""
-    return stage_specs(stage) if SEASON_SLICE[season]["states"][key].get(stage) else []
+    return [sp for sp in stage_specs(stage) if not sp.get("noSeason")] if SEASON_SLICE[season]["states"][key].get(stage) else []
 
 
 def season_paint_spec(season: str, sid: str, grade: dict | None = None) -> dict:
@@ -1361,6 +1437,14 @@ PLATE_NIGHT_TARGET = {"workshop": (55.5, 24.3), "bagelCart": (58.1, 18.3), "ligh
 DERIVED_NIGHT = ("teaStall",)
 for _sid, _picks in STATION_NIGHT_PICKS.items():
     NIGHT_PAINT[_sid] = {n: (PLOT_NIGHT[_sid].format(n), t) for n, t in enumerate(_picks, start=1)}
+#: The pier's painted nights (batch 193, the lead's picks: t2 of every level). The il8 night plate's pier window is L* 58.0, C* 18.6 (the lead's
+#: measure): the picks sit 4 to 8 L* too dark and a quarter to a third too chromatic, so each is graded to it (`fit_grade`; the 8 L* darks lift is
+#: the first level's review). Night 3's portholes are unlit (`pier_night3_edit`). A level whose wood hue is not the derived look's within
+#: `PIER_HUE_TOL` degrees after the turn keeps the derived night (`pier_hue_guard`).
+NIGHT_PAINT["pier"] = {n: (f"batch-193-plot-ladder-pier/x-plot-pier-{n}-night", 2) for n in range(1, 6)}
+STATION_NIGHT_GRADE["pier"] = {n: (1.1, 8.0, 0.75) for n in range(1, 6)}
+PLATE_NIGHT_TARGET["pier"] = (58.0, 18.6)
+PIER_HUE_TOL = 5.0
 
 
 def night_fit(sid: str, stage: int, level: int, look: np.ndarray, data: dict, light: str = "night") -> np.ndarray:
@@ -1596,6 +1680,87 @@ def paste_box(dst: np.ndarray, src: np.ndarray, box: tuple[int, int, int, int], 
     dst[:] = dst * (1 - a) + src * a
 
 
+#: Pier night 3 (batch 193's t2, take px at 1254): both takes light the three portholes and their streaks in the pool, which level 3 does not have yet (they
+#: light at level 4), and the clapper of the bell carries a warm glint (the lead's review). The glass takes the unlit blue of the cabin windows, the streaks
+#: the pool's own water, the glint the bell's own brass.
+PIER_PORTHOLES = [(1005, 715), (1060, 711), (1107, 702)]
+PIER_WINDOWS = [(1020, 637), (1065, 639), (1105, 632)]
+PIER_STREAK_X, PIER_STREAK_Y = 14, (733, 778)
+PIER_CLAPPER = (1041, 461)
+
+
+def pier_night3_edit(rgb: np.ndarray) -> np.ndarray:
+    """Night 3 of the pier with its portholes and their streaks unlit (see `PIER_PORTHOLES`) and the clapper's glint toned down."""
+    lab = srgb_lab(rgb)
+    blue = np.mean([lab[y - 4:y + 5, x - 4:x + 5].reshape(-1, 3).mean(0) for x, y in PIER_WINDOWS], 0)
+    lit = (lab[..., 0] > 70) & (lab[..., 2] > 25)
+    yy, xx = np.mgrid[0:rgb.shape[0], 0:rgb.shape[1]]
+    done = lab.copy()
+    glass = np.zeros(rgb.shape[:2], np.float32)
+    shade = np.zeros(rgb.shape[:2], np.float32)
+    ring = np.zeros(rgb.shape[:2], np.float32)
+    for x, y in PIER_PORTHOLES:
+        near = np.zeros(rgb.shape[:2], bool)
+        near[y - 18:y + 19, x - 18:x + 19] = True
+        part = cv2.morphologyEx((lit & near).astype(np.uint8), cv2.MORPH_CLOSE, _ellipse(9)) > 0
+        ys, xs = np.nonzero(part)
+        cx, cy = (xs.min() + xs.max()) / 2, (ys.min() + ys.max()) / 2      # the lit part's box: the gold ring and the glass with it
+        r = (xs.max() - xs.min() + ys.max() - ys.min()) / 4                # the ring's outer radius
+        d = np.hypot(xx - cx, yy - cy)
+        glass = np.maximum(glass, np.clip(0.72 * r + 0.5 - d, 0, 1))      # the glass is the ring's inside
+        ring = np.maximum(ring, np.clip(r + 1.5 - d, 0, 1))
+        shade = np.where(d <= r, (cy - yy) / r, shade)                    # lighter at the top, as the cabin's panes are
+    streak = np.zeros(rgb.shape[:2], np.uint8)
+    cols = np.zeros(rgb.shape[:2], bool)
+    for x, _ in PIER_PORTHOLES:
+        streak[PIER_STREAK_Y[0]:PIER_STREAK_Y[1], x - PIER_STREAK_X:x + PIER_STREAK_X + 1] = 1
+    cols[PIER_STREAK_Y[0]:PIER_STREAK_Y[1], 940:1140] = True
+    streak &= ((lab[..., 0] > 54) & (lab[..., 2] > 15)).astype(np.uint8)
+    streak = cv2.dilate(streak, _ellipse(5)) > 0
+    water = cols & ~streak & (lab[..., 2] < -10) & (lab[..., 0] < 52)
+    soft = cv2.GaussianBlur(streak.astype(np.float32), (0, 0), 1.5)[..., None]
+    for y in range(PIER_STREAK_Y[0], PIER_STREAK_Y[1]):                   # each row takes the pool's own colour there
+        row = water[y]
+        if row.sum() > 8:
+            done[y] = done[y] * (1 - soft[y]) + np.median(lab[y][row], 0) * soft[y]
+    done[..., 0] -= 16 * ring * (1 - glass) * lit                        # the gold ring's lit edge, tamed
+    done[..., 1:] *= (1 - 0.15 * ring * (1 - glass) * lit)[..., None]
+    fill = np.broadcast_to(blue, lab.shape).copy()
+    fill[..., 0] += 6 * shade
+    done = done * (1 - glass[..., None]) + fill * glass[..., None]
+    glint = np.clip(1 - np.hypot(xx - PIER_CLAPPER[0], yy - PIER_CLAPPER[1]) / 20, 0, 1) * lit
+    done[..., 0] *= 1 - 0.15 * glint
+    done[..., 1:] *= 1 - 0.2 * glint[..., None]
+    return lab_srgb(done)
+
+
+def wood_hue(rgb: np.ndarray, wood: np.ndarray) -> float:
+    """The mean hue (degrees, CIELAB) of the pixels in `wood`."""
+    lab = srgb_lab(rgb)[wood]
+    return float(np.degrees(np.arctan2(lab[:, 2].mean(), lab[:, 1].mean())))
+
+
+def pier_hue_guard(look: np.ndarray, fitted: np.ndarray, day: np.ndarray, n: int) -> np.ndarray:
+    """The painted night of pier level `n` with its wood (the day look's pixels of hue 55 to 80 degrees, chroma over 18, L* under 85: planks,
+    posts and brass, not the coral hull) turned to the derived look's hue (the day look through the night fit): the picks' wood runs rose-mauve
+    at levels 1 and 2 and orange at 3 to 5 against the night plate's. The turn is a rotation of CIELAB (a*, b*) under the wood's own feathered
+    mask, chroma kept; it keeps the look if the wood is then within `PIER_HUE_TOL` degrees, else the derived night."""
+    lab = srgb_lab(day[..., :3])
+    hue = np.degrees(np.arctan2(lab[..., 2], lab[..., 1]))
+    wood = (day[..., 3] > 0.9) & (look[..., 3] > 0.9) & (hue > 55) & (hue < 80) & (np.hypot(lab[..., 1], lab[..., 2]) > 18) & (lab[..., 0] < 85)
+    want, got = wood_hue(fitted, wood), wood_hue(look[..., :3], wood)
+    w = cv2.GaussianBlur(cv2.dilate(wood.astype(np.uint8), _ellipse(3)).astype(np.float32), (0, 0), 1.5)
+    ang = np.radians(want - got) * w
+    ln = srgb_lab(look[..., :3])
+    a, b = ln[..., 1].copy(), ln[..., 2].copy()
+    ln[..., 1], ln[..., 2] = a * np.cos(ang) - b * np.sin(ang), a * np.sin(ang) + b * np.cos(ang)
+    turned = np.dstack([lab_srgb(ln), look[..., 3:]])
+    now = wood_hue(turned[..., :3], wood)
+    ok = abs(now - want) <= PIER_HUE_TOL
+    print(f"  pier {n}: wood hue {got:.1f} degrees, turned by {want - got:+.1f} to {now:.1f} (derived {want:.1f}, {int(wood.sum())} px)" + ("" if ok else ": derived look"))
+    return turned if ok else np.dstack([fitted, day[..., 3:]])
+
+
 def station_night_looks(spec: dict, days: dict, fits: dict) -> dict:
     """{level: the painted night look} of a station of `STATION_NIGHT_GRADE`: the night take graded (`station_grade`), the lit
     sources the take dropped pasted back (the workshop's), then cut with the day look's outline on the day look's canvas (the box,
@@ -1607,6 +1772,8 @@ def station_night_looks(spec: dict, days: dict, fits: dict) -> dict:
     painted = {}
     for n, take in NIGHT_PAINT[sid].items():
         rgb = _take_rgb(take)
+        if sid == "pier" and n == 3:
+            rgb = pier_night3_edit(rgb)
         cut = cv2.erode(masks[n].astype(np.uint8), _ellipse(3)) > 0
         if sid in LOOK_MATCH:
             d = srgb_lab(sg.apply_fit(fits[n], days[n][..., :3].reshape(-1, 3)).reshape(days[n].shape[:2] + (3,)))[days[n][..., 3] > 0.9]
@@ -1644,6 +1811,8 @@ def station_night_looks(spec: dict, days: dict, fits: dict) -> dict:
             print(f"  {sid} {n}: awning hue off by {hue:.1f} degrees, stripe contrast {contrast:.2f} of the day look's" + ("" if ok else ", fails: derived look"))
             if not ok:
                 look = np.dstack([fitted, day[..., 3:]])
+        if sid == "pier":
+            look = pier_hue_guard(look, fitted, day, n)
         if sid == "workshop":
             look = cap_chroma(look, fitted, day)
         keep = (day[..., 3] > 0.9) & (look[..., 3] > 0.9)
@@ -1820,7 +1989,7 @@ def stations_data(spec: dict = TEA_STALL) -> dict:
             data["lookLevels"]["golden"] = levels
     for season, entry in SEASON_SLICE.items():                # a season's states that stand this station over a base
         for key, stages in entry["states"].items():
-            on = sorted(st for st, erase in stages.items() if erase and st in spec["bases"])
+            on = sorted(st for st, erase in stages.items() if erase and st in spec["bases"] and not spec.get("noSeason"))
             if on:
                 data.setdefault("lights", {spec["light"]: data["baseStages"]})[key] = on
                 if "lookLevels" in data:
