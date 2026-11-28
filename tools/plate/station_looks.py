@@ -348,6 +348,7 @@ LIGHTHOUSE = {
 STATIONS = [TEA_STALL, WINDMILL, POND, WORKSHOP, BAGEL_CART, LIGHTHOUSE]
 for _sp in STATIONS:
     _sp["night"] = True
+    _sp["golden"] = any(_st in (0, 3, 4, 6, 7) for _st in _sp["bases"])      # `GOLDEN_STAGES`: the bagel cart and the lighthouse stand only on stages 1 and 2, where golden hour draws the night plate
 
 
 # ---------------------------------------------------------------- looks
@@ -1134,10 +1135,10 @@ def cmd_bases(station: dict | None = None, light: str = "day") -> dict:
     """Every base of the stages `station` stands on (all stations when None), each with all the stations that share it, in
     `light` (day or night: batch 117 erased both)."""
     chosen = [station] if station else STATIONS
-    stages = sorted({s for sp in chosen for s in sp["bases"]})
+    stages = sorted({s for sp in chosen for s in sp["bases"] if light != "golden" or s in GOLDEN_STAGES})
     out = {}
     for stage in stages:
-        x, info, _ = accumulate_base(stage, None, light)
+        x, info, _ = golden_base(stage) if light == "golden" else accumulate_base(stage, None, light)
         write_or_keep(base_name(light, stage), to_img(x))
         # The Map's island cut (and the graded island layer) is the same picture: it must not paint the stall either.
         crop = info["crop"]
@@ -1321,8 +1322,8 @@ NIGHT_PAINT = {
 }
 
 
-def night_fit(sid: str, stage: int, level: int, look: np.ndarray, data: dict) -> np.ndarray:
-    """The colour fit, in linear RGB, from the day plate to the night plate of `stage`, learned on the pixels the station's look
+def night_fit(sid: str, stage: int, level: int, look: np.ndarray, data: dict, light: str = "night") -> np.ndarray:
+    """The colour fit, in linear RGB, from the day plate to the `light` (night, or golden) plate of `stage`, learned on the pixels the station's look
     covers there (its alpha eroded; both plates solid), as the season's derived looks (`season_looks`)."""
     import season_gate as sg
     hand = ingest.load_hand(ISLAND)
@@ -1334,7 +1335,7 @@ def night_fit(sid: str, stage: int, level: int, look: np.ndarray, data: dict) ->
         canvas[cy:cy + plate.shape[0], cx:cx + plate.shape[1]] = plate
         return canvas
 
-    plate_n, plate_d = full("night"), full("day")
+    plate_n, plate_d = full(light), full("day")
     pos = data["stations"][sid]["stages"][str(stage)]["box"]
     x0, y0 = round(pos[0] * TEX), round(pos[1] * TEX)
     w, h = round((pos[2] - pos[0]) * TEX), round((pos[3] - pos[1]) * TEX)
@@ -1343,7 +1344,7 @@ def night_fit(sid: str, stage: int, level: int, look: np.ndarray, data: dict) ->
     m[y0:y0 + h, x0:x0 + w] = foot
     d = plate_d
     if m.sum() < 500:
-        raise SystemExit(f"{sid} level {level}: the night fit has {int(m.sum())} px at stage {stage}")
+        raise SystemExit(f"{sid} level {level}: the {light} fit has {int(m.sum())} px at stage {stage}")
     return sg.colour_fit(d[m][:, :3], plate_n[m][:, :3])
 
 
@@ -1400,6 +1401,106 @@ def cmd_night() -> None:
     night_looks()
 
 
+# ---------------------------------------------------------------- golden (N2)
+
+#: The stages the golden bases stand on: golden paints stages 0 and 3 to 7, and stage 5 has no station. Stages 1 and 2 paint no
+#: golden plate; the hour borrows the night plate there (`HomePlate.borrowed`), with its night bases and looks.
+GOLDEN_STAGES = (0, 3, 4, 6, 7)
+#: The two path lanterns' heads and posts at stage 0 (texture px, full plate; `NIGHT_KEEP` less the bush above the first).
+GOLDEN_KEEP = [(575, 1510, 655, 1650), (870, 1520, 960, 1650)]
+GOLDEN_SPREAD = 50              # the residual spread's blur sigma, texture px
+GOLDEN_RING = (161, 41)          # the fit's ring round the erased regions: dilated by 161 px, outside 41 px (texture px)
+
+
+def golden_fit(day_plate: np.ndarray, gold_plate: np.ndarray, union: np.ndarray) -> np.ndarray:
+    """The colour fit, in linear RGB, from the day plate to the golden plate of one stage, learned on the ring of plate round the
+    erased regions (not the regions themselves: they hold the old stations, which the golden painting draws unlike the day's)."""
+    import season_gate as sg
+    near = cv2.dilate(union, _ellipse(GOLDEN_RING[0])) > 0
+    close = cv2.dilate(union, _ellipse(GOLDEN_RING[1])) > 0
+    ring = near & ~close & (day_plate[..., 3] > 0.99) & (gold_plate[..., 3] > 0.99)
+    if ring.sum() < 2000:
+        raise SystemExit(f"the golden fit has {int(ring.sum())} px")
+    return sg.colour_fit(day_plate[ring][:, :3], gold_plate[ring][:, :3])
+
+
+def golden_base(stage: int) -> tuple[np.ndarray, dict, np.ndarray]:
+    """The golden plate of `stage` with every station's window taken from the day base, which has the stations erased, graded to
+    the golden plate by the fit of the ring round the windows (`golden_fit`). Returns the base, `info` (crop, regions) and the
+    union of the windows. The golden painting is the day's composition, so the windows are the day base's (texture px)."""
+    import season_gate as sg
+    hand = ingest.load_hand(ISLAND)
+    crop_day, crop_gold = (ingest.plate_crop_points(ISLAND, hand, l, stage) for l in ("day", "golden"))
+    day_base, info, union = accumulate_base(stage, None, "day")
+
+    def framed(plate: np.ndarray, crop: list) -> np.ndarray:       # a state's plate in the full plate's texture frame (the crops differ)
+        canvas = np.zeros((SIZE_TEX[1], SIZE_TEX[0], 4), np.float32)
+        canvas[crop[1] * TEX:crop[1] * TEX + plate.shape[0], crop[0] * TEX:crop[0] * TEX + plate.shape[1]] = plate
+        return canvas
+
+    day_plate = framed(sg.load_asset(ingest.asset_name(ISLAND, "plate", "day", stage)), crop_day)
+    gold_crop = sg.load_asset(ingest.asset_name(ISLAND, "plate", "golden", stage))
+    gold = framed(gold_crop, crop_gold)
+    day_base = framed(day_base, crop_day)
+    hard = union.astype(np.uint8)
+    for ex0, ey0, ex1, ey1 in GOLDEN_KEEP:                 # the path lanterns the erase takes the heads of stay the plate's, lit
+        hard[ey0:ey1, ex0:ex1] = 0
+    fit = golden_fit(day_plate, gold, hard)
+    graded = day_base.copy()
+    shape = day_base.shape[:2] + (3,)
+    graded[..., :3] = sg.apply_fit(fit, day_base[..., :3].reshape(-1, 3)).reshape(shape)
+    # What the global fit leaves (the golden painting's lawn is not the day lawn's colour as one map): the ring's own residual, spread
+    # inward by a normalised blur, so the window's colour meets the golden plate's at its edge.
+    near = cv2.dilate(hard, _ellipse(GOLDEN_RING[0])) > 0
+    close = cv2.dilate(hard, _ellipse(GOLDEN_RING[1])) > 0
+    ring = (near & ~close & (day_plate[..., 3] > 0.99) & (gold[..., 3] > 0.99)).astype(np.float32)
+    fitted_plate = sg.apply_fit(fit, day_plate[..., :3].reshape(-1, 3)).reshape(shape)
+    resid = (gold[..., :3] - fitted_plate) * ring[..., None]
+    weight = cv2.GaussianBlur(ring, (0, 0), GOLDEN_SPREAD)
+    spread = cv2.GaussianBlur(resid, (0, 0), GOLDEN_SPREAD) / np.maximum(weight, 1e-4)[..., None]
+    graded[..., :3] = np.clip(graded[..., :3] + spread * np.clip(weight * 8, 0, 1)[..., None], 0, 1)
+    m_alpha = cv2.GaussianBlur(cv2.dilate(hard, _ellipse(9)).astype(np.float32), (0, 0), 3.0)
+    m_rgb = cv2.GaussianBlur(cv2.dilate(hard, _ellipse(25)).astype(np.float32), (0, 0), FEATHER_TEX / 3)
+    new_a = gold[..., 3] * (1 - m_alpha) + np.minimum(gold[..., 3], day_base[..., 3]) * m_alpha
+    new_rgb = gold[..., :3] * (1 - m_rgb[..., None]) + graded[..., :3] * m_rgb[..., None]
+    rgb = ingest.extended(np.where(new_a[..., None] > 0, new_rgb, gold[..., :3]), new_a)
+    cx, cy = crop_gold[0] * TEX, crop_gold[1] * TEX
+    out = np.dstack([rgb, new_a])[cy:cy + gold_crop.shape[0], cx:cx + gold_crop.shape[1]]
+    info = {**info, "crop": crop_gold, "changed": float(m_rgb.max())}
+    return out, info, union
+
+
+def golden_looks() -> dict:
+    """The golden looks, `world-home-look-<station>-<level>-golden`: each station's day look through the colour fit from the day
+    plate to the golden plate, learned per level on the station's own pixels at its foot stage (`night_fit` with `golden`), as the
+    night's derived looks. Only the stations that stand on a golden stage have them."""
+    import season_gate as sg
+    data = json.loads(ingest.JSON_DIR.joinpath("plate-home.json").read_text())
+    out = {}
+    for spec in STATIONS:
+        if not spec.get("golden"):
+            continue
+        sid = spec["id"]
+        stage = min(st for st in spec["bases"] if st in GOLDEN_STAGES)
+        levels = data["stations"][sid].get("lookLevels", {}).get("day") or list(range(1, spec["levels"] + 1))
+        for n in levels:
+            with heic.open_image(ASSETS / f"{look_name(sid, n, 'day')}.imageset" / f"{look_name(sid, n, 'day')}{heic.SUFFIX}") as im:
+                day = np.asarray(im.convert("RGBA"), np.float32) / 255
+            fit = night_fit(sid, stage, n, day, data, "golden")
+            look = day.copy()
+            look[..., :3] = sg.apply_fit(fit, day[..., :3].reshape(-1, 3)).reshape(day.shape[:2] + (3,))
+            ingest.write_imageset(look_name(sid, n, "golden"), to_img(look))
+        out[sid] = levels
+        print(f"golden looks {sid}: levels {levels} by the stage-{stage} fit")
+    return out
+
+
+def cmd_golden() -> None:
+    """The golden bases (every golden stage a station stands on) and looks. Run `ingest.py json` and `station_looks.py json` after."""
+    cmd_bases(None, "golden")
+    golden_looks()
+
+
 # ---------------------------------------------------------------- data
 
 def asset_pixels(name: str) -> int:
@@ -1430,6 +1531,12 @@ def stations_data(spec: dict = TEA_STALL) -> dict:
         data["lightBaseBytes"] = {"night": {str(s): asset_pixels(base_name("night", s)) for s in nights}}
         if "lookLevels" in data:
             data["lookLevels"]["night"] = levels
+    if spec.get("golden"):                                     # the golden bases and looks (`cmd_golden`)
+        golds = sorted(st for st in spec["bases"] if st in GOLDEN_STAGES)
+        data["lights"]["golden"] = golds
+        data["lightBaseBytes"]["golden"] = {str(s): asset_pixels(base_name("golden", s)) for s in golds}
+        if "lookLevels" in data:
+            data["lookLevels"]["golden"] = levels
     for season, entry in SEASON_SLICE.items():                # a season's states that stand this station over a base
         for key, stages in entry["states"].items():
             on = sorted(st for st, erase in stages.items() if erase and st in spec["bases"])
@@ -1459,7 +1566,7 @@ def cmd_json() -> None:
 
 def main(argv: list[str] | None = None) -> int:
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    ap.add_argument("command", choices=["looks", "bases", "json", "all", "season", "night"])
+    ap.add_argument("command", choices=["looks", "bases", "json", "all", "season", "night", "golden"])
     ap.add_argument("--season", default="autumn", choices=sorted(SEASON_SLICE), help="season: the season to deliver (default autumn)")
     ap.add_argument("--station", choices=[sp["id"] for sp in STATIONS], help="one station (default: every station)")
     args = ap.parse_args(argv)
@@ -1469,6 +1576,9 @@ def main(argv: list[str] | None = None) -> int:
         return 0
     if args.command == "night":
         cmd_night()
+        return 0
+    if args.command == "golden":
+        cmd_golden()
         return 0
     chosen = [sp for sp in STATIONS if args.station in (None, sp["id"])]
     for spec in chosen:

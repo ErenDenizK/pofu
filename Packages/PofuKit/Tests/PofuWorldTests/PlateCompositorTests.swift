@@ -167,26 +167,28 @@ struct PlateCompositorTests {
 
     // MARK: Looks per light (PR 1a)
 
-    /// The tea stall with golden bases at its day stages and the day look at level 4 left out.
+    /// The tea stall with golden bases at its day stages and the look at level 4 left out of the day and the golden looks.
     private func gradedPlate() throws -> PlateIsland {
         var p = try plate
         p.stations["teaStall"]?.lights["golden"] = [3, 4, 6, 7]
         p.stations["teaStall"]?.lookLevels["day"] = [1, 2, 3, 5]
+        p.stations["teaStall"]?.lookLevels["golden"] = [1, 2, 3, 5]
         return p
     }
 
-    @Test func goldenDrawsTheDayLookUnderItsGrade() throws {
+    @Test func goldenDrawsItsOwnLookUngraded() throws {
         let p = try gradedPlate()
         let golden = PlateCompositor(plate: HomePlate(plate: p, light: "golden", stage: 7), levels: [.teaStall: 3])
         let look = try #require(golden.looks.first)
-        #expect(look.art == "world-home-look-teaStall-3-day")
-        #expect(look.grade == golden.plate.harmony.tint)
+        // N2: golden has its own looks (the day look through the colour fit to the golden plate), so there is no runtime grade
+        #expect(look.art == "world-home-look-teaStall-3-golden")
+        #expect(look.grade == nil)
         #expect(p.drawnPlateArt(light: "golden", stage: 7) == "world-home-base-golden-7")
-        // the day state draws the same art ungraded, over its own base
+        // the day state draws the day look, over its own base
         let day = PlateCompositor(plate: HomePlate(plate: p, light: "day", stage: 7), levels: [.teaStall: 3])
-        #expect(day.looks.first?.art == look.art && day.looks.first?.grade == nil)
-        // without a golden base the state keeps its painted plate and draws no look
-        let bare = try compositor(stage: 7, teaStall: 3, light: "golden")
+        #expect(day.looks.first?.art == "world-home-look-teaStall-3-day" && day.looks.first?.grade == nil)
+        // a golden stage without a base (stage 5 has no station) keeps its painted plate and draws no look
+        let bare = try compositor(stage: 5, teaStall: 3, light: "golden")
         #expect(bare.looks.isEmpty)
     }
 
@@ -198,8 +200,8 @@ struct PlateCompositorTests {
         #expect(art(4) == "world-home-look-teaStall-3-day")
         #expect(art(5) == "world-home-look-teaStall-5-day")
         #expect(art(0) == nil)
-        // golden follows the day looks
-        #expect(p.lookArt(station: "teaStall", level: 4, light: "golden", stage: 7) == "world-home-look-teaStall-3-day")
+        // golden has its own looks, painted at the same levels as the day's
+        #expect(p.lookArt(station: "teaStall", level: 4, light: "golden", stage: 7) == "world-home-look-teaStall-3-golden")
         // nothing painted at or below the level: nothing drawn
         var q = p
         q.stations["teaStall"]?.lookLevels["day"] = [2]

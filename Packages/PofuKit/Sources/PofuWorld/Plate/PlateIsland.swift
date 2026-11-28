@@ -357,8 +357,8 @@ public struct StationLooks: Hashable, Sendable {
     public var box: PlateRect
     /// The point of the plate the look's foot stands on (the canvas is placed by it).
     public var foot: PlatePoint
-    /// Per light, the stages whose plate has this station erased (the others keep it painted). Golden has no looks of
-    /// its own: it draws the day look under its grade, over a golden base listed here.
+    /// Per light, the stages whose plate has this station erased (the others keep it painted). Golden has bases and
+    /// looks of its own, the day's through the colour fit to the golden plate (`station_looks.py golden`).
     public var lights: [String: [Int]]
     /// Per light, the levels whose look is painted, where a light lacks some (a level whose cut failed is left out and
     /// draws the nearest lower one). A light not listed has every level 1 to `levels`.
@@ -391,9 +391,9 @@ public struct StationLooks: Hashable, Sendable {
         lights[light]?.contains(stage) ?? false
     }
 
-    /// The light whose looks a state in `light` draws: golden draws the day look (under its grade), the others their own.
+    /// The light whose looks a state in `light` draws: each its own, except a season's golden, which has no looks yet and draws
+    /// the season's day look under the plate's grade.
     public static func lookLight(for light: String) -> String {
-        if light == "golden" { return "day" }
         if light.hasSuffix("-golden") { return String(light.dropLast("golden".count)) + "day" }
         return light
     }
