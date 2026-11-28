@@ -52,6 +52,7 @@ struct PlateHomeLayer: View {
     /// When each painting appeared: the sky set's time zero (`SkySetLayers`).
     @State private var shownStart = Date()
     @Environment(\.displayScale) private var displayScale
+    @Environment(\.worldPlateFadeHold) private var fadeHold
     @State private var incomingStart = Date()
 
     init(plate: HomePlate, pose: CameraPose, size: CGSize, offset: CGSize, fade: Double, islandGrade: WorldGrade = .neutral, stationLevels: [StationID: Int] = [:], build: BuildFrame? = nil, nearLens: NearLensFrame? = nil, water: WaterFrame? = nil, islandOpacity: Double = 1) {
@@ -95,6 +96,19 @@ struct PlateHomeLayer: View {
             }
             guard new != shown else {
                 incoming = nil
+                return
+            }
+            // Screenshots: the cross-fade stands at a given share, never on the clock.
+            if let fadeHold {
+                if fadeHold >= 1 {
+                    shown = new
+                    shownStart = Date()
+                    incoming = nil
+                } else {
+                    incoming = new
+                    incomingStart = Date()
+                    incomingOpacity = max(fadeHold, 0)
+                }
                 return
             }
             incoming = new
