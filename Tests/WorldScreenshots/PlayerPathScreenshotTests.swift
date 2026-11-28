@@ -667,7 +667,7 @@ final class PlayerPathScreensScreenshotTests: PlayerPathFrameCase {
     /// stands on (`path-<station>-night-l<level>`; the other stations stay at level 3), the whole island at mixed levels per stage
     /// (`path-levels-i<island level>-night`, judged whole), and island 10's mixed levels either side of 20:00
     /// (`path-levels-i10-1959`, `path-levels-i10-2001`: the stations must not change from one to the other, only the light; golden
-    /// hour keeps the painted stations until N2).
+    /// hour's own are `testRenderTheGoldenStations`).
     @MainActor
     func testRenderTheNightStations() async throws {
         let scene = try windowScene()
@@ -721,6 +721,62 @@ final class PlayerPathScreensScreenshotTests: PlayerPathFrameCase {
         }
         try await frames([(22, "-night")])
         try await frames([(19 + 59.0 / 60, "-1959"), (20 + 1.0 / 60, "-2001")])
+    }
+
+    /// The stations keep their level in golden hour (N2): the N1 frames at 18:30 (`path-<station>-golden-l<level>`, the island level
+    /// whose golden base it stands on, the other stations at level 3; the bagel cart and the lighthouse stand on stages 1 and 2,
+    /// where golden hour draws the night plate), the whole island at mixed levels per stage (`path-levels-i<island level>-golden`) and
+    /// island 10's mixed levels just inside golden hour at 17:29 and 17:31 (`path-levels-i10-1729`, `-1731`): with `-1959` and
+    /// `-2001` of the night test, the stations must not change at 17:30 or 20:00, only the light.
+    @MainActor
+    func testRenderTheGoldenStations() async throws {
+        let scene = try windowScene()
+        let folder = try outputFolder()
+        let day = try XCTUnwrap(Self.path.first { $0.morning.islandLevel == 3 }, "the path has a level 3 island")
+        let stations: [(id: StationID, name: String, island: Int)] = [
+            (.teaStall, "tea-stall", 3), (.windmill, "mill", 10), (.pond, "pond", 10),
+            (.workshop, "workshop", 10), (.bagelCart, "bagel-cart", 9), (.lighthouse, "lighthouse", 9),
+        ]
+        for (id, name, islandLevel) in stations {
+            for level in 1...5 {
+                var world = day.morning
+                world.islandLevel = islandLevel
+                world.stations = world.stations.map { status in
+                    var status = status
+                    if status.id == id { status.level = level }
+                    return status
+                }
+                let island = IslandSceneModel(framing: .mid)
+                let view = homeView(world, hour: 18.5, island: island, settled: true)
+                let frame = "path-\(name)-golden-l\(level)"
+                try await capture(AnyView(view), name: frame, scene: scene, folder: folder, settle: 2100) {
+                    XCTAssertNotNil(island.homePlate, "\(frame): Home is its painting")
+                }
+            }
+        }
+        let mixed: [(island: Int, levels: [StationID: Int])] = [
+            (10, [.windmill: 3, .pond: 2, .workshop: 1]),
+            (9, [.windmill: 4, .pond: 3, .workshop: 5, .bagelCart: 5, .lighthouse: 2]),
+            (8, [.windmill: 2, .pond: 4, .workshop: 3, .bagelCart: 3, .lighthouse: 5]), (7, [.teaStall: 3, .pond: 1, .workshop: 4]),
+            (6, [.teaStall: 4]), (4, [.teaStall: 5]), (3, [.teaStall: 2]),
+        ]
+        for (islandLevel, levels) in mixed {
+            for (hour, suffix) in [(18.5, "-golden"), (17 + 29.0 / 60, "-1729"), (17 + 31.0 / 60, "-1731")] where suffix == "-golden" || islandLevel == 10 {
+                var world = day.morning
+                world.islandLevel = islandLevel
+                world.stations = world.stations.map { status in
+                    var status = status
+                    if let level = levels[status.id] { status.level = level }
+                    return status
+                }
+                let island = IslandSceneModel(framing: .mid)
+                let view = homeView(world, hour: hour, island: island, settled: true)
+                let name = "path-levels-i\(islandLevel)\(suffix)"
+                try await capture(AnyView(view), name: name, scene: scene, folder: folder, settle: 2100) {
+                    XCTAssertNotNil(island.homePlate, "\(name): Home is its painting")
+                }
+            }
+        }
     }
 
     /// A build's camera through the real `focusStation` (the painted station centred above the sheet), and
