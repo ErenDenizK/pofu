@@ -62,7 +62,9 @@ struct NearGround: View {
     // MARK: The lawn
 
     private func detail(_ patch: PlateNear.Patch, frame f: Frame, share: Double) -> some View {
-        let strength = plate.light == "night" ? patch.night : 1
+        let night = plate.light == "night"
+        let strength = night ? patch.night : 1
+        let dark = night ? (patch.nightDark ?? 0) : 0
         return Canvas { ctx, canvas in
             let tile = ctx.resolve(Image(patch.detail, bundle: .module))
             let side = patch.tile * f.ppp
@@ -76,6 +78,8 @@ struct NearGround: View {
                     ctx.draw(tile, in: CGRect(x: f.ox + Double(i) * side - 0.5, y: f.oy + Double(j) * side - 0.5, width: side + 1, height: side + 1))
                 }
             }
+            // At night the soft light over a pale tile would lift the lawn above the plate's: a little black lowers the tile's mean grey.
+            if dark > 0 { ctx.fill(Path(CGRect(origin: .zero, size: canvas)), with: .color(.black.opacity(dark))) }
         }
         .frame(width: size.width, height: size.height)
         .mask { lawnMask(patch, frame: f) }
@@ -104,21 +108,28 @@ struct NearGround: View {
                 ctx.blendMode = .destinationIn
                 ctx.draw(ctx.resolve(Image(name, bundle: .module)), in: box)
             }
-            // The objects, blurred about 6 points (18 device px), taken out of the lawn.
-            Canvas { ctx, _ in
-                for object in plate.objects where object.polygon.count >= 3 {
-                    var path = Path()
-                    path.move(to: f.point(object.polygon[0].x, object.polygon[0].y))
-                    for p in object.polygon.dropFirst() { path.addLine(to: f.point(p.x, p.y)) }
-                    path.closeSubpath()
-                    ctx.fill(path, with: .color(.black))
-                }
+            // The objects, taken out of the lawn by a wide fade (two blurs, a tight one for the body and a wide one for the
+            // reach, about 24 points), so the sharp lawn dies away with distance from a blurred object and no outline of it shows.
+            ZStack {
+                objectShapes(frame: f).blur(radius: 24).opacity(0.75)
+                objectShapes(frame: f).blur(radius: 8)
             }
-            .blur(radius: 6)
             .blendMode(.destinationOut)
         }
         .frame(width: size.width, height: size.height, alignment: .topLeading)
         .compositingGroup()
+    }
+
+    private func objectShapes(frame f: Frame) -> some View {
+        Canvas { ctx, _ in
+            for object in plate.objects where object.polygon.count >= 3 {
+                var path = Path()
+                path.move(to: f.point(object.polygon[0].x, object.polygon[0].y))
+                for p in object.polygon.dropFirst() { path.addLine(to: f.point(p.x, p.y)) }
+                path.closeSubpath()
+                ctx.fill(path, with: .color(.black))
+            }
+        }
     }
 
     // MARK: The dressing
@@ -159,6 +170,8 @@ struct NearGround: View {
     private func foreground(_ strip: PlateNear.Foreground, frame f: Frame, share: Double) -> some View {
         let u = plate.unitsPerPixel
         let light = plate.characterLight(at: plate.world(PlatePoint(x: strip.x + strip.width * Double(strip.count) / 2, y: strip.top + strip.height / 2)), width: strip.width * u, height: strip.height * u, id: "near")
+        // The art is neutral lawn; the state's own lawn above the lip (data) is its colour, so it meets the plate in every light.
+        let tint = strip.tint?[plate.key].flatMap { $0.count == 3 ? Color(red: $0[0], green: $0[1], blue: $0[2]) : nil }
         return ZStack(alignment: .topLeading) {
             ForEach(0..<max(strip.count, 0), id: \.self) { i in
                 let centre = f.point(strip.x + (Double(i) + 0.5) * strip.width, strip.top + strip.height / 2)
@@ -167,8 +180,8 @@ struct NearGround: View {
                     .interpolation(.high)
                     .frame(width: strip.width * f.ppp, height: strip.height * f.ppp)
                     // The art repeats sideways by itself (its two edges are crossfaded), so no copy is mirrored.
-                    .saturation(light.saturation)
-                    .colorMultiply(Color(red: light.paint.red, green: light.paint.green, blue: light.paint.blue))
+                    .saturation(tint == nil ? light.saturation : 1)
+                    .colorMultiply(tint ?? Color(red: light.paint.red, green: light.paint.green, blue: light.paint.blue))
                     .position(x: centre.x, y: centre.y)
             }
         }

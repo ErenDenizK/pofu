@@ -90,7 +90,10 @@ MASK_ROWS = (790, 1010)  # plate rows the mask covers
 MASK_W = 512  # plate columns 0..1024 at half resolution
 
 
-def lawn_pixels(plate_path: Path, crop: list[int]) -> tuple[np.ndarray, np.ndarray]:
+FEATHER = 20  # plate-image px (2 per plate px): the band fades in over this distance from a stone, flower or leaf pile
+
+
+def lawn_pixels(plate_path: Path, crop: list[int]) -> tuple[np.ndarray, np.ndarray, np.ndarray]:
     """The plate (float RGB) and a boolean field, True on grass: no stone, flower, water, soil or autumn leaf pile.
     Stones are beige (blue near half of green), flowers and water have more blue still, soil and leaves are red;
     lawn, lit or shaded, is none of them. `crop` is the plate's `plateCrop` box [x0, y0, x1, y1] of the state: the
@@ -106,16 +109,21 @@ def lawn_pixels(plate_path: Path, crop: list[int]) -> tuple[np.ndarray, np.ndarr
     ImageDraw.Draw(poly).polygon([((x - cx) * 2, (y - cy) * 2) for x, y in LAWN], fill=255)
     stone = ndi.binary_dilation(ndi.binary_opening((b > 0.5 * g) | (r > g * 1.3), iterations=2), iterations=5)
     lawn = ndi.binary_erosion(ndi.binary_opening((np.asarray(poly) > 0) & ~stone, iterations=3), iterations=3)
-    return p, lawn
+    # Distance from the nearest stone, flower or pile (not the lawn's own polygon edge), which the band fades in over.
+    feature = ndi.binary_opening((b > 0.5 * g) | (r > g * 1.3), iterations=2)
+    return p, lawn, ndi.distance_transform_edt(~feature)
 
 
-def lawn_mask(plate_path: Path, crop: list[int]) -> Image.Image:
+def lawn_mask(plate_path: Path, crop: list[int], feather: bool = False) -> Image.Image:
     """`near-lawn-mask-<stage>` (`-autumn-<stage>` for autumn's own painting): white, its alpha 1 on grass."""
     cx, cy = crop[0], crop[1]
-    _, lawn = lawn_pixels(plate_path, crop)
+    _, lawn, dist = lawn_pixels(plate_path, crop)
     # Place the crop's rows and columns into a full-plate field (rows 790..1010, columns 0..1024) at 2 px per plate pixel.
     full = np.zeros(((MASK_ROWS[1] - MASK_ROWS[0]) * 2, 2048), np.float32)
     blurred = ndi.gaussian_filter(lawn.astype(np.float32), 2.0)
+    if feather:  # autumn's leaf piles: the band fades in away from a pile, never ending in a ring (the dilated exclusion keeps 5 px clear)
+        t = np.clip((dist - 5) / FEATHER, 0, 1)
+        blurred = blurred * (t * t * (3 - 2 * t))
     for fy in range(full.shape[0]):
         sy = fy + (MASK_ROWS[0] - cy) * 2
         if 0 <= sy < blurred.shape[0]:
@@ -133,7 +141,10 @@ STRIP_W, STRIP_H = 480, 345  # before the seam crossfade cuts SEAM texels of wid
 SEAM = 96  # texels the strip's two edges are crossfaded over, so unflipped copies repeat without a seam or a mirror axis
 
 
-def foreground(art: Path, lawn_rgb: np.ndarray) -> Image.Image:
+STRIP_BASE = (0.84, 0.86, 0.40)  # the strip is neutral lawn at this colour; the app multiplies it by each state's own lawn (near_ground_data.py)
+
+
+def foreground(art: Path) -> Image.Image:
     """The soft strip from its ramp down to where it is fully opaque, reduced and made to repeat sideways; below that
     its own last rows, blurred sideways, relax to the plate's lawn colour, so one image covers the whole earth face."""
     im = load(art, STRIP)
@@ -156,8 +167,8 @@ def foreground(art: Path, lawn_rgb: np.ndarray) -> Image.Image:
     wide = ndi.gaussian_filter(raw, (60, 0), mode="nearest")
     n = STRIP_H - rows
     k = np.clip(np.arange(n) / 40.0, 0, 1)[:, None, None]
-    k2 = np.clip((np.arange(n) - 40) / 120.0, 0, 1)[:, None, None]
-    out[rows:, :, :3] = (last[None] * (1 - k) + wide[None] * k) * (1 - k2) + lawn_rgb[None, None] * k2
+    k2 = np.clip((np.arange(n) - 10) / 50.0, 0, 1)[:, None, None]
+    out[rows:, :, :3] = (last[None] * (1 - k) + wide[None] * k) * (1 - k2) + np.array(STRIP_BASE, np.float32)[None, None] * 255 * k2
     blend = min(24, rows)
     t = np.linspace(0, 1, blend)[:, None, None]
     out[rows - blend : rows, :, :3] = small[-blend:, :, :3] * (1 - t) + last[None] * t
@@ -219,15 +230,13 @@ def main() -> None:
     a = ap.parse_args()
     a.out.mkdir(parents=True, exist_ok=True)
     crops = json.loads(a.plate_json.read_text())["plateCrop"]
-    day0 = a.plates / "world-home-plate-day-0.imageset/world-home-plate-day-0.heic"
-    plate0, lawn0 = lawn_pixels(day0, crops["day"][0])
-    layers: dict[str, Image.Image] = {"near-lawn-detail": detail_tile(a.art).convert("RGB"), "near-foreground": foreground(a.art, plate0[lawn0].mean(axis=0))}
+    layers: dict[str, Image.Image] = {"near-lawn-detail": detail_tile(a.art).convert("RGB"), "near-foreground": foreground(a.art)}
     layers.update(dressing(a.art))
     for stage, crop in enumerate(crops["day"]):
         if crop is not None:
             layers[f"near-lawn-mask-{stage}"] = lawn_mask(a.plates / f"world-home-plate-day-{stage}.imageset/world-home-plate-day-{stage}.heic", crop)
-    # Autumn's own painting (stage 0) keeps its leaf piles soft.
-    layers["near-lawn-mask-autumn-0"] = lawn_mask(a.plates / "world-home-plate-autumn-day-0.imageset/world-home-plate-autumn-day-0.heic", crops["autumn-day"][0])
+    # Autumn's own painting (stage 0) keeps its leaf piles soft: its band fades in away from each pile.
+    layers["near-lawn-mask-autumn-0"] = lawn_mask(a.plates / "world-home-plate-autumn-day-0.imageset/world-home-plate-autumn-day-0.heic", crops["autumn-day"][0], feather=True)
     total = 0
     for name, im in layers.items():
         save_heic(im, a.out / f"{name}.heic", 85 if name == "near-lawn-detail" else 80)
