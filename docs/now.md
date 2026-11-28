@@ -31,21 +31,22 @@ review Codex D74-D76 and send him D74 and D76 as pictures; then Next.
 
 - PR 4 #574 `art/near-lens` (head 5d4e6156, worktree /home/user/wt/art-near-lens): built, Linux
   tests pass; agent stopped (fi 52). Left: CI result, after-frames, art gate after, 1:1 crops
-  (review `SkySetView.swift` first: one canvas per run of isle/non-isle layers).
-- `art/nights-round-2` (tea stall 208 + windmill 3 207; brief 2026-11-28-nights-round-2): builder.
+  (review `SkySetView.swift` first).
+- #572 `art/nights-round-2` (head 62d095d6): DO NOT MERGE as is. Brief premise false: the derived
+  tea look's warm hue is 39-53, not 66-72, so LOOK_MATCH gave peach/salmon awnings. Lead's call:
+  keep the raw picks' hue (~68, yellow, day 73-77), awning hue check against the pick; windmill 3
+  night (`path-mill-night-l3`) is fine to keep. Tea 4-5 stay derived (stripe gate 0.59/0.64 < 0.70).
 - PR 3 `art/golden-sky-set` (golden sky to #E2ADC7, no mirrored wrap, ADR-0033): builder.
-- Codex: D74 N1 night pilot (batch 209), D75 B1 beam (211), D76 P0 Pofu master
-  (212), pofu-art #234. On delivery: review, send him D74 and D76 as pictures,
-  then write N2 (210) and P1.
+- Codex: D74 N1 night (209), D75 B1 beam (211), D76 P0 Pofu master (212), pofu-art #234.
+  On delivery: review, send him D74 and D76 as pictures, then write N2 (210) and P1.
 
 ## Merged today
 
-- #563 painted nights (workshop, lighthouse); #566 bagel cart nights (LOOK_MATCH). #571 art
-  gate (`art_gate.py report <folder>`; on main 6 of 15 fail, as expected).
+- #563/#566 painted nights (workshop, lighthouse, bagel cart). #571 art gate (6 of 15 fail on main).
+  #567 docs; pofu-art #232 picks, #233 art line, #234 D74-D76.
 - #568 pier 1-5 day/night/golden, stage 0 only (1, 2, 5 need bare crops); worst night-0 11.33 M px.
 - #569 Pofu on the ground (no third paw; Home pad 2.0 < 4: he stands on the lantern post, PR 7).
   #565 stable frames + `screens_diff.py`; #570 publish 30 min (screenshots/main was stale).
-- #567 docs; pofu-art #232 picks, #233 art line, #234 D74-D76.
 
 ## Next
 
@@ -56,5 +57,4 @@ review Codex D74-D76 and send him D74 and D76 as pictures; then Next.
 
 ## Open with the founder
 
-- D74 night look and D76 Pofu master as pictures, when Codex delivers.
 - Membership ~11-27: Mac 1-2 h, Distribution request same day; #490; N6; device: pinch, pond fps.
