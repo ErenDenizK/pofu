@@ -11,7 +11,9 @@ on:
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
-  cancel-in-progress: true
+  # A pull request's new push replaces its older run. A run on main always
+  # finishes, so each merge publishes screenshots/main; a later merge waits.
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
 
 permissions:
   contents: read
