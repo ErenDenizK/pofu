@@ -11,10 +11,17 @@ struct PofuExpressionTests {
         }
     }
 
+    @Test("no mood adds a paw: the base art already has two")
+    func noMoodAddsAPaw() {
+        for mood in PofuMood.allCases {
+            #expect(!PofuExpression.parts(for: mood).contains(.pawsWave), "\(mood)")
+        }
+    }
+
     @Test("the mapping is fixed")
     func mapping() {
         #expect(PofuExpression.parts(for: .calm).isEmpty)
-        #expect(PofuExpression.parts(for: .happy) == [.mouthOpen, .pawsWave])
+        #expect(PofuExpression.parts(for: .happy) == [.mouthOpen])
         #expect(PofuExpression.parts(for: .sleepy) == [.earsDroop])
         #expect(PofuExpression.parts(for: .proud) == [.mouthSmirk])
         #expect(PofuExpression.parts(for: .curious) == [.mouthO])

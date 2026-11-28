@@ -65,7 +65,9 @@ public enum PofuExpression {
     public static func parts(for mood: PofuMood) -> [PofuFacePart] {
         switch mood {
         case .calm: []
-        case .happy: [.mouthOpen, .pawsWave]
+        // No mood adds `.pawsWave`: the base art already has two chest paws, so
+        // the part made a third hand.
+        case .happy: [.mouthOpen]
         case .sleepy: [.earsDroop]
         case .proud: [.mouthSmirk]
         case .curious: [.mouthO]
