@@ -133,12 +133,16 @@ struct PlateHomeLayer: View {
                     if fade < 0.999, farPictureIsSharp(plate) {
                         FarPicture(compositor: compositor, pose: pose, size: size, offset: offset)
                     } else {
-                        CompositeIsland(compositor: compositor, build: build, pose: pose, size: size, offset: offset, water: water)
-                            // The water's patch is a layer effect; the lens blurs and adds this island at several levels, and
-                            // a layer effect met inside them comes out brighter than the plate beside it (a pale band round
-                            // the things floating in the pond). Flattened first, the island is one picture to the lens.
-                            .flattened(water != nil)
-                            .modifier(NearLensLevels(frame: nearLens, plate: plate, size: size))
+                        ZStack(alignment: .topLeading) {
+                            CompositeIsland(compositor: compositor, build: build, pose: pose, size: size, offset: offset, water: water)
+                                // The water's patch is a layer effect; the lens blurs and adds this island at several levels, and
+                                // a layer effect met inside them comes out brighter than the plate beside it (a pale band round
+                                // the things floating in the pond). Flattened first, the island is one picture to the lens.
+                                .flattened(water != nil)
+                            // The near camera's ground (row 3a): inside the island's picture, so the lens blurs it with the rest.
+                            NearGround(plate: plate, pose: pose, size: size, offset: offset)
+                        }
+                        .modifier(NearLensLevels(frame: nearLens, plate: plate, size: size))
                             .task(id: compositor.snapshotKey) {
                                 // The far picture is ready before the camera rises: rendered once the state rests.
                                 try? await Task.sleep(for: .milliseconds(600))

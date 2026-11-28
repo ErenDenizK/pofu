@@ -1368,14 +1368,15 @@ public final class IslandSceneModel {
     }
 
     /// Holds near's rest on Pofu, still (screenshots): his feet at 0.60 of the height, moved
-    /// 0.12 of the width away from the side he faces.
-    public func holdNearRest() {
+    /// 0.12 of the width away from the side he faces. `point` rests the shot on another place of the
+    /// island instead (a station's foot, the pond's edge: the near frames of row 3a).
+    public func holdNearRest(on point: WorldPoint? = nil) {
         closeSurfaces()
         island = .home
         engine.rig.jump(to: .mid)
         let rig = engine.rig
         let shot = NearShot.rest(width: rig.rail.width, height: rig.rail.height, facesLeft: false)
-        engine.rig.rest(on: standing("pofu") ?? IslandLayout.pofu, screenX: shot.x, screenY: shot.y, animated: false)
+        engine.rig.rest(on: point ?? standing("pofu") ?? IslandLayout.pofu, screenX: shot.x, screenY: shot.y, animated: false)
         engine.rig.snapToTargets()
         framing = .near
         projectedFraming = .near
