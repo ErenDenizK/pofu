@@ -1,0 +1,333 @@
+# Per-job review fragment; exploration only, auto-pick is provisional pending lead review.
+batch: batch-191-plot-ladder-workshop
+manifest: tools/imagegen/manifest/batch-191-plot-ladder-workshop.yaml
+manifest_sha256: 535af2b348aec576a8683cfd80f29b300beac611e6c3c234c16e722d08557f4b
+job: x-plot-workshop-4-night
+contact_sheet: design/art/takes/batch-191-plot-ladder-workshop/x-plot-workshop-4-night/contact.jpg
+source: codex-cloud
+account:
+  owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+  kind: chatgpt-plan
+status: picked
+pick: 1
+lead_review: "Lead pick, usable: shed, log store, sacks and ladder within 4 px of the day pick, warm light only in the windows and the hanging bulb, wall lamps unlit, no veil, and lighter darks than t2; grade the cut look light x1.07 (about +4 L*, darks +6) and chroma x0.8 to sit on the il8 night plate's shed."
+selection:
+  method: 'QA auto-pick: passing QA first, then lowest lock_load, then highest harmony; both takes retained
+    for lead review'
+  pick: 1
+  note: Both relights add an unrequested large moon, while carrying forward the sacks/ladder and other
+    day details. The lit sources glow broadly and the window is strongly bright, with light pooling beyond
+    sources, which goes beyond the requested small local practical glow. T1 is QA auto-pick (zero lock-load
+    for both, no harmony score, tie by order). Both warn on square scaling/crop, dark subject and cloud
+    sea, high contrast, palette drift and large lightness shift; t2 additionally warns on dark pixels.
+    Exploration only; no promotion.
+provisional_parent: x-plot-workshop-4 t1 (auto-pick, lead review pending)
+takes:
+- take: 1
+  file: plate__x-plot-workshop-4-night--t1.webp
+  source_file: /tmp/b191-j4n-t1.png
+  source_sha256: 0d5e372a71185b34ddb9f9956daa41425c345ebc3751ddc751702eb52fc11c00
+  source_dimensions: &id001
+  - 1254
+  - 1254
+  output_dimensions: *id001
+  backend: codex-cloud
+  generated_at: '2026-11-27T02:19:26+00:00'
+  qa: warn
+  lock_load: 0.0
+  harmony: null
+  warnings:
+  - check: canvas
+    message: 1254x1254 scaled x1.225 and center-cropped to 1536x1536
+  - check: chroma_ceiling
+    message: chroma p95 56 (R1 51)
+  - check: light_values
+    message: 'night/subject: L p5 31 (at least 45: darks stay a light mid-tone), p98 84 (at least 85)
+      (warn-only until the founder has seen the light pilot)'
+  - check: light_median
+    message: 'night/subject: median L 53 (band 66-88) (warn-only until the founder has seen the light
+      pilot)'
+  - check: light_contrast
+    message: 'night/subject: p75 local contrast 7.9 (band 1.5-5.0; above it reads too contrasty) (warn-only
+      until the founder has seen the light pilot)'
+  - check: light_sea
+    message: 'night: cloud sea L 55 (at least 70: the sea is the reflector) (warn-only until the founder
+      has seen the light pilot)'
+  - check: palette_drift
+    message: 'mean dE 11.1, p95 19.3, off-palette 46.1% (top: #3355AA (10.7%), #334499 (7.5%)) (advisory
+      in an exploration)'
+  - check: edit_structure
+    message: light structure matches the parent (r 0.39) (advisory in an exploration)
+  - check: edit_lightness
+    message: mean lightness moved by 30.6 L (the same lightness was asked) (advisory in an exploration)
+  prompt: 'REFERENCES (attached, in this order):
+
+    1. The image to edit (the approved previous level). Edit it; do not redraw it.
+
+    2. The night target: the shipped moonlit night plate of the island, level 8. Match its light and colour:
+    soft blue sky, quiet moonlit lawn, small warm pools only at real sources. Do not copy its objects
+    or layout.
+
+
+    Edit the attached picture of a tiled shed with a chimney, a warm window, a log store, two cloth sacks
+    at the
+
+    entrance and a ladder at its right end, on its plot of lawn, into the same scene on a calm, clear
+    night, lit
+
+    like the first attached night plate of the island: a soft deep-blue sky (blue, never black or purple-black)
+
+    with a gentle glow near the clouds and a few small stars; the lawn, stone and wood stay readable and
+    fairly
+
+    light under cool moonlight, their colours soft and quiet but still rich, their shadows blue-violet,
+    no deep
+
+    blacks, no grey veil over the picture. Warm light only from sources that are already painted in the
+    picture,
+
+    each a small soft pool: the small window and the soft glow inside the shed. The workshop keeps the
+    same
+
+    silhouette, the same parts, the same size, in the same place on the same ground. Everything stays
+    where it is;
+
+    only light and colour change.
+
+
+    KEEP: everything not named above stays exactly the same as in the
+
+    attached image: every existing part, its shape, color, position and size,
+
+    the canvas, the camera, the light and the painting style. Do not zoom out
+
+    or reframe: if a new part does not fit, make the new part smaller, never
+
+    the existing ones. Outside the new parts, the result must line up with
+
+    the attached image pixel for pixel.
+
+
+    STYLE: a finished painted illustration for a premium cozy mobile game, like
+
+    a page from a beloved picture book: soft painterly 2D with gentle airbrushed
+
+    shading, rounded chunky forms, no outlines, no hard edges, matte surfaces
+
+    with at most one soft highlight per object. COLOUR: vivid, saturated and
+
+    jewel-like, as in the key art of a high-end animated film: intense grass
+
+    greens, glowing sunflower yellow, deep sky blue, warm peach earth, crisp
+
+    white petals; strong contrast between warm lit colour and cool shadow
+
+    colour; every material keeps its own true colour. VALUES: a full range, from
+
+    bright sunlit tops to deep warm shadows under eaves, inside foliage, beneath
+
+    the lawn rim and around doors, so every object separates clearly from what
+
+    is behind it and the picture reads at a glance on a small phone screen.
+
+    Shadows are coloured (warm brown, plum, deep teal), never black or grey.
+
+    Light direction and shadow hue follow the LIGHT block of this prompt.
+
+    Colourful but never neon, never HDR, never glossy. No text, no letters, no
+
+    numbers, no logos, no watermark, no border, no frame.
+
+
+    AVOID: high contrast, black shadows, an indigo-purple festival night, many bright lights, glowing
+    everything, a flat grey or blue veil over the picture, saturated warm colour over the lawn, neon,
+    a light beam or rays, a new object, lamp or window, a moved, resized or redrawn part, a reframed or
+    zoomed picture, text, letters
+
+
+    LIGHT (hour: night, layer: subject). Safe, cozy.
+
+    Key light #B8A8B1 from the upper right; fill #2A2350; rim #FFB060 along the edge facing away from
+    the key. Shadows are tinted #2A2440 (never grey or black), short and soft, falling toward the lower
+    left; every object sits on a soft occlusion pad in that hue where it touches the ground or another
+    form.
+
+    VALUES (the reference envelope): a high-key picture inside one envelope of soft, milky air. Every
+    value sits between light mid-tone and cream-white; the darkest recesses (door holes, gaps, pond rims)
+    are a mid-value tinted with the shadow hue, never black. Form turns in small value steps. Colour lives
+    in the halftones; lights bleach to cream. No dark outlines: edges are found by value and hue. The
+    cloud sea below is the brightest large surface and lights the island''s underside with a warm bounce.
+
+    NIGHT is a hue change, not a value drop: only the sky is dark (deep indigo); the island and the clouds
+    stay light, moonlit lavender, with violet shadows and cream practicals whose glow spreads three to
+    four times the lamp''s size.
+
+    This is the SUBJECT plane: the clearest forms and the crispest edges in the picture, still inside
+    the envelope.
+
+
+    Output: one image, opaque, full bleed, square 1536 x 1536.
+
+    '
+  attachments:
+  - path: build/imagegen/batch-191-plot-ladder-workshop/locked/plate__x-plot-workshop-4--t1.png
+    role: The image to edit (the approved previous level). Edit it; do not redraw it.
+  - path: design/art/takes/batch-72-home-night/x-home-flow-il8-night/plate__x-home-flow-il8-night--t2.webp
+    role: 'The night target: the shipped moonlit night plate of the island, level 8. Match its light and
+      colour: soft blue sky, quiet moonlit lawn, small warm pools only at real sources. Do not copy its
+      objects or layout.'
+- take: 2
+  file: plate__x-plot-workshop-4-night--t2.webp
+  source_file: /tmp/b191-j4n-t2.png
+  source_sha256: d1d24e827d18cda121c416d007c08f615ec70725e37d97d37dbabdc7e155a35f
+  source_dimensions: &id002
+  - 1254
+  - 1254
+  output_dimensions: *id002
+  backend: codex-cloud
+  generated_at: '2026-11-27T02:20:28+00:00'
+  qa: warn
+  lock_load: 0.0
+  harmony: null
+  warnings:
+  - check: canvas
+    message: 1254x1254 scaled x1.225 and center-cropped to 1536x1536
+  - check: chroma_ceiling
+    message: chroma p95 56 (R1 51)
+  - check: light_values
+    message: 'night/subject: L p5 29 (at least 45: darks stay a light mid-tone), p98 82 (at least 85)
+      (warn-only until the founder has seen the light pilot)'
+  - check: light_median
+    message: 'night/subject: median L 51 (band 66-88) (warn-only until the founder has seen the light
+      pilot)'
+  - check: light_contrast
+    message: 'night/subject: p75 local contrast 7.8 (band 1.5-5.0; above it reads too contrasty) (warn-only
+      until the founder has seen the light pilot)'
+  - check: light_sea
+    message: 'night: cloud sea L 52 (at least 70: the sea is the reflector) (warn-only until the founder
+      has seen the light pilot)'
+  - check: light_dark
+    message: 'night: 3.3 % below L* 30 under the sky (at most 3; only the sky is dark)'
+  - check: palette_drift
+    message: 'mean dE 11.8, p95 19.2, off-palette 53.4% (top: #334499 (9.5%), #3355AA (8.6%)) (advisory
+      in an exploration)'
+  - check: edit_structure
+    message: light structure matches the parent (r 0.40) (advisory in an exploration)
+  - check: edit_lightness
+    message: mean lightness moved by 32.6 L (the same lightness was asked) (advisory in an exploration)
+  prompt: 'REFERENCES (attached, in this order):
+
+    1. The image to edit (the approved previous level). Edit it; do not redraw it.
+
+    2. The night target: the shipped moonlit night plate of the island, level 8. Match its light and colour:
+    soft blue sky, quiet moonlit lawn, small warm pools only at real sources. Do not copy its objects
+    or layout.
+
+
+    Edit the attached picture of a tiled shed with a chimney, a warm window, a log store, two cloth sacks
+    at the
+
+    entrance and a ladder at its right end, on its plot of lawn, into the same scene on a calm, clear
+    night, lit
+
+    like the first attached night plate of the island: a soft deep-blue sky (blue, never black or purple-black)
+
+    with a gentle glow near the clouds and a few small stars; the lawn, stone and wood stay readable and
+    fairly
+
+    light under cool moonlight, their colours soft and quiet but still rich, their shadows blue-violet,
+    no deep
+
+    blacks, no grey veil over the picture. Warm light only from sources that are already painted in the
+    picture,
+
+    each a small soft pool: the small window and the soft glow inside the shed. The workshop keeps the
+    same
+
+    silhouette, the same parts, the same size, in the same place on the same ground. Everything stays
+    where it is;
+
+    only light and colour change.
+
+
+    KEEP: everything not named above stays exactly the same as in the
+
+    attached image: every existing part, its shape, color, position and size,
+
+    the canvas, the camera, the light and the painting style. Do not zoom out
+
+    or reframe: if a new part does not fit, make the new part smaller, never
+
+    the existing ones. Outside the new parts, the result must line up with
+
+    the attached image pixel for pixel.
+
+
+    STYLE: a finished painted illustration for a premium cozy mobile game, like
+
+    a page from a beloved picture book: soft painterly 2D with gentle airbrushed
+
+    shading, rounded chunky forms, no outlines, no hard edges, matte surfaces
+
+    with at most one soft highlight per object. COLOUR: vivid, saturated and
+
+    jewel-like, as in the key art of a high-end animated film: intense grass
+
+    greens, glowing sunflower yellow, deep sky blue, warm peach earth, crisp
+
+    white petals; strong contrast between warm lit colour and cool shadow
+
+    colour; every material keeps its own true colour. VALUES: a full range, from
+
+    bright sunlit tops to deep warm shadows under eaves, inside foliage, beneath
+
+    the lawn rim and around doors, so every object separates clearly from what
+
+    is behind it and the picture reads at a glance on a small phone screen.
+
+    Shadows are coloured (warm brown, plum, deep teal), never black or grey.
+
+    Light direction and shadow hue follow the LIGHT block of this prompt.
+
+    Colourful but never neon, never HDR, never glossy. No text, no letters, no
+
+    numbers, no logos, no watermark, no border, no frame.
+
+
+    AVOID: high contrast, black shadows, an indigo-purple festival night, many bright lights, glowing
+    everything, a flat grey or blue veil over the picture, saturated warm colour over the lawn, neon,
+    a light beam or rays, a new object, lamp or window, a moved, resized or redrawn part, a reframed or
+    zoomed picture, text, letters
+
+
+    LIGHT (hour: night, layer: subject). Safe, cozy.
+
+    Key light #B8A8B1 from the upper right; fill #2A2350; rim #FFB060 along the edge facing away from
+    the key. Shadows are tinted #2A2440 (never grey or black), short and soft, falling toward the lower
+    left; every object sits on a soft occlusion pad in that hue where it touches the ground or another
+    form.
+
+    VALUES (the reference envelope): a high-key picture inside one envelope of soft, milky air. Every
+    value sits between light mid-tone and cream-white; the darkest recesses (door holes, gaps, pond rims)
+    are a mid-value tinted with the shadow hue, never black. Form turns in small value steps. Colour lives
+    in the halftones; lights bleach to cream. No dark outlines: edges are found by value and hue. The
+    cloud sea below is the brightest large surface and lights the island''s underside with a warm bounce.
+
+    NIGHT is a hue change, not a value drop: only the sky is dark (deep indigo); the island and the clouds
+    stay light, moonlit lavender, with violet shadows and cream practicals whose glow spreads three to
+    four times the lamp''s size.
+
+    This is the SUBJECT plane: the clearest forms and the crispest edges in the picture, still inside
+    the envelope.
+
+
+    Output: one image, opaque, full bleed, square 1536 x 1536.
+
+    '
+  attachments:
+  - path: build/imagegen/batch-191-plot-ladder-workshop/locked/plate__x-plot-workshop-4--t1.png
+    role: The image to edit (the approved previous level). Edit it; do not redraw it.
+  - path: design/art/takes/batch-72-home-night/x-home-flow-il8-night/plate__x-home-flow-il8-night--t2.webp
+    role: 'The night target: the shipped moonlit night plate of the island, level 8. Match its light and
+      colour: soft blue sky, quiet moonlit lawn, small warm pools only at real sources. Do not copy its
+      objects or layout.'
